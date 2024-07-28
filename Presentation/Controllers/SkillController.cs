@@ -5,22 +5,22 @@ namespace Presentation
 {
     public class SkillController : IController
     {
-        ISkillUi _ui;
-        ISkillService _skillService;
+        private readonly ISkillService _skillService;
+        private readonly ISkillUi _ui;
 
-        public SkillController() : this(new SkillUi(), new  SkillService()) { }
+        public SkillController() : this(new SkillService()) { }
 
-        public SkillController(ISkillUi ui, ISkillService skillService)
+        public SkillController(ISkillService skillService)
         {
-            _ui = ui;
             _skillService = skillService;
+            _ui = new SkillUi(_skillService);
         }
 
         public void Create()
         {
             Skill newSkill = _skillService.Create(_ui.Create());
 
-            Console.WriteLine(newSkill);
+            Logger.LogResult(newSkill);
         }
 
         public void Delete()

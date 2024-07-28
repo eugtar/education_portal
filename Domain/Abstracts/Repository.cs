@@ -4,7 +4,7 @@ namespace Domain
 {
     public abstract class Repository<T> where T : notnull
     {
-        protected string _dir = $@"{AppDomain.CurrentDomain.BaseDirectory}\Store";
+        protected string _dir = $@"{Directory.GetParent(Environment.CurrentDirectory).Parent.FullName}\Store";
         protected string _path;
 
         public Repository(string name) 

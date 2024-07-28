@@ -5,22 +5,22 @@ namespace Presentation
 {
     public class EBookController : IController
     {
-        IEBookUi _ui;
-        IEBookService _eBookService;
+        private readonly IEBookUi _ui;
+        private readonly IEBookService _eBookService;
 
-        public EBookController() : this(new EBookUi(), new EBookService()) { }
+        public EBookController() : this(new EBookService()) { }
 
-        public EBookController(IEBookUi ui, IEBookService eBookService)
+        public EBookController(IEBookService eBookService)
         {
-            _ui = ui;
             _eBookService = eBookService;
+            _ui = new EBookUi(_eBookService);
         }
 
         public void Create()
         {
             EBook newEBook = _eBookService.Create(_ui.Create());
 
-            Console.WriteLine(newEBook);
+            Logger.LogResult(newEBook);
         }
 
         public void Delete()

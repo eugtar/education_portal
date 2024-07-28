@@ -5,7 +5,15 @@ namespace Presentation
 {
     public class VideoUi : Ui, IVideoUi
     {
-        readonly IVideoService _service = new VideoService();
+        private readonly IVideoService _service;
+
+
+        public VideoUi(IVideoService videoService) 
+        {
+            _service = videoService;
+        }
+
+
         public CreateVideoDto Create()
         {
             string title = ReadText("Video title");
@@ -26,6 +34,7 @@ namespace Presentation
             return new CreateVideoDto(title, duration, quality);
         }
 
+
         public string Delete()
         {
             List<Video?> videos = _service.GetAll();
@@ -39,10 +48,12 @@ namespace Presentation
             return videos[SelectOne<Video>(videos)]?.Id;
         }
 
+
         public string SelectOne()
         {
             throw new NotImplementedException();
         }
+
 
         public UpdateVideoDto Update()
         {

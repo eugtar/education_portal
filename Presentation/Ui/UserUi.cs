@@ -5,7 +5,15 @@ namespace Presentation
 {
     public class UserUi : Ui, IUserUi
     {
-        readonly IUserService _service = new UserService();
+        private readonly IUserService _service;
+
+
+        public UserUi(IUserService userService) 
+        {
+            _service = userService;
+        }
+
+
         public CreateUserDto Create()
         {
             string firstName = ReadText("First name");
@@ -13,6 +21,7 @@ namespace Presentation
 
             return new CreateUserDto(firstName, lastName);
         }
+
 
         public string Delete()
         {
@@ -31,6 +40,7 @@ namespace Presentation
         {
             throw new NotImplementedException();
         }
+
 
         public UpdateUserDto Update()
         {

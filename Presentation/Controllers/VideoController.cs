@@ -5,22 +5,22 @@ namespace Presentation
 {
     public class VideoController : IController
     {
-        IVideoUi _ui;
-        IVideoService _videoService;
+        public readonly IVideoService _videoService;
+        public readonly IVideoUi _ui;
 
-        public VideoController() : this(new VideoUi(), new VideoService()) { }
+        public VideoController() : this(new VideoService()) { }
 
-        public VideoController(IVideoUi ui, IVideoService videoService)
+        public VideoController(IVideoService videoService)
         {
-            _ui = ui;
             _videoService = videoService;
+            _ui = new VideoUi(_videoService);
         }
 
         public void Create()
         {
             Video newVideo = _videoService.Create(_ui.Create());
 
-            Console.WriteLine(newVideo);
+            Logger.LogResult(newVideo);
         }
 
         public void Delete()

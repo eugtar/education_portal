@@ -5,13 +5,22 @@ namespace Presentation
 {
     public class SkillUi : Ui, ISkillUi
     {
-        readonly ISkillService _service = new SkillService();
+        private readonly ISkillService _service;
+
+
+        public SkillUi(ISkillService skillService) 
+        {
+            _service = skillService;
+        }
+
+
         public CreateSkillDto Create()
         {
             string name = ReadText("Skill title");
 
             return new CreateSkillDto(name);
         }
+
 
         public string Delete()
         {
@@ -25,6 +34,7 @@ namespace Presentation
 
             return skills[SelectOne<Skill>(skills)]?.Id;
         }
+
 
         public UpdateSkillDto Update()
         {

@@ -5,22 +5,22 @@ namespace Presentation
 {
     public class CourseController : IController
     {
-        ICourseUi _ui;
-        ICourseService _courseService;
+        private readonly ICourseService _courseService;
+        private readonly ICourseUi _ui;
 
-        public CourseController() : this(new CourseUi(), new CourseService() ) { }
+        public CourseController() : this(new CourseService()) { }
 
-        public CourseController(ICourseUi ui, ICourseService courseService) 
+        public CourseController(ICourseService courseService) 
         {
-            _ui = ui;
             _courseService = courseService;
+            _ui = new CourseUi(_courseService);
         }
 
         public void Create()
         {
             Course newCourse = _courseService.Create(_ui.Create());
 
-            Console.WriteLine(newCourse);
+            Logger.LogResult(newCourse);
         }
 
         public void Delete()

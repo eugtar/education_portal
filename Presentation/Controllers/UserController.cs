@@ -5,22 +5,22 @@ namespace Presentation
 {
     public class UserController : IController
     {
-        IUserUi _ui;
-        IUserService _userService;
+        private readonly IUserService _userService;
+        private readonly IUserUi _ui;
 
-        public UserController() : this(new UserUi(), new UserService()) { }
+        public UserController() : this(new UserService()) { }
 
-        public UserController(IUserUi ui, IUserService userService)
+        public UserController(IUserService userService)
         {
-            _ui = ui;
             _userService = userService;
+            _ui = new UserUi(_userService);
         }
 
         public void Create()
         {
             User newUser = _userService.Create(_ui.Create());
 
-            Console.WriteLine(newUser);
+            Logger.LogResult(newUser);
         }
 
         public void Delete()

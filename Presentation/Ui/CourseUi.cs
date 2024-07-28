@@ -5,7 +5,15 @@ namespace Presentation
 {
     public class CourseUi : Ui, ICourseUi
     {
-        readonly ICourseService _service = new CourseService();
+        private readonly ICourseService _service;
+
+
+        public CourseUi(ICourseService courseService) 
+        {
+            _service = courseService;
+        }
+
+
         public CreateCourseDto Create()
         {
             string title = ReadText("Course title");
@@ -13,6 +21,7 @@ namespace Presentation
 
             return new CreateCourseDto(title, description);
         }
+
 
         public string Delete()
         {
@@ -27,10 +36,12 @@ namespace Presentation
             return courses[SelectOne<Course>(courses)]?.Id;
         }
 
+
         public string SelectOne()
         {
             throw new NotImplementedException();
         }
+
 
         public UpdateCourseDto Update()
         {

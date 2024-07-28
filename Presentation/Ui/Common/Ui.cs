@@ -4,34 +4,46 @@
     {
         public Ui() { }
 
-        public string ReadText( string title)
+        public string ReadText( string title, bool required = true)
         {
             while (true)
             {
-                Console.WriteLine("\n(Enter \"exit\" to close the program)");
-                Console.Write($"{title}: ");
-                string value = Console.ReadLine().Trim().ToLower();
+                Logger.Log("\n(Enter \"exit\" to close the program)");
+                Logger.Log($"{title}: ", false);
 
-                if (string.IsNullOrEmpty(value))
-                {
-                    continue;
-                }
-                else if (value == "exit")
+                string value = Console.ReadLine() ?? "";
+                value = value.Trim().ToLower();
+
+                if (value == "exit")
                 {
                     App.StopProcess();
+                }
+
+                if(required)
+                {
+                    if (string.IsNullOrEmpty(value))
+                    {
+                        continue;
+                    }
+                    else
+                    {
+                        return value;
+                    }
                 }
                 else
                 {
                     return value;
                 }
+                
             }
         }
 
-        public int ReadNumber(string title)
+
+        public int ReadNumber(string title, bool required = true)
         {
             while (true)
             {
-                string number = ReadText(title);
+                string number = ReadText(title, required);
                 bool intCheck = int.TryParse(number, out int result);
 
                 if (intCheck)
@@ -45,44 +57,25 @@
             }
         }
 
+
         public int SelectOne<T>(List<T> values)
         {
-            Console.WriteLine();
-            
             for(int i = 0; i < values.Count; i++)
             {
-                Console.WriteLine($"[{i + 1}] {values[i]}");
+                Logger.Log($"[{i + 1}] {values[i]}");
             }
 
             while (true)
             {
-                Console.WriteLine("\n(Enter \"exit\" to close the program)");
-                Console.Write("Select: ");
+                int selectedItem = ReadNumber("Select: ");
 
-                string selectedItem = Console.ReadLine().Trim().ToLower();
-
-                if(string.IsNullOrEmpty(selectedItem))
-                {
-                    continue;
-                }
-                else if(selectedItem == "exit")
-                {
-                    App.StopProcess();
-                }
-                
-                bool intCheck = int.TryParse(selectedItem, out int result);
-
-                if (!intCheck) 
-                {
-                    continue;
-                }
-                else if(result - 1 >= values.Count)
+                if(selectedItem - 1 >= values.Count)
                 {
                     continue;
                 }
                 else
                 {
-                    return result - 1;
+                    return selectedItem - 1;
                 }
             }
         }

@@ -5,22 +5,22 @@ namespace Presentation
 {
     public class ArticleController : IController
     {
-        IArticleUi _ui;
-        IArticleService _articleService;
+        private readonly IArticleService _articleService;
+        private readonly IArticleUi _ui;
 
-        public ArticleController() : this(new ArticleUi(), new ArticleService()) { }
+        public ArticleController() : this(new ArticleService()) { }
 
-        public ArticleController(IArticleUi ui, IArticleService articleService)
+        public ArticleController(IArticleService articleService)
         {
-            _ui = ui;
             _articleService = articleService;
+            _ui = new ArticleUi(_articleService);
         }
 
         public void Create()
         {
             Article newArticle = _articleService.Create(_ui.Create());
 
-            Console.WriteLine(newArticle);
+            Logger.LogResult(newArticle);
         }
 
         public void Delete()

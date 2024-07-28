@@ -5,7 +5,15 @@ namespace Presentation
 {
     public class ArticleUi : Ui, IArticleUi
     {
-        readonly IArticleService _service = new ArticleService();
+        private readonly IArticleService _service;
+
+
+        public ArticleUi(IArticleService articleService) 
+        {
+            _service = articleService;
+        }
+
+
         public CreateArticleDto Create()
         {
             string title = ReadText("Article title");
@@ -13,6 +21,7 @@ namespace Presentation
 
             return new CreateArticleDto(title, link);
         }
+
 
         public string Delete()
         {
@@ -27,10 +36,12 @@ namespace Presentation
             return articles[SelectOne<Article>(articles)]?.Id;
         }
 
+
         public string SelectOne()
         {
             throw new NotImplementedException();
         }
+
 
         public UpdateArticleDto Update()
         {

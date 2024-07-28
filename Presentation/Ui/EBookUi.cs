@@ -5,7 +5,15 @@ namespace Presentation
 {
     public class EBookUi : Ui, IEBookUi
     {
-        readonly IEBookService _service = new EBookService();
+        private readonly IEBookService _service;
+
+
+        public EBookUi(IEBookService eBookService) 
+        {
+            _service = eBookService;
+        }
+
+
         public CreateEBookDto Create()
         {
             string title = ReadText("Book title");
@@ -31,6 +39,7 @@ namespace Presentation
             return new CreateEBookDto(title, author, pageAmount, format, publishedOn);
         }
 
+
         public string Delete()
         {
             List<EBook?> eBooks = _service.GetAll();
@@ -44,10 +53,12 @@ namespace Presentation
             return eBooks[base.SelectOne<EBook>(eBooks)]?.Id; ;
         }
 
+
         public string SelectOne()
         {
             throw new NotImplementedException();
         }
+
 
         public UpdateEBookDto Update()
         {
