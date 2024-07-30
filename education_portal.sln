@@ -9,9 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{95E3FAB3-09CF-443D-8B4E-30E0FAD55B29}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cli", "Cli\Cli.csproj", "{04CB646D-A0DB-4D17-9A2B-4EB105007ACC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation\Presentation.csproj", "{370687A1-DD19-419E-965E-15D2F1D2BAFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Presentation", "Presentation\Presentation.csproj", "{370687A1-DD19-419E-965E-15D2F1D2BAFE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1D94423A-FAEE-41DD-92FC-C85109074C2D}"
 	ProjectSection(SolutionItems) = preProject
@@ -32,10 +30,6 @@ Global
 		{95E3FAB3-09CF-443D-8B4E-30E0FAD55B29}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95E3FAB3-09CF-443D-8B4E-30E0FAD55B29}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95E3FAB3-09CF-443D-8B4E-30E0FAD55B29}.Release|Any CPU.Build.0 = Release|Any CPU
-		{04CB646D-A0DB-4D17-9A2B-4EB105007ACC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04CB646D-A0DB-4D17-9A2B-4EB105007ACC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{04CB646D-A0DB-4D17-9A2B-4EB105007ACC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{04CB646D-A0DB-4D17-9A2B-4EB105007ACC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{370687A1-DD19-419E-965E-15D2F1D2BAFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{370687A1-DD19-419E-965E-15D2F1D2BAFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{370687A1-DD19-419E-965E-15D2F1D2BAFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
