@@ -1,39 +1,40 @@
 ﻿using Domain;
+using Infrastructure;
 
 namespace Application
 {
     public class UserService : IUserService
     {
-        private readonly IUserRepository _userRepo;
+        private readonly IGenericRepository<User> _repository;
 
-        public UserService() : this(new UserRepository()) { }
+        public UserService() : this(new GenericRepository<User>("user")) { }
 
-        public UserService(IUserRepository userRepository) 
+        public UserService(IGenericRepository<User> userRepository)
         {
-            _userRepo = userRepository;
+            _repository = userRepository;
         }
 
         public User Create(CreateUserDto createUserDto)
         {
-            return _userRepo.Create(createUserDto);
+            return _repository.Create(createUserDto);
         }
 
         public void Delete(string id)
         {
-            _userRepo.Delete(id);
+            _repository.Delete(id);
         }
 
-        public List<User?> GetAll()
+        public List<User> GetAll()
         {
-            return _userRepo.GetAll();
+            return _repository.GetAll();
         }
 
-        public User? GetUnique(string id)
+        public User GetById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public User? Update(string id, UpdateUserDto updateUserDto)
+        public User Update(string id, UpdateUserDto updateUserDto)
         {
             throw new NotImplementedException();
         }

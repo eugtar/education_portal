@@ -1,5 +1,6 @@
 
-namespace Domain {
+namespace Domain
+{
     public class ArticleRepository : Repository<Article>, IArticleRepository
     {
         public ArticleRepository() : this("articles") { }
@@ -17,7 +18,7 @@ namespace Domain {
             );
 
 
-            List<Article?> articles = Read();
+            List<Article> articles = Read();
             Write([newArticle, .. articles]);
 
             return newArticle;
@@ -25,7 +26,7 @@ namespace Domain {
 
         public void Delete(string id)
         {
-            List<Article?> articles = Read();
+            List<Article> articles = Read();
             if (articles.Count == 0)
             {
                 return;
@@ -44,17 +45,17 @@ namespace Domain {
             return;
         }
 
-        public List<Article?> GetAll()
+        public List<Article> GetAll()
         {
             return Read();
         }
 
-        public Article? GetUnique(string id)
+        public Article GetById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public Article? Update(string id, UpdateArticleDto updateArticleDto)
+        public Article Update(string id, UpdateArticleDto updateArticleDto)
         {
             throw new NotImplementedException();
         }

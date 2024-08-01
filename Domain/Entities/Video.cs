@@ -1,5 +1,5 @@
 namespace Domain {
-    public class Video : BaseEntity<string>
+    public class Video : BaseEntity
     {
         public string Title { get; set; }
         public TimeOnly Duration { get; set; }
@@ -17,21 +17,6 @@ namespace Domain {
             Title = title;
             Duration = duration;
             Quality = quality;
-        }
-
-        public void Deconstruct(
-            out string id,
-            out string title,
-            out TimeOnly duration,
-            out VideoQuality quality,
-            out TimeSpan createdAt,
-            out TimeSpan updatedAt
-        )
-        {
-            base.Deconstruct(out id, out createdAt, out updatedAt);
-            title = Title;
-            duration = Duration;
-            quality = Quality;
         }
     }
 }

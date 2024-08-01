@@ -1,34 +1,35 @@
 ﻿using Domain;
+using Infrastructure;
 
 namespace Application
 {
     public class EBookService : IEBookService
     {
-        private readonly IEBookRepository _eBookRepo;
+        private readonly IGenericRepository<EBook> _repository;
 
-        public EBookService() : this(new EBookRepository()) { }
+        public EBookService() : this(new GenericRepository<EBook>("ebook")) { }
 
-        public EBookService(IEBookRepository eBookRepository) 
+        public EBookService(IGenericRepository<EBook> eBookRepository)
         {
-            _eBookRepo = eBookRepository;
+            _repository = eBookRepository;
         }
 
         public EBook Create(CreateEBookDto createEBookDto)
         {
-            return _eBookRepo.Create(createEBookDto);
+            return _repository.Create(createEBookDto);
         }
 
         public void Delete(string id)
         {
-            _eBookRepo.Delete(id);
+            _repository.Delete(id);
         }
 
-        public List<EBook?> GetAll()
+        public List<EBook> GetAll()
         {
-            return _eBookRepo.GetAll();
+            return _repository.GetAll();
         }
 
-        public EBook? GetUnique(string id)
+        public EBook GetById(string id)
         {
             throw new NotImplementedException();
         }

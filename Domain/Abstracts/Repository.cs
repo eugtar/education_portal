@@ -23,16 +23,16 @@ namespace Domain
             }
         }
 
-        public List<T?> Read() 
+        public List<T> Read() 
         {
             string text = File.ReadAllText(_path);
 
-            List<T?> values = JsonSerializer.Deserialize<List<T?>>(text) ?? [];
+            List<T> values = JsonSerializer.Deserialize<List<T>>(text) ?? [];
 
             return values;
         } 
 
-        public void Write(List<T?> list)
+        public void Write(List<T> list)
         {
             string json = JsonSerializer.Serialize(list);
             File.WriteAllText(_path, json);

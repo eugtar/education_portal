@@ -6,6 +6,6 @@
         void Delete();
         void Update();
         void GetAll();
-        void GetUnique();
+        void GetById();
     }
 }

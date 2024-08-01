@@ -1,5 +1,6 @@
 
-namespace Domain {
+namespace Domain
+{
     public class CourseRepository : Repository<Course>, ICourseRepository
     {
         public CourseRepository() : this("courses") { }
@@ -21,7 +22,7 @@ namespace Domain {
             );
 
 
-            List<Course?> courses = Read();
+            List<Course> courses = Read();
             Write([newCourse, .. courses]);
 
             return newCourse;
@@ -29,7 +30,7 @@ namespace Domain {
 
         public void Delete(string id)
         {
-            List<Course?> courses = Read();
+            List<Course> courses = Read();
             if (courses.Count == 0)
             {
                 return;
@@ -48,17 +49,17 @@ namespace Domain {
             return;
         }
 
-        public List<Course?> GetAll()
+        public List<Course> GetAll()
         {
             return Read();
         }
 
-        public Course? GetUnique(string id)
+        public Course GetById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public Course? Update(string id, UpdateCourseDto updateCourseDto)
+        public Course Update(string id, UpdateCourseDto updateCourseDto)
         {
             throw new NotImplementedException();
         }

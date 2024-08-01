@@ -24,7 +24,7 @@ namespace Presentation
 
         public string Delete()
         {
-            List<Skill?> skills = _service.GetAll();
+            List<Skill> skills = _service.GetAll();
 
             if(skills.Count == 0)
             {

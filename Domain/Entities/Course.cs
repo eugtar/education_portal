@@ -1,5 +1,5 @@
 namespace Domain {
-    public class Course : BaseEntity<string>
+    public class Course : BaseEntity
     {
         public string Title { get; set; }
         public string Description { get; set; }
@@ -26,27 +26,6 @@ namespace Domain {
             ArticleMaterials = articleMaterials;
             VideoMaterials = videoMaterials;
             Skills = skills;
-        }
-
-        public void Deconstruct(
-            out string id,
-            out string title,
-            out string description,
-            out List<EBook> bookMaterials,
-            out List<Article> articleMaterials,
-            out List<Video> videoMaterials,
-            out List<Skill> skills,
-            out TimeSpan createdAt,
-            out TimeSpan updatedAt
-        )
-        {
-            base.Deconstruct(out id, out createdAt, out updatedAt);
-            title = Title;
-            description = Description;
-            bookMaterials = BookMaterials;
-            articleMaterials = ArticleMaterials;
-            videoMaterials = VideoMaterials;
-            skills = Skills;
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Presentation
 
         public string Delete()
         {
-            List<User?> users = _service.GetAll();
+            List<User> users = _service.GetAll();
 
             if (users.Count == 0)
             {

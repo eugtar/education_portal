@@ -1,39 +1,40 @@
 ﻿using Domain;
+using Infrastructure;
 
 namespace Application
 {
     public class ArticleService : IArticleService
     {
-        private readonly IArticleRepository _articleRepo;
+        private readonly IGenericRepository<Article> _repository;
 
-        public ArticleService() : this(new ArticleRepository()) { }
+        public ArticleService() : this(new GenericRepository<Article>("article")) { }
 
-        public ArticleService(IArticleRepository articleRepository) 
+        public ArticleService(IGenericRepository<Article> articleRepository)
         {
-            _articleRepo = articleRepository;
+            _repository = articleRepository;
         }
 
         public Article Create(CreateArticleDto createArticleDto)
         {
-            return _articleRepo.Create(createArticleDto);
+            return _repository.Create(createArticleDto);
         }
 
         public void Delete(string id)
         {
-            _articleRepo.Delete(id);
+            _repository.Delete(id);
         }
 
-        public List<Article?> GetAll()
+        public List<Article> GetAll()
         {
-            return _articleRepo.GetAll();
+            return _repository.GetAll();
         }
 
-        public Article? GetUnique(string id)
+        public Article GetById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public Article? Update(string id, UpdateArticleDto updateArticleDto)
+        public Article Update(string id, UpdateArticleDto updateArticleDto)
         {
             throw new NotImplementedException();
         }

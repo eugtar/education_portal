@@ -1,5 +1,5 @@
 namespace Domain {
-    public class Skill : BaseEntity<string>
+    public class Skill : BaseEntity
     {
         public string Name { get; set; }
 
@@ -11,17 +11,6 @@ namespace Domain {
         ) : base(id, createdAt, updatedAt)
         {
             Name = name;
-        }
-
-        public void Deconstruct(
-            out string id,
-            out string name,
-            out TimeSpan createdAt,
-            out TimeSpan updatedAt
-        )
-        {
-            base.Deconstruct(out id, out createdAt, out updatedAt);
-            name = Name;
         }
     }
 }

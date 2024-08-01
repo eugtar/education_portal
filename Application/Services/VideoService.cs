@@ -1,39 +1,40 @@
 ﻿using Domain;
+using Infrastructure;
 
 namespace Application
 {
     public class VideoService : IVideoService
     {
-        private readonly IVideoRepository _videoRepo;
+        private readonly IGenericRepository<Video> _repository;
 
-        public VideoService() : this(new VideoRepository()) { }
+        public VideoService() : this(new GenericRepository<Video>("video")) { }
 
-        public VideoService(IVideoRepository videoRepository) 
+        public VideoService(IGenericRepository<Video> videoRepository)
         {
-            _videoRepo = videoRepository;
+            _repository = videoRepository;
         }
 
         public Video Create(CreateVideoDto createVideoDto)
         {
-            return _videoRepo.Create(createVideoDto);
+            return _repository.Create(createVideoDto);
         }
 
         public void Delete(string id)
         {
-            _videoRepo.Delete(id);
+            _repository.Delete(id);
         }
 
-        public List<Video?> GetAll()
+        public List<Video> GetAll()
         {
-            return _videoRepo.GetAll();
+            return _repository.GetAll();
         }
 
-        public Video? GetUnique(string id)
+        public Video GetById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public Video? Update(string id, UpdateVideoDto updateVideoDto)
+        public Video Update(string id, UpdateVideoDto updateVideoDto)
         {
             throw new NotImplementedException();
         }

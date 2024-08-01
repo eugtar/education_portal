@@ -1,6 +1,7 @@
 
 
-namespace Domain {
+namespace Domain
+{
     public class EBookRepository : Repository<EBook>, IEBookRepository
     {
         public EBookRepository() : this("ebooks") { }
@@ -21,7 +22,7 @@ namespace Domain {
             );
 
 
-            List<EBook?> eBooks = Read();
+            List<EBook> eBooks = Read();
             Write([newEBook, .. eBooks]);
 
             return newEBook;
@@ -29,7 +30,7 @@ namespace Domain {
 
         public void Delete(string id)
         {
-            List<EBook?> eBooks = Read();
+            List<EBook> eBooks = Read();
             if (eBooks.Count == 0)
             {
                 return;
@@ -48,12 +49,12 @@ namespace Domain {
             return;
         }
 
-        public List<EBook?> GetAll()
+        public List<EBook> GetAll()
         {
             return Read();
         }
 
-        public EBook? GetUnique(string id)
+        public EBook GetById(string id)
         {
             throw new NotImplementedException();
         }

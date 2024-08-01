@@ -1,39 +1,40 @@
 ﻿using Domain;
+using Infrastructure;
 
 namespace Application
 {
     public class CourseService : ICourseService
     {
-        private readonly ICourseRepository _courseRepo;
+        private readonly IGenericRepository<Course> _repository;
 
-        public CourseService() : this(new CourseRepository()) { }
+        public CourseService() : this(new GenericRepository<Course>("course")) { }
 
-        public CourseService(ICourseRepository courseRepository) 
+        public CourseService(IGenericRepository<Course> courseRepository)
         {
-            _courseRepo = courseRepository;
+            _repository = courseRepository;
         }
 
         public Course Create(CreateCourseDto createCourseDto)
         {
-            return _courseRepo.Create(createCourseDto);
+            return _repository.Insert(createCourseDto);
         }
 
         public void Delete(string id)
         {
-            _courseRepo.Delete(id);
+            _repository.Delete(id);
         }
 
-        public List<Course?> GetAll()
+        public List<Course> GetAll()
         {
-            return _courseRepo.GetAll();
+            return _repository.GetAll();
         }
 
-        public Course? GetUnique(string id)
+        public Course GetById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public Course? Update(string id, UpdateCourseDto updateCourseDto)
+        public Course Update(string id, UpdateCourseDto updateCourseDto)
         {
             throw new NotImplementedException();
         }

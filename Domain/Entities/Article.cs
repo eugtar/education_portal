@@ -1,5 +1,5 @@
 namespace Domain {
-    public class Article : BaseEntity<string>
+    public class Article : BaseEntity
     {
         public string Title { get; set; }
         public Uri Link { get; set; }
@@ -14,20 +14,6 @@ namespace Domain {
         {
             Title = title;
             Link = link;
-        }
-
-        public void Deconstruct(
-            out string id,
-            out string title,
-            out Uri link,
-            out TimeSpan createdAt,
-            out TimeSpan updatedAt
-
-        )
-        {
-            base.Deconstruct(out id, out createdAt, out updatedAt);
-            title = Title;
-            link = Link;
         }
     }
 }

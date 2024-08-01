@@ -1,5 +1,6 @@
 
-namespace Domain {
+namespace Domain
+{
     public class SkillRepository : Repository<Skill>, ISkillRepository
     {
         public SkillRepository() : this("skills") { }
@@ -16,7 +17,7 @@ namespace Domain {
             );
 
 
-            List<Skill?> skills = Read();
+            List<Skill> skills = Read();
             Write([newSkill, .. skills]);
 
             return newSkill;
@@ -24,8 +25,8 @@ namespace Domain {
 
         public void Delete(string id)
         {
-            List<Skill?> skills = Read();
-            if( skills.Count == 0 ) 
+            List<Skill> skills = Read();
+            if (skills.Count == 0)
             {
                 return;
             }
@@ -43,17 +44,17 @@ namespace Domain {
             return;
         }
 
-        public List<Skill?> GetAll()
+        public List<Skill> GetAll()
         {
             return Read();
         }
 
-        public Skill? GetUnique(string id)
+        public Skill GetById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public Skill? Update(string id, UpdateSkillDto updateSkillDto)
+        public Skill Update(string id, UpdateSkillDto updateSkillDto)
         {
             throw new NotImplementedException();
         }

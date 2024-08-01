@@ -4,14 +4,14 @@ namespace Domain {
     public enum EBookFormat
     {
         [Description(".epub")]
-        EPUB,
+        EPUB = 0,
         [Description(".pdf")]
-        PDF,
+        PDF = 1,
         [Description("docx")]
-        DOCX,
+        DOCX = 2,
         [Description(".azw")]
-        AZW,
+        AZW = 3,
         [Description(".txt")]
-        TXT,
+        TXT = 4,
     }
 }

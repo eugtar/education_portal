@@ -42,7 +42,7 @@ namespace Presentation
 
         public string Delete()
         {
-            List<EBook?> eBooks = _service.GetAll();
+            List<EBook> eBooks = _service.GetAll();
 
             if (eBooks.Count == 0)
             {

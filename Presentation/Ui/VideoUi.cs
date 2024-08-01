@@ -37,7 +37,7 @@ namespace Presentation
 
         public string Delete()
         {
-            List<Video?> videos = _service.GetAll();
+            List<Video> videos = _service.GetAll();
 
             if (videos.Count == 0)
             {

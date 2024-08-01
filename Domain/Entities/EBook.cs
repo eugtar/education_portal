@@ -1,5 +1,5 @@
 namespace Domain {
-    public class EBook : BaseEntity<string>
+    public class EBook : BaseEntity
     {
         public string Title { get; set; }
         public string Author { get; set; }
@@ -23,25 +23,6 @@ namespace Domain {
             PageAmount = pageAmount;
             Format = format;
             PublishedOn = publishedOn;
-        }
-
-        public void Deconstruct(
-            out string id,
-            out string title,
-            out string author,
-            out int pageAmount,
-            out EBookFormat format,
-            out DateTime publishedOn,
-            out TimeSpan createdAt,
-            out TimeSpan updatedAt
-        )
-        {
-            base.Deconstruct(out id, out createdAt, out updatedAt);
-            title = Title;
-            author = Author;
-            pageAmount = PageAmount;
-            format = Format;
-            publishedOn = PublishedOn;
         }
     }
 }

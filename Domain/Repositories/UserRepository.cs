@@ -1,4 +1,5 @@
-namespace Domain {
+namespace Domain
+{
     public class UserRepository : Repository<User>, IUserRepository
     {
         public UserRepository() : this("users") { }
@@ -11,15 +12,15 @@ namespace Domain {
                 Guid.NewGuid().ToString(),
                 createUserDto.FirstName,
                 createUserDto.LastName,
-                new List<Course?>(),
-                new List<Course?>(),
-                new List<Skill?>(),
+                new List<Course>(),
+                new List<Course>(),
+                new List<Skill>(),
                 DateTime.Now.TimeOfDay,
                 DateTime.Now.TimeOfDay
             );
 
 
-            List<User?> users = Read();
+            List<User> users = Read();
             Write([newUser, .. users]);
 
             return newUser;
@@ -27,7 +28,7 @@ namespace Domain {
 
         public void Delete(string id)
         {
-            List<User?> users = Read();
+            List<User> users = Read();
             if (users.Count == 0)
             {
                 return;
@@ -46,17 +47,17 @@ namespace Domain {
             return;
         }
 
-        public List<User?> GetAll()
+        public List<User> GetAll()
         {
             return Read();
         }
 
-        public User? GetUnique(string id)
+        public User GetById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public User? Update(string id, UpdateUserDto updateUserDto)
+        public User Update(string id, UpdateUserDto updateUserDto)
         {
             throw new NotImplementedException();
         }

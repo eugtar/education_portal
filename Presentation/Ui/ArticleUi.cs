@@ -25,7 +25,7 @@ namespace Presentation
 
         public string Delete()
         {
-            List<Article?> articles = _service.GetAll();
+            List<Article> articles = _service.GetAll();
 
             if (articles.Count == 0)
             {

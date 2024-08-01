@@ -1,39 +1,40 @@
 ﻿using Domain;
+using Infrastructure;
 
 namespace Application
 {
     public class SkillService : ISkillService
     {
-        private readonly ISkillRepository _skillRepo;
+        private readonly IGenericRepository<Skill> _repository;
 
-        public SkillService() : this(new SkillRepository()) { }
+        public SkillService() : this(new GenericRepository<Skill>("skill")) { }
 
-        public SkillService(ISkillRepository skillRepository) 
+        public SkillService(IGenericRepository<Skill> skillRepository)
         {
-            _skillRepo = skillRepository;
+            _repository = skillRepository;
         }
 
         public Skill Create(CreateSkillDto createSkillDto)
         {
-            return _skillRepo.Create(createSkillDto);
+            return _repository.Create(createSkillDto);
         }
 
         public void Delete(string id)
         {
-           _skillRepo.Delete(id);
+            _repository.Delete(id);
         }
 
-        public Skill? GetUnique(string id)
+        public Skill GetById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public List<Skill?> GetAll()
+        public List<Skill> GetAll()
         {
-            return _skillRepo.GetAll();
+            return _repository.GetAll();
         }
 
-        public Skill? Update(string id, UpdateSkillDto updateSkillDto)
+        public Skill Update(string id, UpdateSkillDto updateSkillDto)
         {
             throw new NotImplementedException();
         }

@@ -1,5 +1,6 @@
 
-namespace Domain {
+namespace Domain
+{
     public class VideoRepository : Repository<Video>, IVideoRepository
     {
         public VideoRepository() : this("videos") { }
@@ -18,7 +19,7 @@ namespace Domain {
             );
 
 
-            List<Video?> skills = Read();
+            List<Video> skills = Read();
             Write([newVideo, .. skills]);
 
             return newVideo;
@@ -26,7 +27,7 @@ namespace Domain {
 
         public void Delete(string id)
         {
-            List<Video?> videos = Read();
+            List<Video> videos = Read();
             if (videos.Count == 0)
             {
                 return;
@@ -45,17 +46,17 @@ namespace Domain {
             return;
         }
 
-        public List<Video?> GetAll()
+        public List<Video> GetAll()
         {
             return Read();
         }
 
-        public Video? GetUnique(string id)
+        public Video GetById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public Video? Update(string id, UpdateVideoDto updateVideoDto)
+        public Video Update(string id, UpdateVideoDto updateVideoDto)
         {
             throw new NotImplementedException();
         }

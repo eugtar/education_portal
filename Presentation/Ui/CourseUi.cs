@@ -25,7 +25,7 @@ namespace Presentation
 
         public string Delete()
         {
-            List<Course?> courses = _service.GetAll();
+            List<Course> courses = _service.GetAll();
 
             if (courses.Count == 0)
             {

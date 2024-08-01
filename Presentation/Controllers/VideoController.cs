@@ -33,7 +33,7 @@ namespace Presentation
             throw new NotImplementedException();
         }
 
-        public void GetUnique()
+        public void GetById()
         {
             throw new NotImplementedException();
         }
