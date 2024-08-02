@@ -16,7 +16,18 @@ namespace Application
 
         public User Create(CreateUserDto createUserDto)
         {
-            return _repository.Create(createUserDto);
+            User newUser = new(
+                Guid.NewGuid().ToString(),
+                createUserDto.FirstName,
+                createUserDto.LastName,
+                new List<Course>(),
+                new List<Course>(),
+                new List<Skill>(),
+                DateTime.Now.TimeOfDay,
+                DateTime.Now.TimeOfDay
+            );
+
+            return _repository.Insert(newUser) ? newUser : throw new NotImplementedException();
         }
 
         public void Delete(string id)
@@ -26,7 +37,7 @@ namespace Application
 
         public List<User> GetAll()
         {
-            return _repository.GetAll();
+            return _repository.GetAll().ToList();
         }
 
         public User GetById(string id)

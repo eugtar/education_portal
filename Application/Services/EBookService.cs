@@ -16,7 +16,18 @@ namespace Application
 
         public EBook Create(CreateEBookDto createEBookDto)
         {
-            return _repository.Create(createEBookDto);
+            EBook newEBook = new(
+                Guid.NewGuid().ToString(),
+                createEBookDto.Title,
+                createEBookDto.Author,
+                createEBookDto.PageAmount,
+                createEBookDto.Format,
+                createEBookDto.PublishedOn,
+                DateTime.Now.TimeOfDay,
+                DateTime.Now.TimeOfDay
+            );
+
+            return _repository.Insert(newEBook) ? newEBook : throw new NotImplementedException();
         }
 
         public void Delete(string id)
@@ -26,7 +37,7 @@ namespace Application
 
         public List<EBook> GetAll()
         {
-            return _repository.GetAll();
+            return _repository.GetAll().ToList();
         }
 
         public EBook GetById(string id)

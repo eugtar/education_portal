@@ -16,7 +16,15 @@ namespace Application
 
         public Article Create(CreateArticleDto createArticleDto)
         {
-            return _repository.Create(createArticleDto);
+            Article newArticle = new(
+                Guid.NewGuid().ToString(),
+                createArticleDto.Title,
+                createArticleDto.Link,
+                DateTime.Now.TimeOfDay,
+                DateTime.Now.TimeOfDay
+            );
+
+            return _repository.Insert(newArticle) ? newArticle : throw new NotImplementedException();
         }
 
         public void Delete(string id)
@@ -26,7 +34,7 @@ namespace Application
 
         public List<Article> GetAll()
         {
-            return _repository.GetAll();
+            return _repository.GetAll().ToList();
         }
 
         public Article GetById(string id)

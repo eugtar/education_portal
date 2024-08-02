@@ -16,7 +16,14 @@ namespace Application
 
         public Skill Create(CreateSkillDto createSkillDto)
         {
-            return _repository.Create(createSkillDto);
+            Skill newSkill = new(
+                Guid.NewGuid().ToString(),
+                createSkillDto.Name,
+                DateTime.Now.TimeOfDay,
+                DateTime.Now.TimeOfDay
+            );
+
+            return _repository.Insert(newSkill) ? newSkill : throw new NotImplementedException();
         }
 
         public void Delete(string id)
@@ -31,7 +38,7 @@ namespace Application
 
         public List<Skill> GetAll()
         {
-            return _repository.GetAll();
+            return _repository.GetAll().ToList();
         }
 
         public Skill Update(string id, UpdateSkillDto updateSkillDto)

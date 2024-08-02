@@ -16,7 +16,16 @@ namespace Application
 
         public Video Create(CreateVideoDto createVideoDto)
         {
-            return _repository.Create(createVideoDto);
+            Video newVideo = new(
+                Guid.NewGuid().ToString(),
+                createVideoDto.Title,
+                createVideoDto.Duration,
+                createVideoDto.Quality,
+                DateTime.Now.TimeOfDay,
+                DateTime.Now.TimeOfDay
+            );
+
+            return _repository.Insert(newVideo) ? newVideo : throw new NotImplementedException();
         }
 
         public void Delete(string id)
@@ -26,7 +35,7 @@ namespace Application
 
         public List<Video> GetAll()
         {
-            return _repository.GetAll();
+            return _repository.GetAll().ToList();
         }
 
         public Video GetById(string id)

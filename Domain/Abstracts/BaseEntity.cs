@@ -11,5 +11,10 @@ namespace Domain{
             this.CreatedAt = createdAt;
             this.UpdatedAt = updatedAt;
         }
+
+        public override string ToString()
+        {
+            return $"ID: {Id}";
+        }
     }
 }

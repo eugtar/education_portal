@@ -16,7 +16,19 @@ namespace Application
 
         public Course Create(CreateCourseDto createCourseDto)
         {
-            return _repository.Insert(createCourseDto);
+            Course newCourse = new(
+                Guid.NewGuid().ToString(),
+                createCourseDto.Title,
+                createCourseDto.Description,
+                new List<EBook>(),
+                new List<Article>(),
+                new List<Video>(),
+                new List<Skill>(),
+                DateTime.Now.TimeOfDay,
+                DateTime.Now.TimeOfDay
+            );
+
+            return _repository.Insert(newCourse) ? newCourse : throw new NotImplementedException();
         }
 
         public void Delete(string id)
@@ -26,7 +38,7 @@ namespace Application
 
         public List<Course> GetAll()
         {
-            return _repository.GetAll();
+            return _repository.GetAll().ToList();
         }
 
         public Course GetById(string id)
