@@ -1,22 +1,20 @@
 ﻿namespace Presentation
 {
-    public class Logger
+    public class ConsoleAlert
     {
-        public Logger() { }
-
-        public static void Log<T>(T message, bool line = true) 
+        public static void Message<T>(T message, bool line = true)
         {
-            if (line) 
+            if (line)
             {
                 Console.WriteLine(message);
             }
-            else 
+            else
             {
                 Console.Write(message);
             }
         }
 
-        public static void LogResult<T>(T message, bool error = false) 
+        public static void Result<T>(T message, bool error = false)
         {
             if (error)
             {

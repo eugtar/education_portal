@@ -8,7 +8,7 @@ namespace Presentation
         private readonly IArticleService _service;
 
 
-        public ArticleUi(IArticleService articleService) 
+        public ArticleUi(IArticleService articleService)
         {
             _service = articleService;
         }
@@ -16,8 +16,8 @@ namespace Presentation
 
         public CreateArticleDto Create()
         {
-            string title = ReadText("Article title");
-            Uri link = new Uri(ReadText("Link to article"));
+            var title = ReadText("Article title");
+            var link = new Uri(ReadText("Link to article"));
 
             return new CreateArticleDto(title, link);
         }
@@ -25,7 +25,7 @@ namespace Presentation
 
         public string Delete()
         {
-            List<Article> articles = _service.GetAll();
+            var articles = _service.GetAll();
 
             if (articles.Count == 0)
             {

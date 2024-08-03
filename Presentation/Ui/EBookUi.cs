@@ -8,7 +8,7 @@ namespace Presentation
         private readonly IEBookService _service;
 
 
-        public EBookUi(IEBookService eBookService) 
+        public EBookUi(IEBookService eBookService)
         {
             _service = eBookService;
         }
@@ -16,12 +16,12 @@ namespace Presentation
 
         public CreateEBookDto Create()
         {
-            string title = ReadText("Book title");
-            string author = ReadText("Book author");
-            int pageAmount = ReadNumber("Page amount");
+            var title = ReadText("Book title");
+            var author = ReadText("Book author");
+            var pageAmount = ReadNumber("Page amount");
 
-            List<string> eBookFormats = [".epub",".pdf", ".docx", ".azw", ".txt"];
-            EBookFormat format = SelectOne(eBookFormats) switch
+            List<string> eBookFormats = [".epub", ".pdf", ".docx", ".azw", ".txt"];
+            var format = SelectOne(eBookFormats) switch
             {
                 0 => EBookFormat.EPUB,
                 1 => EBookFormat.PDF,
@@ -30,10 +30,10 @@ namespace Presentation
                 _ => EBookFormat.TXT
             };
 
-            DateTime publishedOn = new DateTime(
-                year:ReadNumber("Year(YYYY)"),
-                month:ReadNumber("Month(MM)"),
-                day:ReadNumber("Day(DD)")
+            var publishedOn = new DateTime(
+                year: ReadNumber("Year(YYYY)"),
+                month: ReadNumber("Month(MM)"),
+                day: ReadNumber("Day(DD)")
              );
 
             return new CreateEBookDto(title, author, pageAmount, format, publishedOn);
@@ -42,7 +42,7 @@ namespace Presentation
 
         public string Delete()
         {
-            List<EBook> eBooks = _service.GetAll();
+            var eBooks = _service.GetAll();
 
             if (eBooks.Count == 0)
             {

@@ -8,7 +8,7 @@ namespace Presentation
         private readonly ICourseService _service;
 
 
-        public CourseUi(ICourseService courseService) 
+        public CourseUi(ICourseService courseService)
         {
             _service = courseService;
         }
@@ -16,8 +16,8 @@ namespace Presentation
 
         public CreateCourseDto Create()
         {
-            string title = ReadText("Course title");
-            string description = ReadText("Course description");
+            var title = ReadText("Course title");
+            var description = ReadText("Course description");
 
             return new CreateCourseDto(title, description);
         }
@@ -25,7 +25,7 @@ namespace Presentation
 
         public string Delete()
         {
-            List<Course> courses = _service.GetAll();
+            var courses = _service.GetAll();
 
             if (courses.Count == 0)
             {

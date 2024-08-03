@@ -8,25 +8,25 @@ namespace Presentation
         private readonly ISkillService _service;
 
 
-        public SkillUi(ISkillService skillService) 
+        public SkillUi(ISkillService skillService)
         {
             _service = skillService;
         }
 
 
-        public CreateSkillDto Create()
+        public string Create()
         {
-            string name = ReadText("Skill title");
+            var name = ReadText("Skill title");
 
-            return new CreateSkillDto(name);
+            return name;
         }
 
 
         public string Delete()
         {
-            List<Skill> skills = _service.GetAll();
+            var skills = _service.GetAll();
 
-            if(skills.Count == 0)
+            if (skills.Count == 0)
             {
                 Console.WriteLine("Not Found");
                 App.StopProcess();
@@ -36,7 +36,7 @@ namespace Presentation
         }
 
 
-        public UpdateSkillDto Update()
+        public string Update()
         {
             throw new NotImplementedException();
         }

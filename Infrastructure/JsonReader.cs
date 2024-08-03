@@ -1,5 +1,4 @@
 using System.Text.Json;
-using Domain;
 
 namespace Infrastructure
 {
@@ -23,7 +22,7 @@ namespace Infrastructure
 
         public IEnumerable<T> Read()
         {
-            string text = File.ReadAllText(_path);
+            var text = File.ReadAllText(_path);
 
             IEnumerable<T> objects = JsonSerializer.Deserialize<IEnumerable<T>>(text) ?? [];
 
@@ -32,7 +31,7 @@ namespace Infrastructure
 
         public void Save(IEnumerable<T> objects)
         {
-            string json = JsonSerializer.Serialize(objects);
+            var json = JsonSerializer.Serialize(objects);
             File.WriteAllText(_path, json);
         }
 

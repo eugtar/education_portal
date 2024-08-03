@@ -16,7 +16,7 @@ namespace Application
 
         public Video Create(CreateVideoDto createVideoDto)
         {
-            Video newVideo = new(
+            var newVideo = new Video(
                 Guid.NewGuid().ToString(),
                 createVideoDto.Title,
                 createVideoDto.Duration,

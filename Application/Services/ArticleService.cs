@@ -16,7 +16,7 @@ namespace Application
 
         public Article Create(CreateArticleDto createArticleDto)
         {
-            Article newArticle = new(
+            var newArticle = new Article(
                 Guid.NewGuid().ToString(),
                 createArticleDto.Title,
                 createArticleDto.Link,

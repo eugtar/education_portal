@@ -18,9 +18,9 @@ namespace Presentation
 
         public void Create()
         {
-            EBook newEBook = _eBookService.Create(_ui.Create());
+            var newEBook = _eBookService.Create(_ui.Create());
 
-            Logger.LogResult(newEBook);
+            ConsoleAlert.Result(newEBook);
         }
 
         public void Delete()

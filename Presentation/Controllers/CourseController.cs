@@ -18,9 +18,9 @@ namespace Presentation
 
         public void Create()
         {
-            Course newCourse = _courseService.Create(_ui.Create());
+            var newCourse = _courseService.Create(_ui.Create());
 
-            Logger.LogResult(newCourse);
+            ConsoleAlert.Result(newCourse);
         }
 
         public void Delete()

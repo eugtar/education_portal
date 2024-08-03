@@ -1,4 +1,4 @@
 ﻿using Presentation;
 
-App app = new App();
+var app = new App();
 app.Init();

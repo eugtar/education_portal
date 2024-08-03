@@ -2,16 +2,14 @@
 {
     public class Ui
     {
-        public Ui() { }
-
-        public string ReadText( string title, bool required = true)
+        public string ReadText(string title, bool required = true)
         {
             while (true)
             {
-                Logger.Log("\n(Enter \"exit\" to close the program)");
-                Logger.Log($"{title}: ", false);
+                ConsoleAlert.Message("\n(Enter \"exit\" to close the program)");
+                ConsoleAlert.Message($"{title}: ", false);
 
-                string value = Console.ReadLine() ?? "";
+                var value = Console.ReadLine() ?? "";
                 value = value.Trim().ToLower();
 
                 if (value == "exit")
@@ -19,7 +17,7 @@
                     App.StopProcess();
                 }
 
-                if(required)
+                if (required)
                 {
                     if (string.IsNullOrEmpty(value))
                     {
@@ -34,7 +32,7 @@
                 {
                     return value;
                 }
-                
+
             }
         }
 
@@ -43,8 +41,8 @@
         {
             while (true)
             {
-                string number = ReadText(title, required);
-                bool intCheck = int.TryParse(number, out int result);
+                var number = ReadText(title, required);
+                var intCheck = int.TryParse(number, out int result);
 
                 if (intCheck)
                 {
@@ -60,16 +58,16 @@
 
         public int SelectOne<T>(List<T> values)
         {
-            for(int i = 0; i < values.Count; i++)
+            for (int i = 0; i < values.Count; i++)
             {
-                Logger.Log($"[{i + 1}] {values[i]}");
+                ConsoleAlert.Message($"[{i + 1}] {values[i]}");
             }
 
             while (true)
             {
-                int selectedItem = ReadNumber("Select: ");
+                var selectedItem = ReadNumber("Select: ");
 
-                if(selectedItem - 1 >= values.Count)
+                if (selectedItem - 1 >= values.Count)
                 {
                     continue;
                 }

@@ -4,8 +4,8 @@ namespace Presentation
 {
     public interface ISkillUi
     {
-        CreateSkillDto Create();
-        UpdateSkillDto Update();
+        string Create();
+        string Update();
         string Delete();
     }
 }

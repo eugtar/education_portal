@@ -18,9 +18,9 @@ namespace Presentation
 
         public void Create()
         {
-            Video newVideo = _videoService.Create(_ui.Create());
+            var newVideo = _videoService.Create(_ui.Create());
 
-            Logger.LogResult(newVideo);
+            ConsoleAlert.Result(newVideo);
         }
 
         public void Delete()

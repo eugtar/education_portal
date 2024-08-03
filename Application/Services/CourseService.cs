@@ -16,7 +16,7 @@ namespace Application
 
         public Course Create(CreateCourseDto createCourseDto)
         {
-            Course newCourse = new(
+            var newCourse = new Course(
                 Guid.NewGuid().ToString(),
                 createCourseDto.Title,
                 createCourseDto.Description,

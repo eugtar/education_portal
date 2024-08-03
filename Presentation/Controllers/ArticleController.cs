@@ -18,9 +18,9 @@ namespace Presentation
 
         public void Create()
         {
-            Article newArticle = _articleService.Create(_ui.Create());
+            var newArticle = _articleService.Create(_ui.Create());
 
-            Logger.LogResult(newArticle);
+            ConsoleAlert.Result(newArticle);
         }
 
         public void Delete()

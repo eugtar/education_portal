@@ -18,9 +18,9 @@ namespace Presentation
 
         public void Create()
         {
-            Skill newSkill = _skillService.Create(_ui.Create());
+            var newSkill = _skillService.Create(_ui.Create());
 
-            Logger.LogResult(newSkill);
+            ConsoleAlert.Result(newSkill);
         }
 
         public void Delete()

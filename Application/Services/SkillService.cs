@@ -14,11 +14,11 @@ namespace Application
             _repository = skillRepository;
         }
 
-        public Skill Create(CreateSkillDto createSkillDto)
+        public Skill Create(string name)
         {
-            Skill newSkill = new(
+            var newSkill = new Skill(
                 Guid.NewGuid().ToString(),
-                createSkillDto.Name,
+                name,
                 DateTime.Now.TimeOfDay,
                 DateTime.Now.TimeOfDay
             );
@@ -41,7 +41,7 @@ namespace Application
             return _repository.GetAll().ToList();
         }
 
-        public Skill Update(string id, UpdateSkillDto updateSkillDto)
+        public Skill Update(string id, string name)
         {
             throw new NotImplementedException();
         }

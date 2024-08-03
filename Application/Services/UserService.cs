@@ -16,7 +16,7 @@ namespace Application
 
         public User Create(CreateUserDto createUserDto)
         {
-            User newUser = new(
+            var newUser = new User(
                 Guid.NewGuid().ToString(),
                 createUserDto.FirstName,
                 createUserDto.LastName,

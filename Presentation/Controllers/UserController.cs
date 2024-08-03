@@ -18,9 +18,9 @@ namespace Presentation
 
         public void Create()
         {
-            User newUser = _userService.Create(_ui.Create());
+            var newUser = _userService.Create(_ui.Create());
 
-            Logger.LogResult(newUser);
+            ConsoleAlert.Result(newUser);
         }
 
         public void Delete()

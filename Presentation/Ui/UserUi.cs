@@ -8,7 +8,7 @@ namespace Presentation
         private readonly IUserService _service;
 
 
-        public UserUi(IUserService userService) 
+        public UserUi(IUserService userService)
         {
             _service = userService;
         }
@@ -16,8 +16,8 @@ namespace Presentation
 
         public CreateUserDto Create()
         {
-            string firstName = ReadText("First name");
-            string lastName = ReadText("Last name");
+            var firstName = ReadText("First name");
+            var lastName = ReadText("Last name");
 
             return new CreateUserDto(firstName, lastName);
         }
@@ -25,7 +25,7 @@ namespace Presentation
 
         public string Delete()
         {
-            List<User> users = _service.GetAll();
+            var users = _service.GetAll();
 
             if (users.Count == 0)
             {

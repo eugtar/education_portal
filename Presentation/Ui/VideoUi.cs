@@ -8,7 +8,7 @@ namespace Presentation
         private readonly IVideoService _service;
 
 
-        public VideoUi(IVideoService videoService) 
+        public VideoUi(IVideoService videoService)
         {
             _service = videoService;
         }
@@ -16,14 +16,14 @@ namespace Presentation
 
         public CreateVideoDto Create()
         {
-            string title = ReadText("Video title");
-            TimeOnly duration = new TimeOnly(
-                ReadNumber("Hour(hh)"), 
+            var title = ReadText("Video title");
+            var duration = new TimeOnly(
+                ReadNumber("Hour(hh)"),
                 ReadNumber("Minute(mm)")
             );
 
             List<string> videoQuality = ["low", "medium", "high", "ultrahigh"];
-            VideoQuality quality = SelectOne(videoQuality) switch
+            var quality = SelectOne(videoQuality) switch
             {
                 0 => VideoQuality.LOW,
                 1 => VideoQuality.MEDIUM,
@@ -37,7 +37,7 @@ namespace Presentation
 
         public string Delete()
         {
-            List<Video> videos = _service.GetAll();
+            var videos = _service.GetAll();
 
             if (videos.Count == 0)
             {

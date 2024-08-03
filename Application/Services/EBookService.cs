@@ -16,7 +16,7 @@ namespace Application
 
         public EBook Create(CreateEBookDto createEBookDto)
         {
-            EBook newEBook = new(
+            var newEBook = new EBook(
                 Guid.NewGuid().ToString(),
                 createEBookDto.Title,
                 createEBookDto.Author,

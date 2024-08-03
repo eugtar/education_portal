@@ -4,10 +4,10 @@ namespace Presentation
 {
     public class App
     {
-        private Ui _ui = new Ui();
+        private readonly Ui _ui = new();
         private string _route = "";
         private string _action = "";
-        private Dictionary<string, IController> _routes = new Dictionary<string, IController>() 
+        private readonly Dictionary<string, IController> _routes = new()
         {
             { "user", new UserController() },
             { "course", new CourseController() },
@@ -17,11 +17,9 @@ namespace Presentation
             { "skill", new SkillController() }
         };
 
-        public App() { }
-
         public void Init()
         {
-            while(true)
+            while (true)
             {
                 SetRoute();
                 SetAction();
@@ -29,7 +27,7 @@ namespace Presentation
             }
         }
 
-        private void Router() 
+        private void Router()
         {
             switch (_action)
             {
@@ -47,13 +45,13 @@ namespace Presentation
 
         private void SetRoute()
         {
-            List<string> routes = _routes.Keys.ToList();
+            var routes = _routes.Keys.ToList();
             _route = routes[_ui.SelectOne(routes)];
         }
 
-        private void SetAction() 
+        private void SetAction()
         {
-            List<string> actions = ["create","delete"];
+            List<string> actions = ["create", "delete"];
             _action = actions[_ui.SelectOne(actions)];
         }
 
