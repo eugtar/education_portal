@@ -7,12 +7,10 @@ namespace Presentation
     {
         private readonly IArticleService _service;
 
-
         public ArticleUi(IArticleService articleService)
         {
             _service = articleService;
         }
-
 
         public CreateArticleDto Create()
         {
@@ -22,30 +20,31 @@ namespace Presentation
             return new CreateArticleDto(title, link);
         }
 
-
         public string Delete()
         {
             var articles = _service.GetAll();
 
-            if (articles.Count == 0)
-            {
-                Console.WriteLine("Not Found");
-                App.StopProcess();
-            }
-
-            return articles[SelectOne<Article>(articles)]?.Id;
+            return articles[SelectOne<Article>(articles)].Id;
         }
 
-
-        public string SelectOne()
+        public string GetAll()
         {
-            throw new NotImplementedException();
+            return $"[{string.Join(",\n", _service.GetAll())}]";
         }
 
+        public string GetById()
+        {
+            var articles = _service.GetAll();
+
+            return articles[SelectOne<Article>(articles)].Id;
+        }
 
         public UpdateArticleDto Update()
         {
-            throw new NotImplementedException();
+            var title = ReadText("Article title", false);
+            var link = ReadText("Link to article", false);
+
+            return new UpdateArticleDto(title, link is not null ? new Uri(link):null);
         }
     }
 }

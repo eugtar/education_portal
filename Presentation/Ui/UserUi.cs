@@ -7,12 +7,10 @@ namespace Presentation
     {
         private readonly IUserService _service;
 
-
         public UserUi(IUserService userService)
         {
             _service = userService;
         }
-
 
         public CreateUserDto Create()
         {
@@ -22,29 +20,31 @@ namespace Presentation
             return new CreateUserDto(firstName, lastName);
         }
 
-
         public string Delete()
         {
             var users = _service.GetAll();
 
-            if (users.Count == 0)
-            {
-                Console.WriteLine("Not Found");
-                App.StopProcess();
-            }
-
-            return users[SelectOne<User>(users)]?.Id;
+            return users[SelectOne<User>(users)].Id;
         }
 
-        public string SelectOne()
+        public string GetAll()
         {
-            throw new NotImplementedException();
+            return $"[{string.Join(",\n", _service.GetAll())}]";
         }
 
+        public string GetById()
+        {
+            var users = _service.GetAll();
+
+            return users[SelectOne<User>(users)].Id;
+        }
 
         public UpdateUserDto Update()
         {
-            throw new NotImplementedException();
+            var firstName = ReadText("First name", false);
+            var lastName = ReadText("Last name", false);
+
+            return new UpdateUserDto(firstName, lastName);
         }
     }
 }

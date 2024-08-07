@@ -31,19 +31,26 @@ namespace Application
             _repository.Delete(id);
         }
 
-        public Skill GetById(string id)
-        {
-            throw new NotImplementedException();
-        }
-
         public List<Skill> GetAll()
         {
-            return _repository.GetAll().ToList();
+            var skills = _repository.GetAll().ToList();
+
+            return skills.Count == 0 ? throw new NotImplementedException() : skills;
         }
 
-        public Skill Update(string id, string name)
+        public Skill GetById(string id)
         {
-            throw new NotImplementedException();
+            return _repository.GetById(id) ?? throw new NotImplementedException();
+        }
+
+        public Skill Update(string id, string? name)
+        {
+            var skill = _repository.GetById(id) ?? throw new NotImplementedException();
+
+            skill.Name = name ?? skill.Name;
+            skill.UpdatedAt = DateTime.Now.TimeOfDay;
+
+            return _repository.Update(skill) ? skill : throw new NotImplementedException();
         }
     }
 }

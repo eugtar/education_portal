@@ -34,8 +34,17 @@ namespace Presentation
                 case "create":
                     _routes[this._route].Create();
                     break;
+                case "update":
+                    _routes[this._route].Update();
+                    break;
                 case "delete":
                     _routes[this._route].Delete();
+                    break;
+                case "getById":
+                    _routes[this._route].GetById();
+                    break;
+                case "getAll":
+                    _routes[this._route].GetAll();
                     break;
                 default:
                     StopProcess();
@@ -51,7 +60,7 @@ namespace Presentation
 
         private void SetAction()
         {
-            List<string> actions = ["create", "delete"];
+            List<string> actions = ["create", "update", "delete", "getById", "getAll"];
             _action = actions[_ui.SelectOne(actions)];
         }
 

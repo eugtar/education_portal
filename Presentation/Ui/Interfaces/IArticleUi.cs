@@ -6,7 +6,8 @@ namespace Presentation
     {
         CreateArticleDto Create();
         UpdateArticleDto Update();
-        string SelectOne();
         string Delete();
+        string GetById();
+        string GetAll();
     }
 }

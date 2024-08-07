@@ -34,17 +34,25 @@ namespace Application
 
         public List<Article> GetAll()
         {
-            return _repository.GetAll().ToList();
+            var articles = _repository.GetAll().ToList();
+            
+            return articles.Count == 0 ? throw new NotImplementedException() : articles;
         }
 
         public Article GetById(string id)
         {
-            throw new NotImplementedException();
+            return _repository.GetById(id) ?? throw new NotImplementedException();
         }
 
         public Article Update(string id, UpdateArticleDto updateArticleDto)
         {
-            throw new NotImplementedException();
+            var article = _repository.GetById(id) ?? throw new NotImplementedException();
+
+            article.Title = updateArticleDto.Title ?? article.Title;
+            article.Link = updateArticleDto.Link ?? article.Link;
+            article.UpdatedAt = DateTime.Now.TimeOfDay;
+
+            return _repository.Update(article) ? article : throw new NotImplementedException();
         }
     }
 }

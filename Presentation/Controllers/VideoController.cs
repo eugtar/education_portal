@@ -30,17 +30,20 @@ namespace Presentation
 
         public void GetAll()
         {
-            throw new NotImplementedException();
+            ConsoleAlert.Result(_ui.GetAll());
         }
 
         public void GetById()
         {
-            throw new NotImplementedException();
+            ConsoleAlert.Result(_videoService.GetById(_ui.GetById()));
         }
 
         public void Update()
         {
-            throw new NotImplementedException();
+            var id = _videoService.GetById(_ui.GetById()).Id;
+            var video = _videoService.Update(id, _ui.Update());
+
+            ConsoleAlert.Result(video);
         }
     }
 }

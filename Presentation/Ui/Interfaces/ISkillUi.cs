@@ -5,7 +5,9 @@ namespace Presentation
     public interface ISkillUi
     {
         string Create();
-        string Update();
+        string? Update();
         string Delete();
+        string GetById();
+        string GetAll();
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Application;
-using Domain;
 
 namespace Presentation
 {
@@ -30,17 +29,20 @@ namespace Presentation
 
         public void GetAll()
         {
-            throw new NotImplementedException();
+            ConsoleAlert.Result(_ui.GetAll());
         }
 
         public void GetById()
         {
-            throw new NotImplementedException();
+            ConsoleAlert.Result(_skillService.GetById(_ui.GetById()));
         }
 
         public void Update()
         {
-            throw new NotImplementedException();
+            var id = _skillService.GetById(_ui.GetById()).Id;
+            var skill = _skillService.Update(id, _ui.Update());
+
+            ConsoleAlert.Result(skill);
         }
     }
 }

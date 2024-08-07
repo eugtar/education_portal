@@ -35,9 +35,9 @@ namespace Infrastructure
             return _reader.Read();
         }
 
-        public T GetById(string id)
+        public T? GetById(string id)
         {
-            return _reader.Read().TakeWhile(e => e.Id == id).First();
+            return _reader.Read().Where(e => e.Id == id).FirstOrDefault();
         }
 
         public bool Insert(T entity)

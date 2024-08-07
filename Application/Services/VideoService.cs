@@ -35,17 +35,26 @@ namespace Application
 
         public List<Video> GetAll()
         {
-            return _repository.GetAll().ToList();
+            var videos = _repository.GetAll().ToList();
+
+            return videos.Count == 0 ? throw new NotImplementedException() : videos;
         }
 
         public Video GetById(string id)
         {
-            throw new NotImplementedException();
+            return _repository.GetById(id) ?? throw new NotImplementedException();
         }
 
         public Video Update(string id, UpdateVideoDto updateVideoDto)
         {
-            throw new NotImplementedException();
+            var video = _repository.GetById(id) ?? throw new NotImplementedException();
+
+            video.Title = updateVideoDto.Title ?? video.Title;
+            video.Duration = updateVideoDto.Duration ?? video.Duration;
+            video.Quality = updateVideoDto.Quality ?? video.Quality;
+            video.UpdatedAt = DateTime.Now.TimeOfDay;
+
+            return _repository.Update(video) ? video : throw new NotImplementedException();
         }
     }
 }

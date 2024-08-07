@@ -37,17 +37,28 @@ namespace Application
 
         public List<EBook> GetAll()
         {
-            return _repository.GetAll().ToList();
+            var eBooks = _repository.GetAll().ToList();
+
+            return eBooks.Count == 0 ? throw new NotImplementedException() : eBooks;
         }
 
         public EBook GetById(string id)
         {
-            throw new NotImplementedException();
+            return _repository.GetById(id) ?? throw new NotImplementedException();
         }
 
         public EBook Update(string id, UpdateEBookDto updateEBookDto)
         {
-            throw new NotImplementedException();
+            var eBook = _repository.GetById(id) ?? throw new NotImplementedException();
+
+            eBook.Title = updateEBookDto.Title ?? eBook.Title;
+            eBook.Author = updateEBookDto.Author ?? eBook.Author;
+            eBook.PageAmount = updateEBookDto.PageAmount ?? eBook.PageAmount;
+            eBook.Format = updateEBookDto.Format ?? eBook.Format;
+            eBook.PublishedOn = updateEBookDto.PublishedOn ?? eBook.PublishedOn;
+            eBook.UpdatedAt = DateTime.Now.TimeOfDay;
+
+            return _repository.Update(eBook) ? eBook : throw new NotImplementedException();
         }
     }
 }

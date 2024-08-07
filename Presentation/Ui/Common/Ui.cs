@@ -2,15 +2,15 @@
 {
     public class Ui
     {
-        public string ReadText(string title, bool required = true)
+        public string? ReadText(string title, bool required = true)
         {
             while (true)
             {
                 ConsoleAlert.Message("\n(Enter \"exit\" to close the program)");
                 ConsoleAlert.Message($"{title}: ", false);
 
-                var value = Console.ReadLine() ?? "";
-                value = value.Trim().ToLower();
+                var value = Console.ReadLine() ?? null;
+                value = value?.Trim().ToLower();
 
                 if (value == "exit")
                 {

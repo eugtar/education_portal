@@ -10,7 +10,7 @@ namespace Presentation
 
         public CourseController() : this(new CourseService()) { }
 
-        public CourseController(ICourseService courseService) 
+        public CourseController(ICourseService courseService)
         {
             _courseService = courseService;
             _ui = new CourseUi(_courseService);
@@ -30,17 +30,20 @@ namespace Presentation
 
         public void GetAll()
         {
-            throw new NotImplementedException();
+            ConsoleAlert.Result(_ui.GetAll());
         }
 
         public void GetById()
         {
-            throw new NotImplementedException();
+            ConsoleAlert.Result(_courseService.GetById(_ui.GetById()));
         }
 
         public void Update()
         {
-            throw new NotImplementedException();
+            var id = _courseService.GetById(_ui.GetById()).Id;
+            var course = _courseService.Update(id, _ui.Update());
+
+            ConsoleAlert.Result(course);
         }
     }
 }

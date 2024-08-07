@@ -7,12 +7,10 @@ namespace Presentation
     {
         private readonly IEBookService _service;
 
-
         public EBookUi(IEBookService eBookService)
         {
             _service = eBookService;
         }
-
 
         public CreateEBookDto Create()
         {
@@ -39,30 +37,48 @@ namespace Presentation
             return new CreateEBookDto(title, author, pageAmount, format, publishedOn);
         }
 
-
         public string Delete()
         {
             var eBooks = _service.GetAll();
 
-            if (eBooks.Count == 0)
-            {
-                Console.WriteLine("Not Found");
-                App.StopProcess();
-            }
-
-            return eBooks[base.SelectOne<EBook>(eBooks)]?.Id; ;
+            return eBooks[base.SelectOne<EBook>(eBooks)].Id; ;
         }
 
-
-        public string SelectOne()
+        public string GetAll()
         {
-            throw new NotImplementedException();
+            return $"[{string.Join(",\n", _service.GetAll())}]";
         }
 
+        public string GetById()
+        {
+            var eBooks = _service.GetAll();
+
+            return eBooks[SelectOne<EBook>(eBooks)].Id;
+        }
 
         public UpdateEBookDto Update()
         {
-            throw new NotImplementedException();
+            var title = ReadText("Book title", false);
+            var author = ReadText("Book author", false);
+            var pageAmount = ReadNumber("Page amount", false);
+
+            List<string> eBookFormats = [".epub", ".pdf", ".docx", ".azw", ".txt"];
+            var format = SelectOne(eBookFormats) switch
+            {
+                0 => EBookFormat.EPUB,
+                1 => EBookFormat.PDF,
+                2 => EBookFormat.DOCX,
+                3 => EBookFormat.AZW,
+                _ => EBookFormat.TXT
+            };
+
+            var publishedOn = new DateTime(
+                year: ReadNumber("Year(YYYY)"),
+                month: ReadNumber("Month(MM)"),
+                day: ReadNumber("Day(DD)")
+             );
+
+            return new UpdateEBookDto(title, author, pageAmount, format, publishedOn);
         }
     }
 }

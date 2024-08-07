@@ -6,7 +6,8 @@ namespace Presentation
     {
         CreateEBookDto Create();
         UpdateEBookDto Update();
-        string SelectOne();
         string Delete();
+        string GetById();
+        string GetAll();
     }
 }

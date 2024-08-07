@@ -37,17 +37,25 @@ namespace Application
 
         public List<User> GetAll()
         {
-            return _repository.GetAll().ToList();
+            var users = _repository.GetAll().ToList();
+
+            return users.Count == 0 ? throw new NotImplementedException() : users;
         }
 
         public User GetById(string id)
         {
-            throw new NotImplementedException();
+            return _repository.GetById(id) ?? throw new NotImplementedException();
         }
 
         public User Update(string id, UpdateUserDto updateUserDto)
         {
-            throw new NotImplementedException();
+            var user = _repository.GetById(id) ?? throw new NotImplementedException();
+
+            user.FirstName = updateUserDto.FirstName ?? user.FirstName;
+            user.LastName = updateUserDto.LastName ?? user.LastName;
+            user.UpdatedAt = DateTime.Now.TimeOfDay;
+
+            return _repository.Update(user) ? user : throw new NotImplementedException();
         }
     }
 }

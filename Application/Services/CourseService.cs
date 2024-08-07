@@ -38,17 +38,25 @@ namespace Application
 
         public List<Course> GetAll()
         {
-            return _repository.GetAll().ToList();
+            var courses = _repository.GetAll().ToList();
+
+            return courses.Count == 0 ? throw new NotImplementedException() : courses;
         }
 
         public Course GetById(string id)
         {
-            throw new NotImplementedException();
+            return _repository.GetById(id) ?? throw new NotImplementedException();
         }
 
         public Course Update(string id, UpdateCourseDto updateCourseDto)
         {
-            throw new NotImplementedException();
+            var course = _repository.GetById(id) ?? throw new NotImplementedException();
+
+            course.Title = updateCourseDto.Title ?? course.Title;
+            course.Description = updateCourseDto.Description ?? course.Description;
+            course.UpdatedAt = DateTime.Now.TimeOfDay;
+
+            return _repository.Update(course) ? course : throw new NotImplementedException();
         }
     }
 }

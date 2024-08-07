@@ -6,7 +6,8 @@ namespace Presentation
     {
         CreateVideoDto Create();
         UpdateVideoDto Update();
-        string SelectOne();
         string Delete();
+        string GetById();
+        string GetAll();
     }
 }

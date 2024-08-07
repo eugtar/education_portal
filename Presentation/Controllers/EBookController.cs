@@ -30,17 +30,20 @@ namespace Presentation
 
         public void GetAll()
         {
-            throw new NotImplementedException();
+            ConsoleAlert.Result(_ui.GetAll());
         }
 
         public void GetById()
         {
-            throw new NotImplementedException();
+            ConsoleAlert.Result(_eBookService.GetById(_ui.GetById()));
         }
 
         public void Update()
         {
-            throw new NotImplementedException();
+            var id = _eBookService.GetById(_ui.GetById()).Id;
+            var eBook = _eBookService.Update(id, _ui.Update());
+
+            ConsoleAlert.Result(eBook);
         }
     }
 }
