@@ -1,56 +1,54 @@
-﻿using Domain;
-using Infrastructure;
+﻿using Application.Interfaces;
+using Application.Services.Interfaces;
+using Domain.Entities;
 
-namespace Application
+namespace Application.Services;
+
+public class SkillService : ISkillService
 {
-    public class SkillService : ISkillService
+    private readonly IUnitOfWork _unitOfWork;
+
+    public SkillService(IUnitOfWork unitOfWork)
     {
-        private readonly IGenericRepository<Skill> _repository;
+        _unitOfWork = unitOfWork;
+    }
 
-        public SkillService() : this(new GenericRepository<Skill>("skill")) { }
+    public void Create(string name)
+    {
+        _unitOfWork.Skills.Add(
+            new Skill()
+            {
+                Name = name,
+            });
 
-        public SkillService(IGenericRepository<Skill> skillRepository)
-        {
-            _repository = skillRepository;
-        }
+        _unitOfWork.Complete();
+    }
 
-        public Skill Create(string name)
-        {
-            var newSkill = new Skill(
-                Guid.NewGuid().ToString(),
-                name,
-                DateTime.Now.TimeOfDay,
-                DateTime.Now.TimeOfDay
-            );
+    public void Delete(int id)
+    {
+        var skill = _unitOfWork.Skills.GetById(id) ?? throw new ArgumentNullException();
 
-            return _repository.Insert(newSkill) ? newSkill : throw new NotImplementedException();
-        }
+        _unitOfWork.Skills.Remove(skill);
+        _unitOfWork.Complete();
+    }
 
-        public void Delete(string id)
-        {
-            _repository.Delete(id);
-        }
+    public List<Skill> GetAll()
+    {
+        return [.. _unitOfWork.Skills.GetAll()];
+    }
 
-        public List<Skill> GetAll()
-        {
-            var skills = _repository.GetAll().ToList();
+    public Skill? GetById(int id)
+    {
+        return _unitOfWork.Skills.GetById(id) ?? throw new ArgumentNullException();
+    }
 
-            return skills.Count == 0 ? throw new NotImplementedException() : skills;
-        }
+    public void Update(int id, string? name)
+    {
+        var skill = _unitOfWork.Skills.GetById(id) ?? throw new ArgumentNullException();
 
-        public Skill GetById(string id)
-        {
-            return _repository.GetById(id) ?? throw new NotImplementedException();
-        }
+        skill.Name = name ?? skill.Name;
 
-        public Skill Update(string id, string? name)
-        {
-            var skill = _repository.GetById(id) ?? throw new NotImplementedException();
-
-            skill.Name = name ?? skill.Name;
-            skill.UpdatedAt = DateTime.Now.TimeOfDay;
-
-            return _repository.Update(skill) ? skill : throw new NotImplementedException();
-        }
+        _unitOfWork.Skills.Update(skill);
+        _unitOfWork.Complete();
     }
 }

@@ -1,16 +1,10 @@
-namespace Domain {
-    public class Skill : BaseEntity
-    {
-        public string Name { get; set; }
+using Domain.Common;
 
-        public Skill(
-            string id,
-            string name,
-            TimeSpan createdAt,
-            TimeSpan updatedAt
-        ) : base(id, createdAt, updatedAt)
-        {
-            Name = name;
-        }
-    }
+namespace Domain.Entities;
+
+public class Skill : BaseEntity
+{
+    public string Name { get; set; } = null!;
+    public ICollection<Course> Courses { get; } = null!;
+    public ICollection<UserSkill> UserSkills { get; } = null!;
 }

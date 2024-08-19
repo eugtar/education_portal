@@ -1,60 +1,59 @@
-﻿using Domain;
-using Infrastructure;
+﻿using Application.Dtos;
+using Application.Interfaces;
+using Application.Services.Interfaces;
+using Domain.Entities;
 
-namespace Application
+namespace Application.Services;
+
+public class VideoService : IVideoService
 {
-    public class VideoService : IVideoService
+    private readonly IUnitOfWork _unitOfWork;
+
+    public VideoService(IUnitOfWork unitOfWork)
     {
-        private readonly IGenericRepository<Video> _repository;
+        _unitOfWork = unitOfWork;
+    }
 
-        public VideoService() : this(new GenericRepository<Video>("video")) { }
+    public void Create(CreateVideoDto createVideoDto)
+    {
+        _unitOfWork.Videos.Add(
+            new Video()
+            {
+                Title = createVideoDto.Title,
+                Duration = createVideoDto.Duration,
+                Quality = createVideoDto.Quality,
+            });
 
-        public VideoService(IGenericRepository<Video> videoRepository)
-        {
-            _repository = videoRepository;
-        }
+        _unitOfWork.Complete();
+    }
 
-        public Video Create(CreateVideoDto createVideoDto)
-        {
-            var newVideo = new Video(
-                Guid.NewGuid().ToString(),
-                createVideoDto.Title,
-                createVideoDto.Duration,
-                createVideoDto.Quality,
-                DateTime.Now.TimeOfDay,
-                DateTime.Now.TimeOfDay
-            );
+    public void Delete(int id)
+    {
+        var video = _unitOfWork.Videos.GetById(id) ?? throw new ArgumentNullException();
 
-            return _repository.Insert(newVideo) ? newVideo : throw new NotImplementedException();
-        }
+        _unitOfWork.Videos.Remove(video);
+        _unitOfWork.Complete();
+    }
 
-        public void Delete(string id)
-        {
-            _repository.Delete(id);
-        }
+    public List<Video> GetAll()
+    {
+        return [.. _unitOfWork.Videos.GetAll()];
+    }
 
-        public List<Video> GetAll()
-        {
-            var videos = _repository.GetAll().ToList();
+    public Video? GetById(int id)
+    {
+        return _unitOfWork.Videos.GetById(id) ?? throw new ArgumentNullException();
+    }
 
-            return videos.Count == 0 ? throw new NotImplementedException() : videos;
-        }
+    public void Update(int id, UpdateVideoDto updateVideoDto)
+    {
+        var video = _unitOfWork.Videos.GetById(id) ?? throw new ArgumentNullException();
 
-        public Video GetById(string id)
-        {
-            return _repository.GetById(id) ?? throw new NotImplementedException();
-        }
+        video.Title = updateVideoDto.Title ?? video.Title;
+        video.Duration = updateVideoDto.Duration ?? video.Duration;
+        video.Quality = updateVideoDto.Quality ?? video.Quality;
 
-        public Video Update(string id, UpdateVideoDto updateVideoDto)
-        {
-            var video = _repository.GetById(id) ?? throw new NotImplementedException();
-
-            video.Title = updateVideoDto.Title ?? video.Title;
-            video.Duration = updateVideoDto.Duration ?? video.Duration;
-            video.Quality = updateVideoDto.Quality ?? video.Quality;
-            video.UpdatedAt = DateTime.Now.TimeOfDay;
-
-            return _repository.Update(video) ? video : throw new NotImplementedException();
-        }
+        _unitOfWork.Videos.Update(video);
+        _unitOfWork.Complete();
     }
 }

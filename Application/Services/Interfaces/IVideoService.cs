@@ -1,13 +1,13 @@
-﻿using Domain;
+﻿using Application.Dtos;
+using Domain.Entities;
 
-namespace Application
+namespace Application.Services.Interfaces;
+
+public interface IVideoService
 {
-    public interface IVideoService
-    {
-        public Video Create(CreateVideoDto createVideoDto);
-        public Video Update(string id, UpdateVideoDto updateVideoDto);
-        public void Delete(string id);
-        public Video GetById(string id);
-        public List<Video> GetAll();
-    }
+    public void Create(CreateVideoDto createVideoDto);
+    public void Update(int id, UpdateVideoDto updateVideoDto);
+    public void Delete(int id);
+    public Video? GetById(int id);
+    public List<Video> GetAll();
 }

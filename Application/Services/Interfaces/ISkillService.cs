@@ -1,13 +1,12 @@
-﻿using Domain;
+﻿using Domain.Entities;
 
-namespace Application
+namespace Application.Services.Interfaces;
+
+public interface ISkillService
 {
-    public interface ISkillService
-    {
-        public Skill Create(string name);
-        public Skill Update(string id, string? name);
-        public void Delete(string id);
-        public Skill GetById(string id);
-        public List<Skill> GetAll();
-    }
+    public void Create(string name);
+    public void Update(int id, string? name);
+    public void Delete(int id);
+    public Skill? GetById(int id);
+    public List<Skill> GetAll();
 }

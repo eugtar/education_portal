@@ -1,13 +1,13 @@
-﻿using Domain;
+﻿using Application.Dtos;
+using Domain.Entities;
 
-namespace Application
+namespace Application.Services.Interfaces;
+
+public interface IEBookService
 {
-    public interface IEBookService
-    {
-        public EBook Create(CreateEBookDto createEBookDto);
-        public EBook Update(string id, UpdateEBookDto updateEBookDto);
-        public void Delete(string id);
-        public EBook GetById(string id);
-        public List<EBook> GetAll();
-    }
+    public void Create(CreateEBookDto createEBookDto);
+    public void Update(int id, UpdateEBookDto updateEBookDto);
+    public void Delete(int id);
+    public EBook? GetById(int id);
+    public List<EBook> GetAll();
 }

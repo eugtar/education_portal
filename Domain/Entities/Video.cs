@@ -1,22 +1,12 @@
-namespace Domain {
-    public class Video : BaseEntity
-    {
-        public string Title { get; set; }
-        public TimeOnly Duration { get; set; }
-        public VideoQuality Quality { get; set; }
+using Domain.Common;
+using Domain.Enums;
 
-        public Video(
-            string id,
-            string title,
-            TimeOnly duration,
-            VideoQuality quality,
-            TimeSpan createdAt,
-            TimeSpan updatedAt
-        ) : base(id, createdAt, updatedAt)
-        {
-            Title = title;
-            Duration = duration;
-            Quality = quality;
-        }
-    }
+namespace Domain.Entities;
+
+public class Video : BaseEntity
+{
+    public string Title { get; set; } = null!;
+    public TimeOnly Duration { get; set; }
+    public VideoQuality Quality { get; set; }
+    public ICollection<Course> Courses { get; } = null!;
 }

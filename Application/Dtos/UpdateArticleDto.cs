@@ -1,14 +1,7 @@
-﻿namespace Application
-{
-    public class UpdateArticleDto
-    {
-        public string? Title { get; set; }
-        public Uri? Link { get; set; }
+﻿namespace Application.Dtos;
 
-        public UpdateArticleDto(string? title, Uri? link)
-        {
-            Title = title;
-            Link = link;
-        }
-    }
+public class UpdateArticleDto(string? title, string? link)
+{
+    public string? Title => title;
+    public string? Link => link;
 }
