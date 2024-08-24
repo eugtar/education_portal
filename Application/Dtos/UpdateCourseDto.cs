@@ -1,7 +1,8 @@
-﻿namespace Application.Dtos;
+using System;
 
-public class UpdateCourseDto(string? title, string? description)
+namespace Application.Dtos;
+
+public class UpdateCourseDto
 {
-    public string? Title => title;
-    public string? Description => description;
+
 }

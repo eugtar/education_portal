@@ -5,7 +5,7 @@ using Infrastructure.Repositories.GenericRepository;
 
 namespace Infrastructure.Repositories;
 
-public class EbookRepository : GenericRepository<Ebook>, IEbookRepository
+public class QualityRepository : GenericRepository<Quality>, IQualityRepository
 {
-    public EbookRepository(DatabaseContext context) : base(context) { }
+    public QualityRepository(DatabaseContext context) : base(context) { }
 }

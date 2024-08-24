@@ -1,14 +1,14 @@
-using Domain.Common;
+﻿namespace Domain.Entities;
 
-namespace Domain.Entities;
-
-public class Course : BaseEntity
+public partial class Course
 {
-    public string Title { get; set; } = null!;
-    public string Description { get; set; } = null!;
-    public ICollection<EBook> EBooks { get; } = null!;
-    public ICollection<Article> Articles { get; } = null!;
-    public ICollection<Video> Videos { get; } = null!;
-    public ICollection<Skill> Skills { get; } = null!;
-    public ICollection<UserCourse> UserCourses { get; } = null!;
+    public int Id { get; set; }
+    public int UserId { get; set; }
+    public int LessonId { get; set; }
+    public bool Finished { get; set; }
+    public decimal Progress { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
+    public virtual Lesson Lesson { get; set; } = null!;
+    public virtual User User { get; set; } = null!;
 }

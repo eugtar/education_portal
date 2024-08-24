@@ -5,7 +5,7 @@ using Infrastructure.Repositories.GenericRepository;
 
 namespace Infrastructure.Repositories;
 
-public class UserCourseRepository : GenericRepository<UserCourse>, IUserCourseRepository
+public class LessonRepository : GenericRepository<Lesson>, ILessonRepository
 {
-    public UserCourseRepository(DatabaseContext context) : base(context) { }
+    public LessonRepository(DatabaseContext context) : base(context) { }
 }

@@ -3,11 +3,11 @@ using Domain.Entities;
 
 namespace Application.Services.Interfaces;
 
-public interface IEBookService
+public interface IEbookService
 {
-    public void Create(CreateEBookDto createEBookDto);
-    public void Update(int id, UpdateEBookDto updateEBookDto);
+    public void Create(CreateEbookDto createEbookDto);
+    public void Update(int id, UpdateEbookDto updateEbookDto);
     public void Delete(int id);
-    public EBook? GetById(int id);
-    public List<EBook> GetAll();
+    public Ebook? GetById(int id);
+    public List<Ebook> GetAll();
 }

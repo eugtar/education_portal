@@ -21,7 +21,7 @@ public class VideoService : IVideoService
             {
                 Title = createVideoDto.Title,
                 Duration = createVideoDto.Duration,
-                Quality = createVideoDto.Quality,
+                Quality = (int)createVideoDto.Quality,
             });
 
         _unitOfWork.Complete();
@@ -51,7 +51,7 @@ public class VideoService : IVideoService
 
         video.Title = updateVideoDto.Title ?? video.Title;
         video.Duration = updateVideoDto.Duration ?? video.Duration;
-        video.Quality = updateVideoDto.Quality ?? video.Quality;
+        video.Quality = updateVideoDto.Quality != null ? (int)updateVideoDto.Quality : video.Quality;
 
         _unitOfWork.Videos.Update(video);
         _unitOfWork.Complete();

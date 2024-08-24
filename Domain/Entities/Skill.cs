@@ -1,10 +1,13 @@
-using Domain.Common;
+﻿namespace Domain.Entities;
 
-namespace Domain.Entities;
-
-public class Skill : BaseEntity
+public partial class Skill
 {
-    public string Name { get; set; } = null!;
-    public ICollection<Course> Courses { get; } = null!;
-    public ICollection<UserSkill> UserSkills { get; } = null!;
+    public int Id { get; set; }
+    public int UserId { get; set; }
+    public int RewardId { get; set; }
+    public int Level { get; set; }
+    public DateTime CreatedAt { get; set; }
+    public DateTime UpdatedAt { get; set; }
+    public virtual Reward Reward { get; set; } = null!;
+    public virtual User User { get; set; } = null!;
 }

@@ -2,4 +2,4 @@ using Domain.Entities;
 
 namespace Application.Interfaces;
 
-public interface IEBookRepository : IGenericRepository<EBook> { }
+public interface IEbookRepository : IGenericRepository<Ebook> { }

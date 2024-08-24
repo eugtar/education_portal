@@ -2,11 +2,17 @@
 
 namespace Application.Dtos;
 
-public class UpdateEBookDto(string? title, string? author, int? pageAmount, EBookFormat? format, DateTime? publishedOn)
+public class UpdateEbookDto(
+    string? title,
+    string? author,
+    int? pageAmount,
+    EbookFormat? format,
+    DateTime? publishedOn
+    )
 {
     public string? Title => title;
     public string? Author => author;
     public int? PageAmount => pageAmount;
-    public EBookFormat? Format => format;
+    public EbookFormat? Format => format;
     public DateTime? PublishedOn => publishedOn;
 }

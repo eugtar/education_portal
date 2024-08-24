@@ -2,17 +2,17 @@
 
 namespace Application.Dtos;
 
-public class CreateEBookDto(
+public class CreateEbookDto(
     string title,
     string author,
     int pageAmount,
-    EBookFormat format,
+    EbookFormat format,
     DateTime publishedOn
     )
 {
     public string Title => title;
     public string Author => author;
     public int PageAmount => pageAmount;
-    public EBookFormat Format => format;
+    public EbookFormat Format => format;
     public DateTime PublishedOn => publishedOn;
 }

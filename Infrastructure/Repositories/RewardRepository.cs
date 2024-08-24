@@ -5,9 +5,7 @@ using Infrastructure.Repositories.GenericRepository;
 
 namespace Infrastructure.Repositories;
 
-public class UserSkillRepository : GenericRepository<UserSkill>, IUserSkillRepository
+public class RewardRepository : GenericRepository<Reward>, IRewardRepository
 {
-    public UserSkillRepository(DatabaseContext context) : base(context)
-    {
-    }
+    public RewardRepository(DatabaseContext context) : base(context) { }
 }

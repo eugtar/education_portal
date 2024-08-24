@@ -5,7 +5,7 @@ using Infrastructure.Repositories.GenericRepository;
 
 namespace Infrastructure.Repositories;
 
-public class EbookRepository : GenericRepository<Ebook>, IEbookRepository
+public class FormatRepository : GenericRepository<Format>, IFormatRepository
 {
-    public EbookRepository(DatabaseContext context) : base(context) { }
+    public FormatRepository(DatabaseContext context) : base(context) { }
 }

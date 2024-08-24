@@ -2,16 +2,16 @@ using System.ComponentModel;
 
 namespace Domain.Enums;
 
-public enum EBookFormat
+public enum EbookFormat
 {
     [Description("epub")]
-    EPUB = 0,
+    EPUB = 1,
     [Description("pdf")]
-    PDF = 1,
+    PDF = 2,
     [Description("docx")]
-    DOCX = 2,
+    DOCX = 3,
     [Description("azw")]
-    AZW = 3,
+    AZW = 4,
     [Description("txt")]
-    TXT = 4,
+    TXT = 5,
 }

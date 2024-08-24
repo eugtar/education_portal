@@ -5,7 +5,7 @@ using Domain.Entities;
 
 namespace Application.Services;
 
-public class EBookService : IEBookService
+public class EBookService : IEbookService
 {
     private readonly IUnitOfWork _unitOfWork;
 
@@ -14,16 +14,16 @@ public class EBookService : IEBookService
         _unitOfWork = unitOfWork;
     }
 
-    public void Create(CreateEBookDto createEBookDto)
+    public void Create(CreateEbookDto createEbookDto)
     {
-        _unitOfWork.EBooks.Add(
-            new EBook()
+        _unitOfWork.Ebooks.Add(
+            new Ebook()
             {
-                Title = createEBookDto.Title,
-                Author = createEBookDto.Author,
-                PageAmount = createEBookDto.PageAmount,
-                Format = createEBookDto.Format,
-                PublishedOn = createEBookDto.PublishedOn,
+                Title = createEbookDto.Title,
+                Author = createEbookDto.Author,
+                PageAmount = createEbookDto.PageAmount,
+                Format = (int)createEbookDto.Format,
+                PublishedOn = createEbookDto.PublishedOn,
             });
         
         _unitOfWork.Complete();
@@ -31,33 +31,33 @@ public class EBookService : IEBookService
 
     public void Delete(int id)
     {
-        var eBook = _unitOfWork.EBooks.GetById(id) ?? throw new ArgumentException();
+        var eBook = _unitOfWork.Ebooks.GetById(id) ?? throw new ArgumentException();
 
-        _unitOfWork.EBooks.Remove(eBook);
+        _unitOfWork.Ebooks.Remove(eBook);
         _unitOfWork.Complete();
     }
 
-    public List<EBook> GetAll()
+    public List<Ebook> GetAll()
     {
-        return [.. _unitOfWork.EBooks.GetAll()];
+        return [.. _unitOfWork.Ebooks.GetAll()];
     }
 
-    public EBook? GetById(int id)
+    public Ebook? GetById(int id)
     {
-        return _unitOfWork.EBooks.GetById(id) ?? throw new ArgumentNullException();
+        return _unitOfWork.Ebooks.GetById(id) ?? throw new ArgumentNullException();
     }
 
-    public void Update(int id, UpdateEBookDto updateEBookDto)
+    public void Update(int id, UpdateEbookDto updateEbookDto)
     {
-        var eBook = _unitOfWork.EBooks.GetById(id) ?? throw new ArgumentNullException();
+        var eBook = _unitOfWork.Ebooks.GetById(id) ?? throw new ArgumentNullException();
 
-        eBook.Title = updateEBookDto.Title ?? eBook.Title;
-        eBook.Author = updateEBookDto.Author ?? eBook.Author;
-        eBook.PageAmount = updateEBookDto.PageAmount ?? eBook.PageAmount;
-        eBook.Format = updateEBookDto.Format ?? eBook.Format;
-        eBook.PublishedOn = updateEBookDto.PublishedOn ?? eBook.PublishedOn;
+        eBook.Title = updateEbookDto.Title ?? eBook.Title;
+        eBook.Author = updateEbookDto.Author ?? eBook.Author;
+        eBook.PageAmount = updateEbookDto.PageAmount ?? eBook.PageAmount;
+        eBook.Format = updateEbookDto.Format != null ? (int)updateEbookDto.Format : eBook.Format;
+        eBook.PublishedOn = updateEbookDto.PublishedOn ?? eBook.PublishedOn;
 
-        _unitOfWork.EBooks.Update(eBook);
+        _unitOfWork.Ebooks.Update(eBook);
         _unitOfWork.Complete();
     }
 }

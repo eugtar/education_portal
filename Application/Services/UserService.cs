@@ -22,7 +22,7 @@ public class UserService : IUserService
                 FirstName = createUserDto.FirstName,
                 LastName = createUserDto.LastName,
                 Email = createUserDto.Email,
-                Password = createUserDto.Password,
+                HashPassword = createUserDto.HashPassword,
             });
 
         _unitOfWork.Complete();
@@ -53,7 +53,7 @@ public class UserService : IUserService
         user.FirstName = updateUserDto.FirstName ?? user.FirstName;
         user.LastName = updateUserDto.LastName ?? user.LastName;
         user.Email = updateUserDto.Email ?? user.Email;
-        user.Password = updateUserDto.Password ?? user.Password;
+        user.HashPassword = updateUserDto.HashPassword ?? user.HashPassword;
 
         _unitOfWork.Users.Update(user);
         _unitOfWork.Complete();

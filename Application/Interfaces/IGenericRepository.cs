@@ -1,8 +1,7 @@
 ﻿using System.Linq.Expressions;
-using Domain.Common;
 
 namespace Application.Interfaces;
-public interface IGenericRepository<T> where T : BaseEntity
+public interface IGenericRepository<T> where T : class
 {
     public ICollection<T> GetAll();
     public ICollection<T> Find(Expression<Func<T, bool>> predicate);
