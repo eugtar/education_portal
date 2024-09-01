@@ -1,4 +1,5 @@
-﻿using Domain.Entities;
+﻿using System.Reflection;
+using Domain.Entities;
 using Infrastructure.Data.EntitiesConfiguration;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,13 +20,11 @@ public partial class DatabaseContext : DbContext
 
     public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer("Data Source=DESKTOP-C0UIRG5;Initial Catalog=edu_db;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False");
-    }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        /* 
         modelBuilder.ApplyConfiguration(new FormatConfiguration());
         modelBuilder.ApplyConfiguration(new QualityConfiguration());
         modelBuilder.ApplyConfiguration(new ArticleConfiguration());
@@ -36,6 +35,9 @@ public partial class DatabaseContext : DbContext
         modelBuilder.ApplyConfiguration(new CourseConfiguration());
         modelBuilder.ApplyConfiguration(new SkillConfiguration());
         modelBuilder.ApplyConfiguration(new UserConfiguration());
+         */
+
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
         OnModelCreatingPartial(modelBuilder);
     }

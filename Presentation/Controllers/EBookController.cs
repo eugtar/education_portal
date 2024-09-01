@@ -9,27 +9,27 @@ using Presentation.Uis.Interfaces;
 
 namespace Presentation.Controllers;
 
-public class EBookController : IController
+public class EbookController : IController
 {
-    private readonly IEBookUi _ui;
-    private readonly IEBookService _eBookService;
+    private readonly IEbookUi _ui;
+    private readonly IEbookService _ebookService;
     private readonly DatabaseContext _context;
 
-    public EBookController(DatabaseContext context)
+    public EbookController(DatabaseContext context)
     {
         _context = context;
-        _eBookService = new EBookService(new UnitOfWork(_context));
-        _ui = new EBookUi(_eBookService);
+        _ebookService = new EBookService(new UnitOfWork(_context));
+        _ui = new EbookUi(_ebookService);
     }
 
     public void Create()
     {
-        _eBookService.Create(_ui.Create());
+        _ebookService.Create(_ui.Create());
     }
 
     public void Delete()
     {
-        _eBookService.Delete(_ui.Delete());
+        _ebookService.Delete(_ui.Delete());
     }
 
     public void GetAll()
@@ -39,12 +39,12 @@ public class EBookController : IController
 
     public void GetById()
     {
-        ConsoleAlert.Result(_eBookService.GetById(_ui.GetById()));
+        ConsoleAlert.Result(_ebookService.GetById(_ui.GetById()));
     }
 
     public void Update()
     {
-        var id = _eBookService.GetById(_ui.GetById()).Id;
-        _eBookService.Update(id, _ui.Update());
+        var id = _ebookService.GetById(_ui.GetById())?.Id ?? throw new ArgumentNullException();
+        _ebookService.Update(id, _ui.Update());
     }
 }

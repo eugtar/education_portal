@@ -44,7 +44,7 @@ public class ArticleController : IController
 
     public void Update()
     {
-        var id = _articleService.GetById(_ui.GetById()).Id;
+        var id = _articleService.GetById(_ui.GetById())?.Id ?? throw new ArgumentNullException();
         _articleService.Update(id, _ui.Update());
     }
 }

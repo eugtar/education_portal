@@ -1,10 +1,9 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Common;
 
-public partial class Format
+namespace Domain.Entities;
+
+public partial class Format : BaseEntity
 {
-    public int Id { get; set; }
     public string Format1 { get; set; } = null!;
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
     public virtual ICollection<Ebook> Ebooks { get; set; } = new List<Ebook>();
 }

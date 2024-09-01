@@ -6,28 +6,28 @@ using Presentation.Uis.Interfaces;
 
 namespace Presentation.Uis;
 
-public class CourseUi : Ui, ICourseUi
+public class LessonUi : Ui, ILessonUi
 {
-    private readonly ICourseService _service;
+    private readonly ILessonService _service;
 
-    public CourseUi(ICourseService courseService)
+    public LessonUi(ILessonService lessonService)
     {
-        _service = courseService;
+        _service = lessonService;
     }
 
-    public CreateCourseDto Create()
+    public CreateLessonDto Create()
     {
         var title = ReadText("Course title");
         var description = ReadText("Course description");
 
-        return new CreateCourseDto(title, description);
+        return new CreateLessonDto(title, description);
     }
 
     public int Delete()
     {
-        var courses = _service.GetAll();
+        var lessons = _service.GetAll();
 
-        return courses[SelectOne<Course>(courses)].Id;
+        return lessons[SelectOne<Lesson>(lessons)].Id;
     }
 
     public string GetAll()
@@ -37,16 +37,16 @@ public class CourseUi : Ui, ICourseUi
 
     public int GetById()
     {
-        var courses = _service.GetAll();
+        var lessons = _service.GetAll();
 
-        return courses[SelectOne<Course>(courses)].Id;
+        return lessons[SelectOne<Lesson>(lessons)].Id;
     }
 
-    public UpdateCourseDto Update()
+    public UpdateLessonDto Update()
     {
         var title = ReadText("Course title", false);
         var description = ReadText("Course description", false);
 
-        return new UpdateCourseDto(title, description);
+        return new UpdateLessonDto(title, description);
     }
 }

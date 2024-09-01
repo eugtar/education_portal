@@ -1,11 +1,10 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Common;
 
-public partial class Reward
+namespace Domain.Entities;
+
+public partial class Reward : BaseEntity
 {
-    public int Id { get; set; }
-    public string Name { get; set; } = null!;
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
+    public required string Name { get; set; } = null!;
     public virtual ICollection<Skill> Skills { get; set; } = new List<Skill>();
     public virtual ICollection<Lesson> Lessons { get; set; } = new List<Lesson>();
 }

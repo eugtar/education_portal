@@ -2,10 +2,10 @@
 
 namespace Presentation.Uis.Interfaces;
 
-public interface IEBookUi
+public interface IEbookUi
 {
-    public CreateEBookDto Create();
-    public UpdateEBookDto Update();
+    public CreateEbookDto Create();
+    public UpdateEbookDto Update();
     public int Delete();
     public int GetById();
     public string GetAll();

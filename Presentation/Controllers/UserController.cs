@@ -43,7 +43,7 @@ public class UserController : IController
 
     public void Update()
     {
-        var id = _userService.GetById(_ui.GetById()).Id;
+        var id = _userService.GetById(_ui.GetById())?.Id ?? throw new ArgumentNullException();
         _userService.Update(id, _ui.Update());
     }
 }

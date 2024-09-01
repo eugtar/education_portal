@@ -9,27 +9,27 @@ using Presentation.Uis.Interfaces;
 
 namespace Presentation.Controllers
 {
-    public class SkillController : IController
+    public class RewardController : IController
     {
-        private readonly ISkillService _skillService;
-        private readonly ISkillUi _ui;
+        private readonly IRewardService _rewardService;
+        private readonly IRewardUi _ui;
         private readonly DatabaseContext _context;
 
-        public SkillController(DatabaseContext context)
+        public RewardController(DatabaseContext context)
         {
             _context = context;
-            _skillService = new SkillService(new UnitOfWork(_context));
-            _ui = new SkillUi(_skillService);
+            _rewardService = new RewardService(new UnitOfWork(_context));
+            _ui = new RewardUi(_rewardService);
         }
 
         public void Create()
         {
-            _skillService.Create(_ui.Create());
+            _rewardService.Create(_ui.Create());
         }
 
         public void Delete()
         {
-            _skillService.Delete(_ui.Delete());
+            _rewardService.Delete(_ui.Delete());
         }
 
         public void GetAll()
@@ -39,13 +39,13 @@ namespace Presentation.Controllers
 
         public void GetById()
         {
-            ConsoleAlert.Result(_skillService.GetById(_ui.GetById()));
+            ConsoleAlert.Result(_rewardService.GetById(_ui.GetById()));
         }
 
         public void Update()
         {
-            var id = _skillService.GetById(_ui.GetById()).Id;
-            _skillService.Update(id, _ui.Update());
+            var id = _rewardService.GetById(_ui.GetById())?.Id ?? throw new ArgumentNullException();
+            _rewardService.Update(id, _ui.Update());
         }
     }
 }

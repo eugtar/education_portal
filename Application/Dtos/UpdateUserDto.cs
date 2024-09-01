@@ -1,10 +1,10 @@
 ﻿namespace Application.Dtos;
 
 public class UpdateUserDto(
-    string? firstName,
-    string? lastName,
-    string? email,
-    string? hashPassword
+    string? firstName = null,
+    string? lastName = null,
+    string? email = null,
+    string? hashPassword = null
     )
 {
     public string? FirstName => firstName;

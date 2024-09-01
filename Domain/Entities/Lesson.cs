@@ -1,12 +1,11 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Common;
 
-public partial class Lesson
+namespace Domain.Entities;
+
+public partial class Lesson : BaseEntity
 {
-    public int Id { get; set; }
-    public string Title { get; set; } = null!;
-    public string Description { get; set; } = null!;
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
+    public required string Title { get; set; } = null!;
+    public required string Description { get; set; } = null!;
     public virtual ICollection<Course> Courses { get; set; } = new List<Course>();
     public virtual ICollection<Article> Articles { get; set; } = new List<Article>();
     public virtual ICollection<Ebook> Ebooks { get; set; } = new List<Ebook>();

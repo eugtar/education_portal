@@ -20,9 +20,9 @@ public class UserUi : Ui, IUserUi
         var firstName = ReadText("First name");
         var lastName = ReadText("Last name");
         var email = ReadText("Email");
-        var password = ReadText("Password");
+        var hashPassword = ReadText("Password");
 
-        return new CreateUserDto(firstName, lastName, email, password);
+        return new CreateUserDto(firstName, lastName, email, hashPassword);
     }
 
     public int Delete()
@@ -49,8 +49,8 @@ public class UserUi : Ui, IUserUi
         var firstName = ReadText("First name", false);
         var lastName = ReadText("Last name", false);
         var email = ReadText("Email", false);
-        var password = ReadText("Password", false);
+        var hashPassword = ReadText("Password", false);
 
-        return new UpdateUserDto(firstName, lastName, email, password);
+        return new UpdateUserDto(firstName, lastName, email, hashPassword);
     }
 }

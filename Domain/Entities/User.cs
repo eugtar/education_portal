@@ -1,14 +1,13 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Common;
 
-public partial class User
+namespace Domain.Entities;
+
+public partial class User : BaseEntity
 {
-    public int Id { get; set; }
-    public string? FirstName { get; set; }
-    public string? LastName { get; set; }
-    public string Email { get; set; } = null!;
-    public string HashPassword { get; set; } = null!;
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
+    public required string? FirstName { get; set; }
+    public required string? LastName { get; set; }
+    public required string Email { get; set; } = null!;
+    public required string HashPassword { get; set; } = null!;
     public virtual ICollection<Course> Courses { get; set; } = new List<Course>();
     public virtual ICollection<Skill> Skills { get; set; } = new List<Skill>();
 }

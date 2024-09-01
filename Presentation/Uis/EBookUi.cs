@@ -7,29 +7,29 @@ using Presentation.Uis.Interfaces;
 
 namespace Presentation.Uis;
 
-public class EBookUi : Ui, IEBookUi
+public class EbookUi : Ui, IEbookUi
 {
-    private readonly IEBookService _service;
+    private readonly IEbookService _service;
 
-    public EBookUi(IEBookService eBookService)
+    public EbookUi(IEbookService ebookService)
     {
-        _service = eBookService;
+        _service = ebookService;
     }
 
-    public CreateEBookDto Create()
+    public CreateEbookDto Create()
     {
         var title = ReadText("Book title");
         var author = ReadText("Book author");
         var pageAmount = ReadNumber("Page amount");
 
-        List<string> eBookFormats = [".epub", ".pdf", ".docx", ".azw", ".txt"];
-        var format = SelectOne(eBookFormats) switch
+        List<string> ebookFormats = [".epub", ".pdf", ".docx", ".azw", ".txt"];
+        var format = SelectOne(ebookFormats) switch
         {
-            0 => EBookFormat.EPUB,
-            1 => EBookFormat.PDF,
-            2 => EBookFormat.DOCX,
-            3 => EBookFormat.AZW,
-            _ => EBookFormat.TXT
+            0 => EbookFormat.EPUB,
+            1 => EbookFormat.PDF,
+            2 => EbookFormat.DOCX,
+            3 => EbookFormat.AZW,
+            _ => EbookFormat.TXT
         };
 
         var publishedOn = new DateTime(
@@ -38,14 +38,14 @@ public class EBookUi : Ui, IEBookUi
             day: ReadNumber("Day(DD)")
          );
 
-        return new CreateEBookDto(title, author, pageAmount, format, publishedOn);
+        return new CreateEbookDto(title, author, pageAmount, format, publishedOn);
     }
 
     public int Delete()
     {
-        var eBooks = _service.GetAll();
+        var ebooks = _service.GetAll();
 
-        return eBooks[base.SelectOne<EBook>(eBooks)].Id; ;
+        return ebooks[base.SelectOne<Ebook>(ebooks)].Id; ;
     }
 
     public string GetAll()
@@ -55,25 +55,25 @@ public class EBookUi : Ui, IEBookUi
 
     public int GetById()
     {
-        var eBooks = _service.GetAll();
+        var ebooks = _service.GetAll();
 
-        return eBooks[SelectOne<EBook>(eBooks)].Id;
+        return ebooks[SelectOne<Ebook>(ebooks)].Id;
     }
 
-    public UpdateEBookDto Update()
+    public UpdateEbookDto Update()
     {
         var title = ReadText("Book title", false);
         var author = ReadText("Book author", false);
         var pageAmount = ReadNumber("Page amount", false);
 
-        List<string> eBookFormats = [".epub", ".pdf", ".docx", ".azw", ".txt"];
-        var format = SelectOne(eBookFormats) switch
+        List<string> ebookFormats = [".epub", ".pdf", ".docx", ".azw", ".txt"];
+        var format = SelectOne(ebookFormats) switch
         {
-            0 => EBookFormat.EPUB,
-            1 => EBookFormat.PDF,
-            2 => EBookFormat.DOCX,
-            3 => EBookFormat.AZW,
-            _ => EBookFormat.TXT
+            0 => EbookFormat.EPUB,
+            1 => EbookFormat.PDF,
+            2 => EbookFormat.DOCX,
+            3 => EbookFormat.AZW,
+            _ => EbookFormat.TXT
         };
 
         var publishedOn = new DateTime(
@@ -82,6 +82,6 @@ public class EBookUi : Ui, IEBookUi
             day: ReadNumber("Day(DD)")
          );
 
-        return new UpdateEBookDto(title, author, pageAmount, format, publishedOn);
+        return new UpdateEbookDto(title, author, pageAmount, format, publishedOn);
     }
 }

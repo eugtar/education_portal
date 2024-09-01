@@ -1,13 +1,12 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Common;
 
-public partial class Skill
+namespace Domain.Entities;
+
+public partial class Skill : BaseEntity
 {
-    public int Id { get; set; }
-    public int UserId { get; set; }
-    public int RewardId { get; set; }
+    public required int UserId { get; set; }
+    public required int RewardId { get; set; }
     public int Level { get; set; }
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
     public virtual Reward Reward { get; set; } = null!;
     public virtual User User { get; set; } = null!;
 }

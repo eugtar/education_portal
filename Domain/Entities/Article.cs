@@ -1,11 +1,10 @@
-﻿namespace Domain.Entities;
+﻿using Domain.Common;
 
-public partial class Article
+namespace Domain.Entities;
+
+public partial class Article : BaseEntity
 {
-    public int Id { get; set; }
-    public string Title { get; set; } = null!;
-    public string Link { get; set; } = null!;
-    public DateTime CreatedAt { get; set; }
-    public DateTime UpdatedAt { get; set; }
+    public required string Title { get; set; } = null!;
+    public required string Link { get; set; } = null!;
     public virtual ICollection<Lesson> Lessons { get; set; } = new List<Lesson>();
 }

@@ -3,11 +3,11 @@
 namespace Application.Dtos;
 
 public class UpdateEbookDto(
-    string? title,
-    string? author,
-    int? pageAmount,
-    EbookFormat? format,
-    DateTime? publishedOn
+    string? title = null,
+    string? author = null,
+    int? pageAmount = null,
+    EbookFormat? format = null,
+    DateTime? publishedOn = null
     )
 {
     public string? Title => title;

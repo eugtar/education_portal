@@ -44,7 +44,7 @@ public class VideoController : IController
 
     public void Update()
     {
-        var id = _videoService.GetById(_ui.GetById()).Id;
+        var id = _videoService.GetById(_ui.GetById())?.Id ?? throw new ArgumentNullException();
         _videoService.Update(id, _ui.Update());
     }
 }
