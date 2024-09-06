@@ -24,13 +24,17 @@ public class VideoUi : Ui, IVideoUi
             ReadNumber("Minute(mm)")
         );
 
-        List<string> videoQuality = ["low", "medium", "high", "ultrahigh"];
+        List<string> videoQuality = ["144p", "240p", "360p", "480p", "720p", "1080p", "1440p", "2160p"];
         var quality = SelectOne(videoQuality) switch
         {
-            0 => VideoQuality.LOW,
-            1 => VideoQuality.MEDIUM,
-            2 => VideoQuality.HIGH,
-            _ => VideoQuality.LOW,
+            0 => VideoQuality._144p,
+            1 => VideoQuality._240p,
+            2 => VideoQuality._360p,
+            3 => VideoQuality._480p,
+            4 => VideoQuality._720p,
+            5 => VideoQuality._1080p,
+            6 => VideoQuality._1440p,
+            _ => VideoQuality._2160p,
         };
 
         return new CreateVideoDto(title, duration, quality);
@@ -63,13 +67,17 @@ public class VideoUi : Ui, IVideoUi
             ReadNumber("Minute(mm)")
         );
 
-        List<string> videoQuality = ["low", "medium", "high", "ultrahigh"];
+        List<string> videoQuality = ["144p", "240p", "360p", "480p", "720p", "1080p", "1440p", "2160p"];
         var quality = SelectOne(videoQuality) switch
         {
-            0 => VideoQuality.LOW,
-            1 => VideoQuality.MEDIUM,
-            2 => VideoQuality.HIGH,
-            _ => VideoQuality.LOW,
+            0 => VideoQuality._144p,
+            1 => VideoQuality._240p,
+            2 => VideoQuality._360p,
+            3 => VideoQuality._480p,
+            4 => VideoQuality._720p,
+            5 => VideoQuality._1080p,
+            6 => VideoQuality._1440p,
+            _ => VideoQuality._2160p,
         };
 
         return new UpdateVideoDto(title, duration, quality);

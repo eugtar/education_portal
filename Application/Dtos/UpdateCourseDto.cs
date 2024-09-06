@@ -1,10 +1,10 @@
-namespace Application.Dtos;
+﻿namespace Application.Dtos;
 
 public class UpdateCourseDto(
-    bool? finished = null,
-    decimal? progress = null
-)
+    string? title = null,
+    string? description = null
+    )
 {
-    public bool? Finished => finished;
-    public decimal? Progress => progress;
+    public string? Title => title;
+    public string? Description => description;
 }

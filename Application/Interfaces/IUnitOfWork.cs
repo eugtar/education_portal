@@ -7,10 +7,10 @@ public interface IUnitOfWork : IDisposable
     public IArticleRepository Articles { get; }
     public IEbookRepository Ebooks { get; }
     public IVideoRepository Videos { get; }
-    public IRewardRepository Rewards { get; }
-    public ILessonRepository Lessons { get; }
-    public ICourseRepository Courses { get; }
     public ISkillRepository Skills { get; }
+    public ICourseRepository Courses { get; }
+    public IUserCourseRepository UserCourses { get; }
+    public IUserSkillRepository UserSkills { get; }
     public IUserRepository Users { get; }
     public int Complete();
 }

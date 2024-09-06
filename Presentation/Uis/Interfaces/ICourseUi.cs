@@ -1,10 +1,10 @@
 ﻿using Application.Dtos;
 
 namespace Presentation.Uis.Interfaces;
-public interface ILessonUi
+public interface ICourseUi
 {
-    public CreateLessonDto Create();
-    public UpdateLessonDto Update();
+    public CreateCourseDto Create();
+    public UpdateCourseDto Update();
     public int Delete();
     public int GetById();
     public string GetAll();

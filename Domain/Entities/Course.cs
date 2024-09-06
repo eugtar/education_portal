@@ -4,11 +4,12 @@ namespace Domain.Entities;
 
 public partial class Course : BaseEntity
 {
-
-    public required int UserId { get; set; }
-    public required int LessonId { get; set; }
-    public bool Finished { get; set; }
-    public decimal Progress { get; set; }
-    public virtual Lesson Lesson { get; set; } = null!;
-    public virtual User User { get; set; } = null!;
+    public required string Title { get; set; } = null!;
+    public required string Description { get; set; } = null!;
+    public virtual ICollection<UserCourse> UserCourses { get; set; } = [];
+    // public virtual ICollection<Article> Articles { get; set; } = new List<Article>();
+    // public virtual ICollection<Ebook> Ebooks { get; set; } = new List<Ebook>();
+    // public virtual ICollection<Video> Videos { get; set; } = new List<Video>();
+    public virtual ICollection<Material> Materials { get; set; } = [];
+    public virtual ICollection<Skill> Skills { get; set; } = [];
 }

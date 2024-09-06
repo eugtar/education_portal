@@ -5,10 +5,10 @@ namespace Application.Dtos;
 public class UpdateVideoDto(
     string? title = null,
     TimeOnly? duration = null,
-    VideoQuality? quality = null
+    VideoQuality? qualityId = null
     )
 {
     public string? Title => title;
     public TimeOnly? Duration => duration;
-    public VideoQuality? Quality => quality;
+    public VideoQuality? QualityId => qualityId;
 }

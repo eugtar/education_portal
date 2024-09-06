@@ -14,11 +14,11 @@ public class App(DatabaseContext context)
     private readonly Dictionary<string, IController> _routes = new()
         {
             { "user", new UserController(context) },
-            { "lesson", new LessonController(context) },
+            { "course", new CourseController(context) },
             { "ebook", new EbookController(context) },
             { "article", new ArticleController(context) },
             { "video", new VideoController(context) },
-            { "reward", new RewardController(context) }
+            { "skill", new SkillController(context) }
         };
 
     public void Init()

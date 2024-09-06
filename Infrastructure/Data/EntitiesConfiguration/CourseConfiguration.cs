@@ -1,29 +1,39 @@
+using Domain.Common;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Data.EntitiesConfiguration;
 
-public class CourseConfiguration : IEntityTypeConfiguration<Course>
+public class LessonConfiguration : IEntityTypeConfiguration<Course>
 {
     public void Configure(EntityTypeBuilder<Course> builder)
     {
-        builder.HasKey(e => e.Id).HasName("PK__Courses__3214EC078E2A3D18");
-
-        builder.ToTable(tb => tb.HasTrigger("D_U_Courses"));
+        builder.HasKey(e => e.Id).HasName("PK__Courses");
 
         builder.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
-        builder.Property(e => e.Progress).HasColumnType("decimal(5, 2)");
-        builder.Property(e => e.UpdatedAt).HasDefaultValueSql("(sysdatetime())");
+        builder.Property(e => e.Description).HasMaxLength(150);
+        builder.Property(e => e.Title).HasMaxLength(150);
 
-        builder.HasOne(d => d.Lesson).WithMany(p => p.Courses)
-            .HasForeignKey(d => d.LessonId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK__Courses__LessonI__6383C8BA");
+        builder.Property(e => e.UpdatedAt)
+            .HasDefaultValueSql("(sysdatetime())")
+            .ValueGeneratedOnAddOrUpdate();
 
-        builder.HasOne(d => d.User).WithMany(p => p.Courses)
-            .HasForeignKey(d => d.UserId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK__Courses__UserId__628FA481");
+        builder.HasMany(d => d.Materials).WithMany(p => p.Courses)
+            .UsingEntity<Dictionary<string, object>>(
+                "CourseMaterial",
+                r => r.HasOne<Material>().WithMany()
+                    .HasForeignKey("MaterialId")
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__CourseMaterial__Material"),
+                l => l.HasOne<Course>().WithMany()
+                    .HasForeignKey("CourseId")
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__CourseMaterial__Course"),
+                j =>
+                {
+                    j.HasKey("CourseId", "MaterialId").HasName("PK__CourseMaterial");
+                    j.ToTable("CourseMaterial");
+                });
     }
 }

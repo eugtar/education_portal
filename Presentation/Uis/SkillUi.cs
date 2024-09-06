@@ -5,13 +5,13 @@ using Presentation.Uis.Interfaces;
 
 namespace Presentation.Uis;
 
-public class RewardUi : Ui, IRewardUi
+public class SkillUi : Ui, ISkillUi
 {
-    private readonly IRewardService _service;
+    private readonly ISkillService _service;
 
-    public RewardUi(IRewardService rewardService)
+    public SkillUi(ISkillService skillService)
     {
-        _service = rewardService;
+        _service = skillService;
     }
 
     public string Create()
@@ -23,9 +23,9 @@ public class RewardUi : Ui, IRewardUi
 
     public int Delete()
     {
-        var rewards = _service.GetAll();
+        var skills = _service.GetAll();
 
-        return rewards[SelectOne<Reward>(rewards)].Id;
+        return skills[SelectOne<Skill>(skills)].Id;
     }
 
     public string? Update()
@@ -37,9 +37,9 @@ public class RewardUi : Ui, IRewardUi
 
     public int GetById()
     {
-        var rewards = _service.GetAll();
+        var skills = _service.GetAll();
 
-        return rewards[SelectOne<Reward>(rewards)].Id;
+        return skills[SelectOne<Skill>(skills)].Id;
     }
 
     public string GetAll()

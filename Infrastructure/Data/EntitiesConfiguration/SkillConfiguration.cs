@@ -4,25 +4,19 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Data.EntitiesConfiguration;
 
-public class SkillConfiguration : IEntityTypeConfiguration<Skill>
+public class RewardConfiguration : IEntityTypeConfiguration<Skill>
 {
     public void Configure(EntityTypeBuilder<Skill> builder)
     {
-        builder.HasKey(e => e.Id).HasName("PK__Skills__3214EC07BBF87B0B");
+        builder.HasKey(e => e.Id).HasName("PK__Skills");
 
-        builder.ToTable(tb => tb.HasTrigger("D_U_Skills"));
+        builder.HasIndex(e => e.Name, "UQ__Skills").IsUnique();
 
         builder.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
-        builder.Property(e => e.UpdatedAt).HasDefaultValueSql("(sysdatetime())");
+        builder.Property(e => e.Name).HasMaxLength(50);
 
-        builder.HasOne(d => d.Reward).WithMany(p => p.Skills)
-            .HasForeignKey(d => d.RewardId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK__Skills__RewardId__6A30C649");
-
-        builder.HasOne(d => d.User).WithMany(p => p.Skills)
-            .HasForeignKey(d => d.UserId)
-            .OnDelete(DeleteBehavior.ClientSetNull)
-            .HasConstraintName("FK__Skills__UserId__693CA210");
+        builder.Property(e => e.UpdatedAt)
+            .HasDefaultValueSql("(sysdatetime())")
+            .ValueGeneratedOnAddOrUpdate();
     }
 }

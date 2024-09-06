@@ -6,13 +6,13 @@ public class CreateEbookDto(
     string title,
     string author,
     int pageAmount,
-    EbookFormat format,
+    EbookFormat formatId,
     DateTime publishedOn
     )
 {
     public string Title => title;
     public string Author => author;
     public int PageAmount => pageAmount;
-    public EbookFormat Format => format;
+    public EbookFormat FormatId => formatId;
     public DateTime PublishedOn => publishedOn;
 }

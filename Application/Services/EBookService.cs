@@ -22,7 +22,7 @@ public class EBookService : IEbookService
                 Title = createEbookDto.Title,
                 Author = createEbookDto.Author,
                 PageAmount = createEbookDto.PageAmount,
-                Format = (int)createEbookDto.Format,
+                FormatId = (int)createEbookDto.FormatId,
                 PublishedOn = createEbookDto.PublishedOn,
             });
         
@@ -54,7 +54,7 @@ public class EBookService : IEbookService
         eBook.Title = updateEbookDto.Title ?? eBook.Title;
         eBook.Author = updateEbookDto.Author ?? eBook.Author;
         eBook.PageAmount = updateEbookDto.PageAmount ?? eBook.PageAmount;
-        eBook.Format = updateEbookDto.Format != null ? (int)updateEbookDto.Format : eBook.Format;
+        eBook.FormatId = updateEbookDto.FormatId != null ? (int)updateEbookDto.FormatId : eBook.FormatId;
         eBook.PublishedOn = updateEbookDto.PublishedOn ?? eBook.PublishedOn;
 
         _unitOfWork.Ebooks.Update(eBook);

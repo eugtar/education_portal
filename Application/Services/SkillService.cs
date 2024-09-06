@@ -1,4 +1,4 @@
-using Application.Interfaces;
+﻿using Application.Interfaces;
 using Application.Services.Interfaces;
 using Domain.Entities;
 
@@ -13,13 +13,13 @@ public class SkillService : ISkillService
         _unitOfWork = unitOfWork;
     }
 
-    public void Create(int userId, int rewardId)
+    public void Create(string name)
     {
-        _unitOfWork.Skills.Add(new Skill()
-        {
-            UserId = userId,
-            RewardId = rewardId
-        });
+        _unitOfWork.Skills.Add(
+            new Skill()
+            {
+                Name = name,
+            });
 
         _unitOfWork.Complete();
     }
@@ -42,11 +42,11 @@ public class SkillService : ISkillService
         return _unitOfWork.Skills.GetById(id) ?? throw new ArgumentNullException();
     }
 
-    public void Update(int id, int? level)
+    public void Update(int id, string? name)
     {
         var skill = _unitOfWork.Skills.GetById(id) ?? throw new ArgumentNullException();
 
-        skill.Level = level ?? skill.Level;
+        skill.Name = name ?? skill.Name;
 
         _unitOfWork.Skills.Update(skill);
         _unitOfWork.Complete();

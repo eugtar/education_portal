@@ -9,27 +9,27 @@ using Presentation.Uis.Interfaces;
 
 namespace Presentation.Controllers;
 
-public class LessonController : IController
+public class CourseController : IController
 {
-    private readonly ILessonService _lessonService;
-    private readonly ILessonUi _ui;
+    private readonly ICourseService _courseService;
+    private readonly ICourseUi _ui;
     private readonly DatabaseContext _context;
 
-    public LessonController(DatabaseContext context)
+    public CourseController(DatabaseContext context)
     {
         _context = context;
-        _lessonService = new LessonService(new UnitOfWork(_context));
-        _ui = new LessonUi(_lessonService);
+        _courseService = new CourseService(new UnitOfWork(_context));
+        _ui = new CourseUi(_courseService);
     }
 
     public void Create()
     {
-         _lessonService.Create(_ui.Create());
+         _courseService.Create(_ui.Create());
     }
 
     public void Delete()
     {
-        _lessonService.Delete(_ui.Delete());
+        _courseService.Delete(_ui.Delete());
     }
 
     public void GetAll()
@@ -39,12 +39,12 @@ public class LessonController : IController
 
     public void GetById()
     {
-        ConsoleAlert.Result(_lessonService.GetById(_ui.GetById()));
+        ConsoleAlert.Result(_courseService.GetById(_ui.GetById()));
     }
 
     public void Update()
     {
-        var id = _lessonService.GetById(_ui.GetById())?.Id ?? throw new ArgumentNullException();
-        _lessonService.Update(id, _ui.Update());
+        var id = _courseService.GetById(_ui.GetById())?.Id ?? throw new ArgumentNullException();
+        _courseService.Update(id, _ui.Update());
     }
 }

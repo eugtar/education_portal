@@ -1,6 +1,6 @@
 ﻿namespace Presentation.Uis.Interfaces;
 
-public interface IRewardUi
+public interface ISkillUi
 {
     public string Create();
     public string? Update();

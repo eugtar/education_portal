@@ -1,4 +1,4 @@
-using Application.Dtos;
+﻿using Application.Dtos;
 using Application.Interfaces;
 using Application.Services.Interfaces;
 using Domain.Entities;
@@ -14,13 +14,14 @@ public class CourseService : ICourseService
         _unitOfWork = unitOfWork;
     }
 
-    public void Create(int userId, int lessonId)
+    public void Create(CreateCourseDto createCourseDto)
     {
-        _unitOfWork.Courses.Add(new Course()
-        {
-            UserId = userId,
-            LessonId = lessonId
-        });
+        _unitOfWork.Courses.Add(
+            new Course()
+            {
+                Title = createCourseDto.Title,
+                Description = createCourseDto.Description
+            });
 
         _unitOfWork.Complete();
     }
@@ -47,8 +48,8 @@ public class CourseService : ICourseService
     {
         var course = _unitOfWork.Courses.GetById(id) ?? throw new ArgumentNullException();
 
-        course.Finished = updateCourseDto.Finished ?? false;
-        course.Progress = updateCourseDto.Progress ?? course.Progress;
+        course.Title = updateCourseDto.Title ?? course.Title;
+        course.Description = updateCourseDto.Description ?? course.Description;
 
         _unitOfWork.Courses.Update(course);
         _unitOfWork.Complete();

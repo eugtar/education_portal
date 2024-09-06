@@ -5,10 +5,10 @@ namespace Application.Dtos;
 public class CreateVideoDto(
     string title,
     TimeOnly duration,
-    VideoQuality quality
+    VideoQuality qualityId
     )
 {
     public string Title => title;
     public TimeOnly Duration => duration;
-    public VideoQuality Quality => quality;
+    public VideoQuality QualityId => qualityId;
 }
