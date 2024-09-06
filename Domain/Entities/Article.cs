@@ -2,9 +2,8 @@
 
 namespace Domain.Entities;
 
-public partial class Article : BaseEntity
+public partial class Article : Material
 {
-    public required string Title { get; set; } = null!;
     public required string Link { get; set; } = null!;
-    public virtual ICollection<Lesson> Lessons { get; set; } = new List<Lesson>();
+    // public virtual ICollection<Course> Courses { get; set; } = new List<Course>();
 }

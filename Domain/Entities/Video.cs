@@ -2,11 +2,10 @@
 
 namespace Domain.Entities;
 
-public partial class Video : BaseEntity
+public partial class Video : Material
 {
-    public required string Title { get; set; } = null!;
     public required TimeOnly Duration { get; set; }
-    public required int Quality { get; set; }
-    public virtual Quality QualityNavigation { get; set; } = null!;
-    public virtual ICollection<Lesson> Lessons { get; set; } = new List<Lesson>();
+    public required int QualityId { get; set; }
+    public virtual Quality Quality { get; set; } = null!;
+    // public virtual ICollection<Course> Courses { get; set; } = new List<Course>();
 }
