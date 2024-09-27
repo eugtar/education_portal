@@ -55,4 +55,9 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
         _entities.RemoveRange(entities);
     }
+
+    public bool IsExist(Expression<Func<T, bool>> predicate)
+    {
+        return _entities.Any(predicate);
+    }
 }
