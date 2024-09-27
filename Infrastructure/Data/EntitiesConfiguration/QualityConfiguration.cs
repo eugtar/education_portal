@@ -17,16 +17,5 @@ public class QualityConfiguration : IEntityTypeConfiguration<Quality>
         builder.Property(e => e.UpdatedAt)
             .HasDefaultValueSql("(sysdatetime())")
             .ValueGeneratedOnAddOrUpdate();
-
-        builder.HasData(
-            new { Id = 1, QualityType = "144p" },
-            new { Id = 2, QualityType = "240p" },
-            new { Id = 3, QualityType = "360p" },
-            new { Id = 4, QualityType = "480p" },
-            new { Id = 5, QualityType = "720p" },
-            new { Id = 6, QualityType = "1080p" },
-            new { Id = 7, QualityType = "1440p" },
-            new { Id = 8, QualityType = "2160p" }
-        );
     }
 }

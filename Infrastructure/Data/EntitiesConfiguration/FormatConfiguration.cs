@@ -18,13 +18,5 @@ public class FormatConfiguration : IEntityTypeConfiguration<Format>
         builder.Property(e => e.UpdatedAt)
             .HasDefaultValueSql("(sysdatetime())")
             .ValueGeneratedOnAddOrUpdate();
-
-        builder.HasData(
-            new { Id = 1, FormatType = "epub" },
-            new { Id = 2, FormatType = "pdf" },
-            new { Id = 3, FormatType = "docx" },
-            new { Id = 4, FormatType = "azw" },
-            new { Id = 5, FormatType = "txt" }
-        );
     }
 }
