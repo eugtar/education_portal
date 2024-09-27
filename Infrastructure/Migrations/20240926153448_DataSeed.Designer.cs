@@ -4,6 +4,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20240926153448_DataSeed")]
+    partial class DataSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -303,71 +306,6 @@ namespace Infrastructure.Migrations
                         .IsUnique();
 
                     b.ToTable("Skills");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "JS-Beginner",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "JS-Intermediate",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "JS-Master",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "React-Beginner",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "React-Intermediate",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "React-Master",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "C#-Beginner",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "C#-Intermediate",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "C#-Master",
-                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
@@ -656,7 +594,7 @@ namespace Infrastructure.Migrations
                             Author = "David Flanagan",
                             FormatId = 2,
                             PageAmount = 1093,
-                            PublishedOn = new DateTime(2024, 9, 26, 16, 51, 20, 857, DateTimeKind.Local).AddTicks(6045)
+                            PublishedOn = new DateTime(2024, 9, 26, 16, 34, 46, 166, DateTimeKind.Local).AddTicks(7698)
                         },
                         new
                         {
@@ -667,7 +605,7 @@ namespace Infrastructure.Migrations
                             Author = "David Herman",
                             FormatId = 2,
                             PageAmount = 228,
-                            PublishedOn = new DateTime(2024, 9, 26, 16, 51, 20, 857, DateTimeKind.Local).AddTicks(6144)
+                            PublishedOn = new DateTime(2024, 9, 26, 16, 34, 46, 166, DateTimeKind.Local).AddTicks(7761)
                         },
                         new
                         {
@@ -678,7 +616,7 @@ namespace Infrastructure.Migrations
                             Author = "Nicholas C.Zakas",
                             FormatId = 3,
                             PageAmount = 960,
-                            PublishedOn = new DateTime(2024, 9, 26, 16, 51, 20, 857, DateTimeKind.Local).AddTicks(6149)
+                            PublishedOn = new DateTime(2024, 9, 26, 16, 34, 46, 166, DateTimeKind.Local).AddTicks(7765)
                         },
                         new
                         {
@@ -689,7 +627,7 @@ namespace Infrastructure.Migrations
                             Author = "Robin Wieruch",
                             FormatId = 2,
                             PageAmount = 286,
-                            PublishedOn = new DateTime(2024, 9, 26, 16, 51, 20, 857, DateTimeKind.Local).AddTicks(6153)
+                            PublishedOn = new DateTime(2024, 9, 26, 16, 34, 46, 166, DateTimeKind.Local).AddTicks(7770)
                         },
                         new
                         {
@@ -700,7 +638,7 @@ namespace Infrastructure.Migrations
                             Author = "Adam Boduch",
                             FormatId = 3,
                             PageAmount = 526,
-                            PublishedOn = new DateTime(2024, 9, 26, 16, 51, 20, 857, DateTimeKind.Local).AddTicks(6158)
+                            PublishedOn = new DateTime(2024, 9, 26, 16, 34, 46, 166, DateTimeKind.Local).AddTicks(7774)
                         },
                         new
                         {
@@ -711,7 +649,7 @@ namespace Infrastructure.Migrations
                             Author = "Carlos Santana Roldan",
                             FormatId = 3,
                             PageAmount = 394,
-                            PublishedOn = new DateTime(2024, 9, 26, 16, 51, 20, 857, DateTimeKind.Local).AddTicks(6162)
+                            PublishedOn = new DateTime(2024, 9, 26, 16, 34, 46, 166, DateTimeKind.Local).AddTicks(7778)
                         },
                         new
                         {
@@ -722,7 +660,7 @@ namespace Infrastructure.Migrations
                             Author = "RB Whitaker",
                             FormatId = 1,
                             PageAmount = 406,
-                            PublishedOn = new DateTime(2024, 9, 26, 16, 51, 20, 857, DateTimeKind.Local).AddTicks(6166)
+                            PublishedOn = new DateTime(2024, 9, 26, 16, 34, 46, 166, DateTimeKind.Local).AddTicks(7782)
                         },
                         new
                         {
@@ -733,7 +671,7 @@ namespace Infrastructure.Migrations
                             Author = "Ian Griffiths",
                             FormatId = 2,
                             PageAmount = 778,
-                            PublishedOn = new DateTime(2024, 9, 26, 16, 51, 20, 857, DateTimeKind.Local).AddTicks(6170)
+                            PublishedOn = new DateTime(2024, 9, 26, 16, 34, 46, 166, DateTimeKind.Local).AddTicks(7786)
                         },
                         new
                         {
@@ -744,7 +682,7 @@ namespace Infrastructure.Migrations
                             Author = "Mark J.Price",
                             FormatId = 2,
                             PageAmount = 826,
-                            PublishedOn = new DateTime(2024, 9, 26, 16, 51, 20, 857, DateTimeKind.Local).AddTicks(6175)
+                            PublishedOn = new DateTime(2024, 9, 26, 16, 34, 46, 166, DateTimeKind.Local).AddTicks(7791)
                         });
                 });
 
