@@ -4,11 +4,11 @@ public class CreateUserDto(
     string firstName,
     string lastName,
     string email,
-    string hashPassword
+    string password
     )
 {
     public string? FirstName => firstName;
     public string? LastName => lastName;
     public string Email => email;
-    public string HashPassword => hashPassword;
+    public string password => password;
 }
