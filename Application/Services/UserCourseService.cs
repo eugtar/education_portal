@@ -25,27 +25,27 @@ public class UserCourseService : IUserCourseService
         _unitOfWork.Complete();
     }
 
-    public void Delete(int id)
+    public void Delete(int userId, int courseId)
     {
-        var userCourse = _unitOfWork.UserCourses.GetById(id) ?? throw new ArgumentNullException();
+        var userCourse = _unitOfWork.UserCourses.GetById(courseId);
 
         _unitOfWork.UserCourses.Remove(userCourse);
         _unitOfWork.Complete();
     }
 
-    public List<UserCourse> GetAll()
+    public List<UserCourse> GetAll(int userId)
     {
-        return [.. _unitOfWork.UserCourses.GetAll()];
+        return [.. _unitOfWork.UserCourses.Find(uc => uc.UserId == userId)];
     }
 
-    public UserCourse? GetById(int id)
+    public UserCourse? GetById(int userId, int courseId)
     {
-        return _unitOfWork.UserCourses.GetById(id) ?? throw new ArgumentNullException();
+        return _unitOfWork.UserCourses.GetById(courseId);
     }
 
-    public void Update(int id, UpdateUserCourseDto updateUserCourseDto)
+    public void Update(int userId, int courseId, UpdateUserCourseDto updateUserCourseDto)
     {
-        var userCourse = _unitOfWork.UserCourses.GetById(id) ?? throw new ArgumentNullException();
+        var userCourse = _unitOfWork.UserCourses.GetById(courseId);
 
         userCourse.Finished = updateUserCourseDto.Finished ?? false;
         userCourse.Progress = updateUserCourseDto.Progress ?? userCourse.Progress;

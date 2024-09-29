@@ -1,4 +1,5 @@
-﻿using Application.Interfaces;
+﻿using Application.Dtos;
+using Application.Interfaces;
 using Application.Services.Interfaces;
 using Domain.Entities;
 
@@ -13,12 +14,12 @@ public class SkillService : ISkillService
         _unitOfWork = unitOfWork;
     }
 
-    public void Create(string name)
+    public void Create(CreateSkillDto createSkillDto)
     {
         _unitOfWork.Skills.Add(
             new Skill()
             {
-                Name = name,
+                Name = createSkillDto.Name,
             });
 
         _unitOfWork.Complete();
@@ -26,7 +27,7 @@ public class SkillService : ISkillService
 
     public void Delete(int id)
     {
-        var skill = _unitOfWork.Skills.GetById(id) ?? throw new ArgumentNullException();
+        var skill = _unitOfWork.Skills.GetById(id);
 
         _unitOfWork.Skills.Remove(skill);
         _unitOfWork.Complete();
@@ -39,14 +40,14 @@ public class SkillService : ISkillService
 
     public Skill? GetById(int id)
     {
-        return _unitOfWork.Skills.GetById(id) ?? throw new ArgumentNullException();
+        return _unitOfWork.Skills.GetById(id);
     }
 
-    public void Update(int id, string? name)
+    public void Update(int id, UpdateSkillDto updateSkillDto)
     {
-        var skill = _unitOfWork.Skills.GetById(id) ?? throw new ArgumentNullException();
+        var skill = _unitOfWork.Skills.GetById(id);
 
-        skill.Name = name ?? skill.Name;
+        skill.Name = updateSkillDto.Name ?? skill.Name;
 
         _unitOfWork.Skills.Update(skill);
         _unitOfWork.Complete();

@@ -29,7 +29,7 @@ public class VideoService : IVideoService
 
     public void Delete(int id)
     {
-        var video = _unitOfWork.Videos.GetById(id) ?? throw new ArgumentNullException();
+        var video = _unitOfWork.Videos.GetById(id);
 
         _unitOfWork.Videos.Remove(video);
         _unitOfWork.Complete();
@@ -42,12 +42,12 @@ public class VideoService : IVideoService
 
     public Video? GetById(int id)
     {
-        return _unitOfWork.Videos.GetById(id) ?? throw new ArgumentNullException();
+        return _unitOfWork.Videos.GetById(id);
     }
 
     public void Update(int id, UpdateVideoDto updateVideoDto)
     {
-        var video = _unitOfWork.Videos.GetById(id) ?? throw new ArgumentNullException();
+        var video = _unitOfWork.Videos.GetById(id);
 
         video.Title = updateVideoDto.Title ?? video.Title;
         video.Duration = updateVideoDto.Duration ?? video.Duration;

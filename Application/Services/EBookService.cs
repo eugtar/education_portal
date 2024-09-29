@@ -31,7 +31,7 @@ public class EBookService : IEbookService
 
     public void Delete(int id)
     {
-        var eBook = _unitOfWork.Ebooks.GetById(id) ?? throw new ArgumentException();
+        var eBook = _unitOfWork.Ebooks.GetById(id);
 
         _unitOfWork.Ebooks.Remove(eBook);
         _unitOfWork.Complete();
@@ -44,12 +44,12 @@ public class EBookService : IEbookService
 
     public Ebook? GetById(int id)
     {
-        return _unitOfWork.Ebooks.GetById(id) ?? throw new ArgumentNullException();
+        return _unitOfWork.Ebooks.GetById(id);
     }
 
     public void Update(int id, UpdateEbookDto updateEbookDto)
     {
-        var eBook = _unitOfWork.Ebooks.GetById(id) ?? throw new ArgumentNullException();
+        var eBook = _unitOfWork.Ebooks.GetById(id);
 
         eBook.Title = updateEbookDto.Title ?? eBook.Title;
         eBook.Author = updateEbookDto.Author ?? eBook.Author;

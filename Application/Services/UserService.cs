@@ -22,7 +22,7 @@ public class UserService : IUserService
                 FirstName = createUserDto.FirstName,
                 LastName = createUserDto.LastName,
                 Email = createUserDto.Email,
-                HashPassword = createUserDto.HashPassword,
+                HashPassword = createUserDto.password,
             });
 
         _unitOfWork.Complete();
@@ -30,7 +30,7 @@ public class UserService : IUserService
 
     public void Delete(int id)
     {
-        var user = _unitOfWork.Users.GetById(id) ?? throw new ArgumentNullException();
+        var user = _unitOfWork.Users.GetById(id);
 
         _unitOfWork.Users.Remove(user);
         _unitOfWork.Complete();
@@ -43,17 +43,17 @@ public class UserService : IUserService
 
     public User? GetById(int id)
     {
-        return _unitOfWork.Users.GetById(id) ?? throw new ArgumentNullException();
+        return _unitOfWork.Users.GetById(id);
     }
 
     public void Update(int id, UpdateUserDto updateUserDto)
     {
-        var user = _unitOfWork.Users.GetById(id) ?? throw new ArgumentNullException();
+        var user = _unitOfWork.Users.GetById(id);
 
         user.FirstName = updateUserDto.FirstName ?? user.FirstName;
         user.LastName = updateUserDto.LastName ?? user.LastName;
         user.Email = updateUserDto.Email ?? user.Email;
-        user.HashPassword = updateUserDto.HashPassword ?? user.HashPassword;
+        user.HashPassword = updateUserDto.password ?? user.HashPassword;
 
         _unitOfWork.Users.Update(user);
         _unitOfWork.Complete();

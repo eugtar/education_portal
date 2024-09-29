@@ -28,7 +28,7 @@ public class CourseService : ICourseService
 
     public void Delete(int id)
     {
-        var course = _unitOfWork.Courses.GetById(id) ?? throw new ArgumentNullException();
+        var course = _unitOfWork.Courses.GetById(id);
 
         _unitOfWork.Courses.Remove(course);
         _unitOfWork.Complete();
@@ -41,12 +41,12 @@ public class CourseService : ICourseService
 
     public Course? GetById(int id)
     {
-        return _unitOfWork.Courses.GetById(id) ?? throw new ArgumentNullException();
+        return _unitOfWork.Courses.GetById(id);
     }
 
     public void Update(int id, UpdateCourseDto updateCourseDto)
     {
-        var course = _unitOfWork.Courses.GetById(id) ?? throw new ArgumentNullException();
+        var course = _unitOfWork.Courses.GetById(id);
 
         course.Title = updateCourseDto.Title ?? course.Title;
         course.Description = updateCourseDto.Description ?? course.Description;

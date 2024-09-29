@@ -24,27 +24,27 @@ public class UserSkillService : IUserSkillService
         _unitOfWork.Complete();
     }
 
-    public void Delete(int id)
+    public void Delete(int userId, int skillId)
     {
-        var userSkill = _unitOfWork.UserSkills.GetById(id) ?? throw new ArgumentNullException();
+        var userSkill = _unitOfWork.UserSkills.GetById(skillId);
 
         _unitOfWork.UserSkills.Remove(userSkill);
         _unitOfWork.Complete();
     }
 
-    public List<UserSkill> GetAll()
+    public List<UserSkill> GetAll(int userId)
     {
-        return [.. _unitOfWork.UserSkills.GetAll()];
+        return [.. _unitOfWork.UserSkills.Find(us => us.UserId == userId)];
     }
 
-    public UserSkill? GetById(int id)
+    public UserSkill? GetById(int userId, int skillId)
     {
-        return _unitOfWork.UserSkills.GetById(id) ?? throw new ArgumentNullException();
+        return _unitOfWork.UserSkills.GetById(skillId);
     }
 
-    public void Update(int id, int? level)
+    public void Update(int userId, int skillId, int? level)
     {
-        var userSkill = _unitOfWork.UserSkills.GetById(id) ?? throw new ArgumentNullException();
+        var userSkill = _unitOfWork.UserSkills.GetById(skillId);
 
         userSkill.Level = level ?? userSkill.Level;
 

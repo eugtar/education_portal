@@ -6,8 +6,8 @@ namespace Application.Services.Interfaces;
 public interface IUserCourseService
 {
     public void Create(int userId, int courseId);
-    public void Update(int id, UpdateUserCourseDto updateUserCourseDto);
-    public void Delete(int id);
-    public UserCourse? GetById(int id);
-    public List<UserCourse> GetAll();
+    public void Update(int userId, int courseId, UpdateUserCourseDto updateUserCourseDto);
+    public void Delete(int userId, int courseId);
+    public UserCourse? GetById(int userId, int courseId);
+    public List<UserCourse> GetAll(int userId);
 }

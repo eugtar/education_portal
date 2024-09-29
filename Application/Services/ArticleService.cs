@@ -22,13 +22,13 @@ public class ArticleService : IArticleService
                 Title = createArticleDto.Title,
                 Link = createArticleDto.Link
             });
-            
+
         _unitOfWork.Complete();
     }
 
     public void Delete(int id)
     {
-        var article = _unitOfWork.Articles.GetById(id) ?? throw new ArgumentNullException();
+        var article = _unitOfWork.Articles.GetById(id);
 
         _unitOfWork.Articles.Remove(article);
         _unitOfWork.Complete();
@@ -41,12 +41,12 @@ public class ArticleService : IArticleService
 
     public Article? GetById(int id)
     {
-        return _unitOfWork.Articles.GetById(id) ?? throw new ArgumentNullException();
+        return _unitOfWork.Articles.GetById(id);
     }
 
     public void Update(int id, UpdateArticleDto updateArticleDto)
     {
-        var article = _unitOfWork.Articles.GetById(id) ?? throw new ArgumentNullException();
+        var article = _unitOfWork.Articles.GetById(id);
 
         article.Title = updateArticleDto.Title ?? article.Title;
         article.Link = updateArticleDto.Link ?? article.Link;
