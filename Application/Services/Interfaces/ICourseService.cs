@@ -1,13 +1,13 @@
-﻿using Domain;
+﻿using Application.Dtos;
+using Domain.Entities;
 
-namespace Application
+namespace Application.Services.Interfaces;
+
+public interface ICourseService
 {
-    public interface ICourseService
-    {
-        public Course Create(CreateCourseDto createCourseDto);
-        public Course Update(string id, UpdateCourseDto updateCourseDto);
-        public void Delete(string id);
-        public Course GetById(string id);
-        public List<Course> GetAll();
-    }
+    public void Create(CreateCourseDto createCourseDto);
+    public void Update(int id, UpdateCourseDto updateCourseDto);
+    public void Delete(int id);
+    public Course? GetById(int id);
+    public List<Course> GetAll();
 }

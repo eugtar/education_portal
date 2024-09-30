@@ -1,11 +1,17 @@
-namespace Domain
+using System.ComponentModel;
+
+namespace Domain.Enums;
+
+public enum EbookFormat
 {
-    public enum EBookFormat
-    {
-        EPUB = 0,
-        PDF = 1,
-        DOCX = 2,
-        AZW = 3,
-        TXT = 4,
-    }
+    [Description("epub")]
+    EPUB = 1,
+    [Description("pdf")]
+    PDF = 2,
+    [Description("docx")]
+    DOCX = 3,
+    [Description("azw")]
+    AZW = 4,
+    [Description("txt")]
+    TXT = 5,
 }

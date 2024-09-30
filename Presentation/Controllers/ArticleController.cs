@@ -1,49 +1,50 @@
-﻿using Application;
-using Domain;
+﻿using Application.Services;
+using Application.Services.Interfaces;
+using Infrastructure.Data;
+using Infrastructure.UnitOfWork;
+using Presentation.Controllers.Interfaces;
+using Presentation.Uis;
+using Presentation.Uis.Common;
+using Presentation.Uis.Interfaces;
 
-namespace Presentation
+namespace Presentation.Controllers;
+
+public class ArticleController : IController
 {
-    public class ArticleController : IController
+    private readonly IArticleService _articleService;
+    private readonly IArticleUi _ui;
+    private readonly DatabaseContext _context;
+
+    public ArticleController(DatabaseContext context)
     {
-        private readonly IArticleService _articleService;
-        private readonly IArticleUi _ui;
+        _context = context;
+        _articleService = new ArticleService(new UnitOfWork(_context));
+        _ui = new ArticleUi(_articleService);
+    }
 
-        public ArticleController() : this(new ArticleService()) { }
+    public void Create()
+    {
+        _articleService.Create(_ui.Create());
+    }
 
-        public ArticleController(IArticleService articleService)
-        {
-            _articleService = articleService;
-            _ui = new ArticleUi(_articleService);
-        }
+    public void Delete()
+    {
+        _articleService.Delete(_ui.Delete());
+    }
 
-        public void Create()
-        {
-            var newArticle = _articleService.Create(_ui.Create());
+    public void GetAll()
+    {
+        ConsoleAlert.Result(_ui.GetAll());
+    }
 
-            ConsoleAlert.Result(newArticle);
-        }
+    public void GetById()
+    {
+        ConsoleAlert.Result(_articleService.GetById(_ui.GetById()));
+    }
 
-        public void Delete()
-        {
-            _articleService.Delete(_ui.Delete());
-        }
-
-        public void GetAll()
-        {
-            ConsoleAlert.Result(_ui.GetAll());
-        }
-
-        public void GetById()
-        {
-            ConsoleAlert.Result(_articleService.GetById(_ui.GetById()));
-        }
-
-        public void Update()
-        {
-            var id = _articleService.GetById(_ui.GetById()).Id;
-            var article = _articleService.Update(id, _ui.Update());
-
-            ConsoleAlert.Result(article);
-        }
+    public void Update()
+    {
+        var id = _articleService.GetById(_ui.GetById())?.Id ?? throw new ArgumentNullException();
+        _articleService.Update(id, _ui.Update());
     }
 }

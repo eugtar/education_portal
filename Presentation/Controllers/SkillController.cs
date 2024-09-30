@@ -1,25 +1,30 @@
-﻿using Application;
+﻿using Application.Services;
+using Application.Services.Interfaces;
+using Infrastructure.Data;
+using Infrastructure.UnitOfWork;
+using Presentation.Controllers.Interfaces;
+using Presentation.Uis;
+using Presentation.Uis.Common;
+using Presentation.Uis.Interfaces;
 
-namespace Presentation
+namespace Presentation.Controllers
 {
     public class SkillController : IController
     {
         private readonly ISkillService _skillService;
         private readonly ISkillUi _ui;
+        private readonly DatabaseContext _context;
 
-        public SkillController() : this(new SkillService()) { }
-
-        public SkillController(ISkillService skillService)
+        public SkillController(DatabaseContext context)
         {
-            _skillService = skillService;
+            _context = context;
+            _skillService = new SkillService(new UnitOfWork(_context));
             _ui = new SkillUi(_skillService);
         }
 
         public void Create()
         {
-            var newSkill = _skillService.Create(_ui.Create());
-
-            ConsoleAlert.Result(newSkill);
+            _skillService.Create(_ui.Create());
         }
 
         public void Delete()
@@ -39,10 +44,8 @@ namespace Presentation
 
         public void Update()
         {
-            var id = _skillService.GetById(_ui.GetById()).Id;
-            var skill = _skillService.Update(id, _ui.Update());
-
-            ConsoleAlert.Result(skill);
+            var id = _skillService.GetById(_ui.GetById())?.Id ?? throw new ArgumentNullException();
+            _skillService.Update(id, _ui.Update());
         }
     }
 }

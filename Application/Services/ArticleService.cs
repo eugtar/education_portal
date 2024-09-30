@@ -1,58 +1,57 @@
-﻿using Domain;
-using Infrastructure;
+﻿using Domain.Entities;
+using Application.Dtos;
+using Application.Services.Interfaces;
+using Application.Interfaces;
 
-namespace Application
+namespace Application.Services;
+
+public class ArticleService : IArticleService
 {
-    public class ArticleService : IArticleService
+    private readonly IUnitOfWork _unitOfWork;
+
+    public ArticleService(IUnitOfWork unitOfWork)
     {
-        private readonly IGenericRepository<Article> _repository;
+        _unitOfWork = unitOfWork;
+    }
 
-        public ArticleService() : this(new GenericRepository<Article>("article")) { }
-
-        public ArticleService(IGenericRepository<Article> articleRepository)
-        {
-            _repository = articleRepository;
-        }
-
-        public Article Create(CreateArticleDto createArticleDto)
-        {
-            var newArticle = new Article(
-                Guid.NewGuid().ToString(),
-                createArticleDto.Title,
-                createArticleDto.Link,
-                DateTime.Now.TimeOfDay,
-                DateTime.Now.TimeOfDay
-            );
-
-            return _repository.Insert(newArticle) ? newArticle : throw new NotImplementedException();
-        }
-
-        public void Delete(string id)
-        {
-            _repository.Delete(id);
-        }
-
-        public List<Article> GetAll()
-        {
-            var articles = _repository.GetAll().ToList();
+    public void Create(CreateArticleDto createArticleDto)
+    {
+        _unitOfWork.Articles.Add(
+            new Article()
+            {
+                Title = createArticleDto.Title,
+                Link = createArticleDto.Link
+            });
             
-            return articles.Count == 0 ? throw new NotImplementedException() : articles;
-        }
+        _unitOfWork.Complete();
+    }
 
-        public Article GetById(string id)
-        {
-            return _repository.GetById(id) ?? throw new NotImplementedException();
-        }
+    public void Delete(int id)
+    {
+        var article = _unitOfWork.Articles.GetById(id) ?? throw new ArgumentNullException();
 
-        public Article Update(string id, UpdateArticleDto updateArticleDto)
-        {
-            var article = _repository.GetById(id) ?? throw new NotImplementedException();
+        _unitOfWork.Articles.Remove(article);
+        _unitOfWork.Complete();
+    }
 
-            article.Title = updateArticleDto.Title ?? article.Title;
-            article.Link = updateArticleDto.Link ?? article.Link;
-            article.UpdatedAt = DateTime.Now.TimeOfDay;
+    public List<Article> GetAll()
+    {
+        return [.. _unitOfWork.Articles.GetAll()];
+    }
 
-            return _repository.Update(article) ? article : throw new NotImplementedException();
-        }
+    public Article? GetById(int id)
+    {
+        return _unitOfWork.Articles.GetById(id) ?? throw new ArgumentNullException();
+    }
+
+    public void Update(int id, UpdateArticleDto updateArticleDto)
+    {
+        var article = _unitOfWork.Articles.GetById(id) ?? throw new ArgumentNullException();
+
+        article.Title = updateArticleDto.Title ?? article.Title;
+        article.Link = updateArticleDto.Link ?? article.Link;
+
+        _unitOfWork.Articles.Update(article);
+        _unitOfWork.Complete();
     }
 }

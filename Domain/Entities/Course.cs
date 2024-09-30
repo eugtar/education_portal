@@ -1,31 +1,15 @@
-namespace Domain {
-    public class Course : BaseEntity
-    {
-        public string Title { get; set; }
-        public string Description { get; set; }
-        public List<EBook> BookMaterials { get; private set; }
-        public List<Article> ArticleMaterials { get; private set; }
-        public List<Video> VideoMaterials { get; private set; }
-        public List<Skill> Skills { get; private set; }
+﻿using Domain.Common;
 
-        public Course(
-            string id,
-            string title,
-            string description,
-            List<EBook> bookMaterials,
-            List<Article> articleMaterials,
-            List<Video> videoMaterials,
-            List<Skill> skills,
-            TimeSpan createdAt,
-            TimeSpan updatedAt
-        ) : base(id, createdAt, updatedAt)
-        {
-            Title = title;
-            Description = description;
-            BookMaterials = bookMaterials;
-            ArticleMaterials = articleMaterials;
-            VideoMaterials = videoMaterials;
-            Skills = skills;
-        }
-    }
+namespace Domain.Entities;
+
+public partial class Course : BaseEntity
+{
+    public required string Title { get; set; } = null!;
+    public required string Description { get; set; } = null!;
+    public virtual ICollection<UserCourse> UserCourses { get; set; } = [];
+    // public virtual ICollection<Article> Articles { get; set; } = new List<Article>();
+    // public virtual ICollection<Ebook> Ebooks { get; set; } = new List<Ebook>();
+    // public virtual ICollection<Video> Videos { get; set; } = new List<Video>();
+    public virtual ICollection<Material> Materials { get; set; } = [];
+    public virtual ICollection<Skill> Skills { get; set; } = [];
 }

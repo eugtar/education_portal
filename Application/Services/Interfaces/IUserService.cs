@@ -1,13 +1,13 @@
-﻿using Domain;
+﻿using Application.Dtos;
+using Domain.Entities;
 
-namespace Application
+namespace Application.Services.Interfaces;
+
+public interface IUserService
 {
-    public interface IUserService
-    {
-        public User Create(CreateUserDto createUserDto);
-        public User Update(string id, UpdateUserDto updateUserDto);
-        public void Delete(string id);
-        public User GetById(string id);
-        public List<User> GetAll();
-    }
+    public void Create(CreateUserDto createUserDto);
+    public void Update(int id, UpdateUserDto updateUserDto);
+    public void Delete(int id);
+    public User? GetById(int id);
+    public List<User> GetAll();
 }

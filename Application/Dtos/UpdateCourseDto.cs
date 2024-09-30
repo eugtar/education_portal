@@ -1,17 +1,10 @@
-﻿namespace Application
-{
-    public class UpdateCourseDto
-    {
-        public string? Title { get; set; }
-        public string? Description { get; set; }
+﻿namespace Application.Dtos;
 
-        public UpdateCourseDto(
-            string? title,
-            string? description
-        )
-        {
-            Title = title;
-            Description = description;
-        }
-    }
+public class UpdateCourseDto(
+    string? title = null,
+    string? description = null
+    )
+{
+    public string? Title => title;
+    public string? Description => description;
 }
