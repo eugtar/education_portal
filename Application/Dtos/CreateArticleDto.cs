@@ -1,14 +1,7 @@
-﻿namespace Application
-{
-    public class CreateArticleDto
-    {
-        public string Title { get; set; }
-        public Uri Link { get; set; }
+﻿namespace Application.Dtos;
 
-        public CreateArticleDto(string title, Uri link)
-        {
-            Title = title;
-            Link = link;
-        }
-    }
+public class CreateArticleDto(string title, string link)
+{
+    public string Title => title;
+    public string Link => link;
 }

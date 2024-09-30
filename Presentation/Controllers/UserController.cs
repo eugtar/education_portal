@@ -1,49 +1,49 @@
-﻿using Application;
-using Domain;
+﻿using Application.Services;
+using Application.Services.Interfaces;
+using Infrastructure.Data;
+using Infrastructure.UnitOfWork;
+using Presentation.Controllers.Interfaces;
+using Presentation.Uis;
+using Presentation.Uis.Common;
+using Presentation.Uis.Interfaces;
 
-namespace Presentation
+namespace Presentation.Controllers;
+
+public class UserController : IController
 {
-    public class UserController : IController
+    private readonly IUserService _userService;
+    private readonly IUserUi _ui;
+    private readonly DatabaseContext _context;
+    public UserController(DatabaseContext context)
     {
-        private readonly IUserService _userService;
-        private readonly IUserUi _ui;
+        _context = context;
+        _userService = new UserService(new UnitOfWork(_context));
+        _ui = new UserUi(_userService);
+    }
 
-        public UserController() : this(new UserService()) { }
+    public void Create()
+    {
+        _userService.Create(_ui.Create());
+    }
 
-        public UserController(IUserService userService)
-        {
-            _userService = userService;
-            _ui = new UserUi(_userService);
-        }
+    public void Delete()
+    {
+        _userService.Delete(_ui.Delete());
+    }
 
-        public void Create()
-        {
-            var newUser = _userService.Create(_ui.Create());
+    public void GetAll()
+    {
+        ConsoleAlert.Result(_ui.GetAll());
+    }
 
-            ConsoleAlert.Result(newUser);
-        }
+    public void GetById()
+    {
+        ConsoleAlert.Result(_userService.GetById(_ui.GetById()));
+    }
 
-        public void Delete()
-        {
-            _userService.Delete(_ui.Delete());
-        }
-
-        public void GetAll()
-        {
-            ConsoleAlert.Result(_ui.GetAll());
-        }
-
-        public void GetById()
-        {
-            ConsoleAlert.Result(_userService.GetById(_ui.GetById()));
-        }
-
-        public void Update()
-        {
-            var id = _userService.GetById(_ui.GetById()).Id;
-            var user = _userService.Update(id, _ui.Update());
-
-            ConsoleAlert.Result(user);
-        }
+    public void Update()
+    {
+        var id = _userService.GetById(_ui.GetById())?.Id ?? throw new ArgumentNullException();
+        _userService.Update(id, _ui.Update());
     }
 }

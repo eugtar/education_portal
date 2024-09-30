@@ -1,62 +1,56 @@
-﻿using Domain;
-using Infrastructure;
+using Application.Dtos;
+using Application.Interfaces;
+using Application.Services.Interfaces;
+using Domain.Entities;
 
-namespace Application
+namespace Application.Services;
+
+public class CourseService : ICourseService
 {
-    public class CourseService : ICourseService
+    private readonly IUnitOfWork _unitOfWork;
+
+    public CourseService(IUnitOfWork unitOfWork)
     {
-        private readonly IGenericRepository<Course> _repository;
+        _unitOfWork = unitOfWork;
+    }
 
-        public CourseService() : this(new GenericRepository<Course>("course")) { }
-
-        public CourseService(IGenericRepository<Course> courseRepository)
+    public void Create(int userId, int lessonId)
+    {
+        _unitOfWork.Courses.Add(new Course()
         {
-            _repository = courseRepository;
-        }
+            UserId = userId,
+            LessonId = lessonId
+        });
 
-        public Course Create(CreateCourseDto createCourseDto)
-        {
-            var newCourse = new Course(
-                Guid.NewGuid().ToString(),
-                createCourseDto.Title,
-                createCourseDto.Description,
-                new List<EBook>(),
-                new List<Article>(),
-                new List<Video>(),
-                new List<Skill>(),
-                DateTime.Now.TimeOfDay,
-                DateTime.Now.TimeOfDay
-            );
+        _unitOfWork.Complete();
+    }
 
-            return _repository.Insert(newCourse) ? newCourse : throw new NotImplementedException();
-        }
+    public void Delete(int id)
+    {
+        var course = _unitOfWork.Courses.GetById(id) ?? throw new ArgumentNullException();
 
-        public void Delete(string id)
-        {
-            _repository.Delete(id);
-        }
+        _unitOfWork.Courses.Remove(course);
+        _unitOfWork.Complete();
+    }
 
-        public List<Course> GetAll()
-        {
-            var courses = _repository.GetAll().ToList();
+    public List<Course> GetAll()
+    {
+        return [.. _unitOfWork.Courses.GetAll()];
+    }
 
-            return courses.Count == 0 ? throw new NotImplementedException() : courses;
-        }
+    public Course? GetById(int id)
+    {
+        return _unitOfWork.Courses.GetById(id) ?? throw new ArgumentNullException();
+    }
 
-        public Course GetById(string id)
-        {
-            return _repository.GetById(id) ?? throw new NotImplementedException();
-        }
+    public void Update(int id, UpdateCourseDto updateCourseDto)
+    {
+        var course = _unitOfWork.Courses.GetById(id) ?? throw new ArgumentNullException();
 
-        public Course Update(string id, UpdateCourseDto updateCourseDto)
-        {
-            var course = _repository.GetById(id) ?? throw new NotImplementedException();
+        course.Finished = updateCourseDto.Finished ?? false;
+        course.Progress = updateCourseDto.Progress ?? course.Progress;
 
-            course.Title = updateCourseDto.Title ?? course.Title;
-            course.Description = updateCourseDto.Description ?? course.Description;
-            course.UpdatedAt = DateTime.Now.TimeOfDay;
-
-            return _repository.Update(course) ? course : throw new NotImplementedException();
-        }
+        _unitOfWork.Courses.Update(course);
+        _unitOfWork.Complete();
     }
 }

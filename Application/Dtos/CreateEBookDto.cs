@@ -1,28 +1,18 @@
-﻿using Domain;
+﻿using Domain.Enums;
 
-namespace Application
+namespace Application.Dtos;
+
+public class CreateEbookDto(
+    string title,
+    string author,
+    int pageAmount,
+    EbookFormat format,
+    DateTime publishedOn
+    )
 {
-    public class CreateEBookDto
-    {
-        public string Title { get; set; }
-        public string Author { get; set; }
-        public int PageAmount { get; set; }
-        public EBookFormat Format { get; set; }
-        public DateTime PublishedOn { get; set; }
-
-        public CreateEBookDto(
-            string title,
-            string author,
-            int pageAmount,
-            EBookFormat format,
-            DateTime publishedOn
-        )
-        {
-            Title = title;
-            Author = author;
-            PageAmount = pageAmount;
-            Format = format;
-            PublishedOn = publishedOn;
-        }
-    }
+    public string Title => title;
+    public string Author => author;
+    public int PageAmount => pageAmount;
+    public EbookFormat Format => format;
+    public DateTime PublishedOn => publishedOn;
 }

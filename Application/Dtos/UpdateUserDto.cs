@@ -1,17 +1,14 @@
-﻿namespace Application
-{
-    public class UpdateUserDto
-    {
-        public string? FirstName { get; set; }
-        public string? LastName { get; set; }
+﻿namespace Application.Dtos;
 
-        public UpdateUserDto(
-            string? firstName,
-            string? lastName
-        )
-        {
-            FirstName = firstName;
-            LastName = lastName;
-        }
-    }
+public class UpdateUserDto(
+    string? firstName = null,
+    string? lastName = null,
+    string? email = null,
+    string? hashPassword = null
+    )
+{
+    public string? FirstName => firstName;
+    public string? LastName => lastName;
+    public string? Email => email;
+    public string? HashPassword => hashPassword;
 }

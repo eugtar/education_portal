@@ -1,13 +1,13 @@
-﻿using Domain;
+﻿using Application.Dtos;
+using Domain.Entities;
 
-namespace Application
+namespace Application.Services.Interfaces;
+
+public interface IArticleService
 {
-    public interface IArticleService
-    {
-        public Article Create(CreateArticleDto createArticleDto);
-        public Article Update(string id, UpdateArticleDto updateArticleDto);
-        public void Delete(string id);
-        public Article GetById(string id);
-        public List<Article> GetAll();
-    }
+    public void Create(CreateArticleDto createArticleDto);
+    public void Update(int id, UpdateArticleDto updateArticleDto);
+    public void Delete(int id);
+    public Article? GetById(int id);
+    public List<Article> GetAll();
 }

@@ -1,10 +1,15 @@
-namespace Domain
+using System.ComponentModel;
+
+namespace Domain.Enums;
+
+public enum VideoQuality
 {
-    public enum VideoQuality
-    {
-        LOW = 0,
-        MEDIUM = 1,
-        HIGH = 2,
-        ULTRAHIGH = 3
-    }
+    [Description("Low")]
+    LOW = 0,
+    [Description("Medium")]
+    MEDIUM = 1,
+    [Description("High")]
+    HIGH = 2,
+    [Description("Ultra High")]
+    ULTRAHIGH = 3
 }

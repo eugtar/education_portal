@@ -1,17 +1,14 @@
-﻿namespace Application
-{
-    public class CreateUserDto
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
+﻿namespace Application.Dtos;
 
-        public CreateUserDto(
-            string firstName,
-            string lastName
-        ) 
-        {
-            FirstName = firstName;
-            LastName = lastName;
-        }
-    }
+public class CreateUserDto(
+    string firstName,
+    string lastName,
+    string email,
+    string hashPassword
+    )
+{
+    public string? FirstName => firstName;
+    public string? LastName => lastName;
+    public string Email => email;
+    public string HashPassword => hashPassword;
 }

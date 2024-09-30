@@ -1,61 +1,61 @@
-﻿using Domain;
-using Infrastructure;
+﻿using Application.Dtos;
+using Application.Interfaces;
+using Application.Services.Interfaces;
+using Domain.Entities;
 
-namespace Application
+namespace Application.Services;
+
+public class UserService : IUserService
 {
-    public class UserService : IUserService
+    private readonly IUnitOfWork _unitOfWork;
+
+    public UserService(IUnitOfWork unitOfWork)
     {
-        private readonly IGenericRepository<User> _repository;
+        _unitOfWork = unitOfWork;
+    }
 
-        public UserService() : this(new GenericRepository<User>("user")) { }
+    public void Create(CreateUserDto createUserDto)
+    {
+        _unitOfWork.Users.Add(
+            new User()
+            {
+                FirstName = createUserDto.FirstName,
+                LastName = createUserDto.LastName,
+                Email = createUserDto.Email,
+                HashPassword = createUserDto.HashPassword,
+            });
 
-        public UserService(IGenericRepository<User> userRepository)
-        {
-            _repository = userRepository;
-        }
+        _unitOfWork.Complete();
+    }
 
-        public User Create(CreateUserDto createUserDto)
-        {
-            var newUser = new User(
-                Guid.NewGuid().ToString(),
-                createUserDto.FirstName,
-                createUserDto.LastName,
-                new List<Course>(),
-                new List<Course>(),
-                new List<Skill>(),
-                DateTime.Now.TimeOfDay,
-                DateTime.Now.TimeOfDay
-            );
+    public void Delete(int id)
+    {
+        var user = _unitOfWork.Users.GetById(id) ?? throw new ArgumentNullException();
 
-            return _repository.Insert(newUser) ? newUser : throw new NotImplementedException();
-        }
+        _unitOfWork.Users.Remove(user);
+        _unitOfWork.Complete();
+    }
 
-        public void Delete(string id)
-        {
-            _repository.Delete(id);
-        }
+    public List<User> GetAll()
+    {
+        return [.. _unitOfWork.Users.GetAll()];
+    }
 
-        public List<User> GetAll()
-        {
-            var users = _repository.GetAll().ToList();
+    public User? GetById(int id)
+    {
+        return _unitOfWork.Users.GetById(id) ?? throw new ArgumentNullException();
+    }
 
-            return users.Count == 0 ? throw new NotImplementedException() : users;
-        }
+    public void Update(int id, UpdateUserDto updateUserDto)
+    {
+        var user = _unitOfWork.Users.GetById(id) ?? throw new ArgumentNullException();
 
-        public User GetById(string id)
-        {
-            return _repository.GetById(id) ?? throw new NotImplementedException();
-        }
+        user.FirstName = updateUserDto.FirstName ?? user.FirstName;
+        user.LastName = updateUserDto.LastName ?? user.LastName;
+        user.Email = updateUserDto.Email ?? user.Email;
+        user.HashPassword = updateUserDto.HashPassword ?? user.HashPassword;
 
-        public User Update(string id, UpdateUserDto updateUserDto)
-        {
-            var user = _repository.GetById(id) ?? throw new NotImplementedException();
-
-            user.FirstName = updateUserDto.FirstName ?? user.FirstName;
-            user.LastName = updateUserDto.LastName ?? user.LastName;
-            user.UpdatedAt = DateTime.Now.TimeOfDay;
-
-            return _repository.Update(user) ? user : throw new NotImplementedException();
-        }
+        _unitOfWork.Users.Update(user);
+        _unitOfWork.Complete();
     }
 }

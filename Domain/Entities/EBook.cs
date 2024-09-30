@@ -1,28 +1,14 @@
-namespace Domain {
-    public class EBook : BaseEntity
-    {
-        public string Title { get; set; }
-        public string Author { get; set; }
-        public int PageAmount { get; set; }
-        public EBookFormat Format { get; set; }
-        public DateTime PublishedOn { get; set; }
+﻿using Domain.Common;
 
-        public EBook(
-            string id,
-            string title,
-            string author,
-            int pageAmount,
-            EBookFormat format,
-            DateTime publishedOn,
-            TimeSpan createdAt,
-            TimeSpan updatedAt
-        ) : base(id, createdAt, updatedAt)
-        {
-            Title = title;
-            Author = author;
-            PageAmount = pageAmount;
-            Format = format;
-            PublishedOn = publishedOn;
-        }
-    }
+namespace Domain.Entities;
+
+public partial class Ebook : BaseEntity
+{
+    public required string Title { get; set; } = null!;
+    public required string Author { get; set; } = null!;
+    public required int PageAmount { get; set; }
+    public required DateTime PublishedOn { get; set; }
+    public required int Format { get; set; }
+    public virtual Format FormatNavigation { get; set; } = null!;
+    public virtual ICollection<Lesson> Lessons { get; set; } = new List<Lesson>();
 }
