@@ -12,10 +12,8 @@ public class QualityConfiguration : IEntityTypeConfiguration<Quality>
 
         builder.Property(e => e.Id).ValueGeneratedNever();
         builder.Property(e => e.QualityType).HasMaxLength(10);
-        builder.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
 
-        builder.Property(e => e.UpdatedAt)
-            .HasDefaultValueSql("(sysdatetime())")
-            .ValueGeneratedOnAddOrUpdate();
+        builder.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
+        builder.Property(e => e.UpdatedAt).HasDefaultValueSql("(getdate())");
     }
 }

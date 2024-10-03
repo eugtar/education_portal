@@ -13,10 +13,8 @@ public class FormatConfiguration : IEntityTypeConfiguration<Format>
 
         builder.Property(e => e.Id).ValueGeneratedNever();
         builder.Property(e => e.FormatType).HasMaxLength(10);
-        builder.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
 
-        builder.Property(e => e.UpdatedAt)
-            .HasDefaultValueSql("(sysdatetime())")
-            .ValueGeneratedOnAddOrUpdate();
+        builder.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
+        builder.Property(e => e.UpdatedAt).HasDefaultValueSql("(getdate())");
     }
 }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240926155123_SkillDataSeed")]
-    partial class SkillDataSeed
+    [Migration("20241003160527_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,21 +39,251 @@ namespace Infrastructure.Migrations
                     b.HasIndex("MaterialId");
 
                     b.ToTable("CourseMaterial", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            CourseId = 1,
+                            MaterialId = 1
+                        },
+                        new
+                        {
+                            CourseId = 2,
+                            MaterialId = 2
+                        },
+                        new
+                        {
+                            CourseId = 3,
+                            MaterialId = 3
+                        },
+                        new
+                        {
+                            CourseId = 4,
+                            MaterialId = 4
+                        },
+                        new
+                        {
+                            CourseId = 5,
+                            MaterialId = 5
+                        },
+                        new
+                        {
+                            CourseId = 6,
+                            MaterialId = 6
+                        },
+                        new
+                        {
+                            CourseId = 7,
+                            MaterialId = 7
+                        },
+                        new
+                        {
+                            CourseId = 8,
+                            MaterialId = 8
+                        },
+                        new
+                        {
+                            CourseId = 9,
+                            MaterialId = 9
+                        },
+                        new
+                        {
+                            CourseId = 1,
+                            MaterialId = 10
+                        },
+                        new
+                        {
+                            CourseId = 2,
+                            MaterialId = 11
+                        },
+                        new
+                        {
+                            CourseId = 3,
+                            MaterialId = 12
+                        },
+                        new
+                        {
+                            CourseId = 4,
+                            MaterialId = 13
+                        },
+                        new
+                        {
+                            CourseId = 5,
+                            MaterialId = 14
+                        },
+                        new
+                        {
+                            CourseId = 6,
+                            MaterialId = 15
+                        },
+                        new
+                        {
+                            CourseId = 7,
+                            MaterialId = 16
+                        },
+                        new
+                        {
+                            CourseId = 8,
+                            MaterialId = 17
+                        },
+                        new
+                        {
+                            CourseId = 9,
+                            MaterialId = 18
+                        },
+                        new
+                        {
+                            CourseId = 1,
+                            MaterialId = 19
+                        },
+                        new
+                        {
+                            CourseId = 2,
+                            MaterialId = 20
+                        },
+                        new
+                        {
+                            CourseId = 3,
+                            MaterialId = 21
+                        },
+                        new
+                        {
+                            CourseId = 4,
+                            MaterialId = 22
+                        },
+                        new
+                        {
+                            CourseId = 5,
+                            MaterialId = 23
+                        },
+                        new
+                        {
+                            CourseId = 6,
+                            MaterialId = 24
+                        },
+                        new
+                        {
+                            CourseId = 7,
+                            MaterialId = 25
+                        },
+                        new
+                        {
+                            CourseId = 8,
+                            MaterialId = 26
+                        },
+                        new
+                        {
+                            CourseId = 9,
+                            MaterialId = 27
+                        });
                 });
 
             modelBuilder.Entity("CourseSkill", b =>
                 {
-                    b.Property<int>("CoursesId")
+                    b.Property<int>("CourseId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SkillsId")
+                    b.Property<int>("SkillId")
                         .HasColumnType("int");
 
-                    b.HasKey("CoursesId", "SkillsId");
+                    b.HasKey("CourseId", "SkillId")
+                        .HasName("PK__CourseSkill");
 
-                    b.HasIndex("SkillsId");
+                    b.HasIndex("SkillId");
 
-                    b.ToTable("CourseSkill");
+                    b.ToTable("CourseSkill", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            CourseId = 1,
+                            SkillId = 1
+                        },
+                        new
+                        {
+                            CourseId = 2,
+                            SkillId = 1
+                        },
+                        new
+                        {
+                            CourseId = 2,
+                            SkillId = 2
+                        },
+                        new
+                        {
+                            CourseId = 3,
+                            SkillId = 1
+                        },
+                        new
+                        {
+                            CourseId = 3,
+                            SkillId = 2
+                        },
+                        new
+                        {
+                            CourseId = 3,
+                            SkillId = 3
+                        },
+                        new
+                        {
+                            CourseId = 4,
+                            SkillId = 4
+                        },
+                        new
+                        {
+                            CourseId = 5,
+                            SkillId = 4
+                        },
+                        new
+                        {
+                            CourseId = 5,
+                            SkillId = 5
+                        },
+                        new
+                        {
+                            CourseId = 6,
+                            SkillId = 4
+                        },
+                        new
+                        {
+                            CourseId = 6,
+                            SkillId = 5
+                        },
+                        new
+                        {
+                            CourseId = 6,
+                            SkillId = 6
+                        },
+                        new
+                        {
+                            CourseId = 7,
+                            SkillId = 7
+                        },
+                        new
+                        {
+                            CourseId = 8,
+                            SkillId = 7
+                        },
+                        new
+                        {
+                            CourseId = 8,
+                            SkillId = 8
+                        },
+                        new
+                        {
+                            CourseId = 9,
+                            SkillId = 7
+                        },
+                        new
+                        {
+                            CourseId = 9,
+                            SkillId = 8
+                        },
+                        new
+                        {
+                            CourseId = 9,
+                            SkillId = 9
+                        });
                 });
 
             modelBuilder.Entity("Domain.Common.Material", b =>
@@ -127,6 +357,80 @@ namespace Infrastructure.Migrations
                         .HasName("PK__Courses");
 
                     b.ToTable("Courses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "JavaScript beginner course",
+                            Title = "JSCourse(Beginner)",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "JavaScript intermadiate course",
+                            Title = "JSCourse(Intermadiate)",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "JavaScript master course",
+                            Title = "JSCourse(Master)",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "React beginner course",
+                            Title = "ReactJSCourse(Beginner)",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "React intermadiate course",
+                            Title = "ReactJSCourse(Intermadiate)",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "React master course",
+                            Title = "ReactJSCourse(Master)",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C# beginner course",
+                            Title = "CSCourse(Beginner)",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C# intermadiate course",
+                            Title = "CSCourse(Intermadiate)",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Description = "C# master course",
+                            Title = "CSCourse(Master)",
+                            UpdatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
+                        });
                 });
 
             modelBuilder.Entity("Domain.Entities.Format", b =>
@@ -472,9 +776,7 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("(sysdatetime())");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("Finished")
                         .HasColumnType("bit");
@@ -483,9 +785,7 @@ namespace Infrastructure.Migrations
                         .HasColumnType("decimal(5, 2)");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("(sysdatetime())");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -509,9 +809,7 @@ namespace Infrastructure.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("(sysdatetime())");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Level")
                         .HasColumnType("int");
@@ -520,9 +818,7 @@ namespace Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("(sysdatetime())");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("UserId")
                         .HasColumnType("int");
@@ -659,7 +955,7 @@ namespace Infrastructure.Migrations
                             Author = "David Flanagan",
                             FormatId = 2,
                             PageAmount = 1093,
-                            PublishedOn = new DateTime(2024, 9, 26, 16, 51, 20, 857, DateTimeKind.Local).AddTicks(6045)
+                            PublishedOn = new DateTime(2024, 10, 3, 17, 5, 25, 608, DateTimeKind.Local).AddTicks(4449)
                         },
                         new
                         {
@@ -670,7 +966,7 @@ namespace Infrastructure.Migrations
                             Author = "David Herman",
                             FormatId = 2,
                             PageAmount = 228,
-                            PublishedOn = new DateTime(2024, 9, 26, 16, 51, 20, 857, DateTimeKind.Local).AddTicks(6144)
+                            PublishedOn = new DateTime(2024, 10, 3, 17, 5, 25, 608, DateTimeKind.Local).AddTicks(4536)
                         },
                         new
                         {
@@ -681,7 +977,7 @@ namespace Infrastructure.Migrations
                             Author = "Nicholas C.Zakas",
                             FormatId = 3,
                             PageAmount = 960,
-                            PublishedOn = new DateTime(2024, 9, 26, 16, 51, 20, 857, DateTimeKind.Local).AddTicks(6149)
+                            PublishedOn = new DateTime(2024, 10, 3, 17, 5, 25, 608, DateTimeKind.Local).AddTicks(4567)
                         },
                         new
                         {
@@ -692,7 +988,7 @@ namespace Infrastructure.Migrations
                             Author = "Robin Wieruch",
                             FormatId = 2,
                             PageAmount = 286,
-                            PublishedOn = new DateTime(2024, 9, 26, 16, 51, 20, 857, DateTimeKind.Local).AddTicks(6153)
+                            PublishedOn = new DateTime(2024, 10, 3, 17, 5, 25, 608, DateTimeKind.Local).AddTicks(4575)
                         },
                         new
                         {
@@ -703,7 +999,7 @@ namespace Infrastructure.Migrations
                             Author = "Adam Boduch",
                             FormatId = 3,
                             PageAmount = 526,
-                            PublishedOn = new DateTime(2024, 9, 26, 16, 51, 20, 857, DateTimeKind.Local).AddTicks(6158)
+                            PublishedOn = new DateTime(2024, 10, 3, 17, 5, 25, 608, DateTimeKind.Local).AddTicks(4580)
                         },
                         new
                         {
@@ -714,7 +1010,7 @@ namespace Infrastructure.Migrations
                             Author = "Carlos Santana Roldan",
                             FormatId = 3,
                             PageAmount = 394,
-                            PublishedOn = new DateTime(2024, 9, 26, 16, 51, 20, 857, DateTimeKind.Local).AddTicks(6162)
+                            PublishedOn = new DateTime(2024, 10, 3, 17, 5, 25, 608, DateTimeKind.Local).AddTicks(4585)
                         },
                         new
                         {
@@ -725,7 +1021,7 @@ namespace Infrastructure.Migrations
                             Author = "RB Whitaker",
                             FormatId = 1,
                             PageAmount = 406,
-                            PublishedOn = new DateTime(2024, 9, 26, 16, 51, 20, 857, DateTimeKind.Local).AddTicks(6166)
+                            PublishedOn = new DateTime(2024, 10, 3, 17, 5, 25, 608, DateTimeKind.Local).AddTicks(4590)
                         },
                         new
                         {
@@ -736,7 +1032,7 @@ namespace Infrastructure.Migrations
                             Author = "Ian Griffiths",
                             FormatId = 2,
                             PageAmount = 778,
-                            PublishedOn = new DateTime(2024, 9, 26, 16, 51, 20, 857, DateTimeKind.Local).AddTicks(6170)
+                            PublishedOn = new DateTime(2024, 10, 3, 17, 5, 25, 608, DateTimeKind.Local).AddTicks(4595)
                         },
                         new
                         {
@@ -747,7 +1043,7 @@ namespace Infrastructure.Migrations
                             Author = "Mark J.Price",
                             FormatId = 2,
                             PageAmount = 826,
-                            PublishedOn = new DateTime(2024, 9, 26, 16, 51, 20, 857, DateTimeKind.Local).AddTicks(6175)
+                            PublishedOn = new DateTime(2024, 10, 3, 17, 5, 25, 608, DateTimeKind.Local).AddTicks(4600)
                         });
                 });
 
@@ -870,15 +1166,15 @@ namespace Infrastructure.Migrations
                 {
                     b.HasOne("Domain.Entities.Course", null)
                         .WithMany()
-                        .HasForeignKey("CoursesId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CourseId")
+                        .IsRequired()
+                        .HasConstraintName("FK__CourseSkill__Course");
 
                     b.HasOne("Domain.Entities.Skill", null)
                         .WithMany()
-                        .HasForeignKey("SkillsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("SkillId")
+                        .IsRequired()
+                        .HasConstraintName("FK__CourseSkill__Skill");
                 });
 
             modelBuilder.Entity("Domain.Entities.UserCourse", b =>

@@ -12,14 +12,12 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
 
         builder.HasIndex(e => e.Email, "UQ__Users").IsUnique();
 
-        builder.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
         builder.Property(e => e.Email).HasMaxLength(50);
         builder.Property(e => e.FirstName).HasMaxLength(50);
         builder.Property(e => e.HashPassword).HasMaxLength(255);
         builder.Property(e => e.LastName).HasMaxLength(50);
 
-        builder.Property(e => e.UpdatedAt)
-            .HasDefaultValueSql("(sysdatetime())")
-            .ValueGeneratedOnAddOrUpdate();
+        builder.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
+        builder.Property(e => e.UpdatedAt).HasDefaultValueSql("(getdate())");
     }
 }

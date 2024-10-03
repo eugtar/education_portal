@@ -74,6 +74,17 @@ public static class ModelBuilderExtension
         var user3 = new User() { Id = 3, FirstName = "John3", LastName = "Doe3", Email = "johndoe3@gmail.com", HashPassword = "1111" };
         var user4 = new User() { Id = 4, FirstName = "John4", LastName = "Doe4", Email = "johndoe4@gmail.com", HashPassword = "1111" };
 
+        // Courses
+        var course1 = new Course() { Id = 1, Title = "JSCourse(Beginner)", Description = "JavaScript beginner course" };
+        var course2 = new Course() { Id = 2, Title = "JSCourse(Intermadiate)", Description = "JavaScript intermadiate course" };
+        var course3 = new Course() { Id = 3, Title = "JSCourse(Master)", Description = "JavaScript master course" };
+        var course4 = new Course() { Id = 4, Title = "ReactJSCourse(Beginner)", Description = "React beginner course" };
+        var course5 = new Course() { Id = 5, Title = "ReactJSCourse(Intermadiate)", Description = "React intermadiate course" };
+        var course6 = new Course() { Id = 6, Title = "ReactJSCourse(Master)", Description = "React master course" };
+        var course7 = new Course() { Id = 7, Title = "CSCourse(Beginner)", Description = "C# beginner course" };
+        var course8 = new Course() { Id = 8, Title = "CSCourse(Intermadiate)", Description = "C# intermadiate course" };
+        var course9 = new Course() { Id = 9, Title = "CSCourse(Master)", Description = "C# master course" };
+
         modelBuilder.Entity<Format>().HasData(format1, format2, format3, format4, format5);
         modelBuilder.Entity<Quality>().HasData(quality1, quality2, quality3, quality4, quality5, quality6, quality7, quality8);
         modelBuilder.Entity<Article>().HasData(article1, article2, article3, article4, article5, article6, article7, article8, article9);
@@ -81,5 +92,6 @@ public static class ModelBuilderExtension
         modelBuilder.Entity<Video>().HasData(video1, video2, video3, video4, video5, video6, video7, video8, video9);
         modelBuilder.Entity<User>().HasData(user1, user2, user3, user4);
         modelBuilder.Entity<Skill>().HasData(skill1, skill2, skill3, skill4, skill5, skill6, skill7, skill8, skill9);
+        modelBuilder.Entity<Course>().HasData(course1, course2, course3, course4, course5, course6, course7, course8, course9);
     }
 }

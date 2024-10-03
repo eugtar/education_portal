@@ -127,24 +127,22 @@ namespace Infrastructure.Migrations
                 name: "CourseSkill",
                 columns: table => new
                 {
-                    CoursesId = table.Column<int>(type: "int", nullable: false),
-                    SkillsId = table.Column<int>(type: "int", nullable: false)
+                    CourseId = table.Column<int>(type: "int", nullable: false),
+                    SkillId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CourseSkill", x => new { x.CoursesId, x.SkillsId });
+                    table.PrimaryKey("PK__CourseSkill", x => new { x.CourseId, x.SkillId });
                     table.ForeignKey(
-                        name: "FK_CourseSkill_Courses_CoursesId",
-                        column: x => x.CoursesId,
+                        name: "FK__CourseSkill__Course",
+                        column: x => x.CourseId,
                         principalTable: "Courses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_CourseSkill_Skills_SkillsId",
-                        column: x => x.SkillsId,
+                        name: "FK__CourseSkill__Skill",
+                        column: x => x.SkillId,
                         principalTable: "Skills",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -157,8 +155,8 @@ namespace Infrastructure.Migrations
                     CourseId = table.Column<int>(type: "int", nullable: false),
                     Finished = table.Column<bool>(type: "bit", nullable: false),
                     Progress = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "(sysdatetime())"),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "(sysdatetime())")
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -184,8 +182,8 @@ namespace Infrastructure.Migrations
                     UserId = table.Column<int>(type: "int", nullable: false),
                     SkillId = table.Column<int>(type: "int", nullable: false),
                     Level = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "(sysdatetime())"),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "(sysdatetime())")
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -251,15 +249,172 @@ namespace Infrastructure.Migrations
                     { 8, "2160p" }
                 });
 
+            migrationBuilder.InsertData(
+                table: "Courses",
+                columns: new[] { "Id", "Description", "Title" },
+                values: new object[,]
+                {
+                    { 1, "JavaScript beginner course", "JSCourse(Beginner)" },
+                    { 2, "JavaScript intermadiate course", "JSCourse(Intermadiate)" },
+                    { 3, "JavaScript master course", "JSCourse(Master)" },
+                    { 4, "React beginner course", "ReactJSCourse(Beginner)" },
+                    { 5, "React intermadiate course", "ReactJSCourse(Intermadiate)" },
+                    { 6, "React master course", "ReactJSCourse(Master)" },
+                    { 7, "C# beginner course", "CSCourse(Beginner)" },
+                    { 8, "C# intermadiate course", "CSCourse(Intermadiate)" },
+                    { 9, "C# master course", "CSCourse(Master)" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Materials",
+                columns: new[] { "Id", "Link", "Title", "Type" },
+                values: new object[,]
+                {
+                    { 1, "https://www.w3schools.com/js/default.asp", "JS-Article(Beginner) ", "Article" },
+                    { 2, "https://www.w3schools.com/js/default.asp", "JS-Article(Intermediate)", "Article" },
+                    { 3, "https://www.w3schools.com/js/default.asp", "JS-Article(Master)", "Article" },
+                    { 4, "https://www.w3schools.com/react/default.asp", "React-Article(Beginner)", "Article" },
+                    { 5, "https://www.w3schools.com/react/default.asp", "React-Article(Intermediate)", "Article" },
+                    { 6, "https://www.w3schools.com/react/default.asp", "React-Article(Master)", "Article" },
+                    { 7, "https://www.w3schools.com/cs/index.php", "C#-Article(Beginner)", "Article" },
+                    { 8, "https://www.w3schools.com/cs/index.php", "C#-Article(Intermediate)", "Article" },
+                    { 9, "https://www.w3schools.com/cs/index.php", "C#-Article(Master)", "Article" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Skills",
+                columns: new[] { "Id", "Name" },
+                values: new object[,]
+                {
+                    { 1, "JS-Beginner" },
+                    { 2, "JS-Intermediate" },
+                    { 3, "JS-Master" },
+                    { 4, "React-Beginner" },
+                    { 5, "React-Intermediate" },
+                    { 6, "React-Master" },
+                    { 7, "C#-Beginner" },
+                    { 8, "C#-Intermediate" },
+                    { 9, "C#-Master" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Users",
+                columns: new[] { "Id", "Email", "FirstName", "HashPassword", "LastName" },
+                values: new object[,]
+                {
+                    { 1, "johndoe1@gmail.com", "John1", "1111", "Doe1" },
+                    { 2, "johndoe2@gmail.com", "John2", "1111", "Doe2" },
+                    { 3, "johndoe3@gmail.com", "John3", "1111", "Doe3" },
+                    { 4, "johndoe4@gmail.com", "John4", "1111", "Doe4" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CourseMaterial",
+                columns: new[] { "CourseId", "MaterialId" },
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 2, 2 },
+                    { 3, 3 },
+                    { 4, 4 },
+                    { 5, 5 },
+                    { 6, 6 },
+                    { 7, 7 },
+                    { 8, 8 },
+                    { 9, 9 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CourseSkill",
+                columns: new[] { "CourseId", "SkillId" },
+                values: new object[,]
+                {
+                    { 1, 1 },
+                    { 2, 1 },
+                    { 2, 2 },
+                    { 3, 1 },
+                    { 3, 2 },
+                    { 3, 3 },
+                    { 4, 4 },
+                    { 5, 4 },
+                    { 5, 5 },
+                    { 6, 4 },
+                    { 6, 5 },
+                    { 6, 6 },
+                    { 7, 7 },
+                    { 8, 7 },
+                    { 8, 8 },
+                    { 9, 7 },
+                    { 9, 8 },
+                    { 9, 9 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Materials",
+                columns: new[] { "Id", "Author", "FormatId", "PageAmount", "PublishedOn", "Title", "Type" },
+                values: new object[,]
+                {
+                    { 10, "David Flanagan", 2, 1093, new DateTime(2024, 10, 3, 17, 5, 25, 608, DateTimeKind.Local).AddTicks(4449), "JS-EBook(Beginner)", "Ebook" },
+                    { 11, "David Herman", 2, 228, new DateTime(2024, 10, 3, 17, 5, 25, 608, DateTimeKind.Local).AddTicks(4536), "JS-EBook(Intermediate)", "Ebook" },
+                    { 12, "Nicholas C.Zakas", 3, 960, new DateTime(2024, 10, 3, 17, 5, 25, 608, DateTimeKind.Local).AddTicks(4567), "JS-EBook(Master)", "Ebook" },
+                    { 13, "Robin Wieruch", 2, 286, new DateTime(2024, 10, 3, 17, 5, 25, 608, DateTimeKind.Local).AddTicks(4575), "React-EBook(Beginner)", "Ebook" },
+                    { 14, "Adam Boduch", 3, 526, new DateTime(2024, 10, 3, 17, 5, 25, 608, DateTimeKind.Local).AddTicks(4580), "React-EBook(Intermediate)", "Ebook" },
+                    { 15, "Carlos Santana Roldan", 3, 394, new DateTime(2024, 10, 3, 17, 5, 25, 608, DateTimeKind.Local).AddTicks(4585), "React-EBook(Master)", "Ebook" },
+                    { 16, "RB Whitaker", 1, 406, new DateTime(2024, 10, 3, 17, 5, 25, 608, DateTimeKind.Local).AddTicks(4590), "C#-EBook(Beginner)", "Ebook" },
+                    { 17, "Ian Griffiths", 2, 778, new DateTime(2024, 10, 3, 17, 5, 25, 608, DateTimeKind.Local).AddTicks(4595), "C#-EBook(Intermediate)", "Ebook" },
+                    { 18, "Mark J.Price", 2, 826, new DateTime(2024, 10, 3, 17, 5, 25, 608, DateTimeKind.Local).AddTicks(4600), "C#-EBook(Master)", "Ebook" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Materials",
+                columns: new[] { "Id", "Duration", "QualityId", "Title", "Type" },
+                values: new object[,]
+                {
+                    { 19, new TimeOnly(1, 30, 25), 5, "JS-Video(Beginner)", "Video" },
+                    { 20, new TimeOnly(1, 30, 25), 6, "JS-Video(Intermediate)", "Video" },
+                    { 21, new TimeOnly(1, 30, 25), 6, "JS-Video(Master)", "Video" },
+                    { 22, new TimeOnly(1, 30, 25), 6, "React-Video(Beginner)", "Video" },
+                    { 23, new TimeOnly(1, 30, 25), 6, "React-Video(Intermediate)", "Video" },
+                    { 24, new TimeOnly(1, 30, 25), 6, "React-Video(Master)", "Video" },
+                    { 25, new TimeOnly(1, 30, 25), 6, "C#-Video(Beginner)", "Video" },
+                    { 26, new TimeOnly(1, 30, 25), 6, "C#-Video(Intermediate)", "Video" },
+                    { 27, new TimeOnly(1, 30, 25), 6, "C#-Video(Master)", "Video" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "CourseMaterial",
+                columns: new[] { "CourseId", "MaterialId" },
+                values: new object[,]
+                {
+                    { 1, 10 },
+                    { 1, 19 },
+                    { 2, 11 },
+                    { 2, 20 },
+                    { 3, 12 },
+                    { 3, 21 },
+                    { 4, 13 },
+                    { 4, 22 },
+                    { 5, 14 },
+                    { 5, 23 },
+                    { 6, 15 },
+                    { 6, 24 },
+                    { 7, 16 },
+                    { 7, 25 },
+                    { 8, 17 },
+                    { 8, 26 },
+                    { 9, 18 },
+                    { 9, 27 }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_CourseMaterial_MaterialId",
                 table: "CourseMaterial",
                 column: "MaterialId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_CourseSkill_SkillsId",
+                name: "IX_CourseSkill_SkillId",
                 table: "CourseSkill",
-                column: "SkillsId");
+                column: "SkillId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Materials_FormatId",

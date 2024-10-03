@@ -10,13 +10,11 @@ public class MaterialConfiguration : IEntityTypeConfiguration<Material>
     {
         builder.HasKey(e => e.Id).HasName("PK__Materials");
 
+        builder.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
+        builder.Property(e => e.UpdatedAt).HasDefaultValueSql("(getdate())");
+
         builder.UseTphMappingStrategy();
         builder.HasDiscriminator<string>(e => e.Type);
         builder.Property(e => e.Type).HasMaxLength(50).HasColumnName("Type");
-        builder.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
-
-        builder.Property(e => e.UpdatedAt)
-            .HasDefaultValueSql("(sysdatetime())")
-            .ValueGeneratedOnAddOrUpdate();
     }
 }

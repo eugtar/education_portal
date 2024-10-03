@@ -4,18 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Data.EntitiesConfiguration;
 
-public class CourseConfiguration : IEntityTypeConfiguration<UserCourse>
+public class UserCourseConfiguration : IEntityTypeConfiguration<UserCourse>
 {
     public void Configure(EntityTypeBuilder<UserCourse> builder)
     {
         builder.HasKey(e => e.Id).HasName("PK__UserCourses");
 
-        builder.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
         builder.Property(e => e.Progress).HasColumnType("decimal(5, 2)");
-
-        builder.Property(e => e.UpdatedAt)
-            .HasDefaultValueSql("(sysdatetime())")
-            .ValueGeneratedOnAddOrUpdate();
 
         builder.HasOne(d => d.Course).WithMany(p => p.UserCourses)
             .HasForeignKey(d => d.CourseId)
