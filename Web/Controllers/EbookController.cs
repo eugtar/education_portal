@@ -21,9 +21,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<EbookVM>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetEbooks()
+        public async Task<IActionResult> GetEbooks()
         {
-            var ebooks = _ebookService.GetAll();
+            var ebooks = await _ebookService.GetAllAsync();
 
             return ebooks.Count == 0 ? NotFound() : !ModelState.IsValid ? BadRequest(ModelState) : Ok(ebooks);
         }
@@ -32,9 +32,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(EbookVM))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetEbook(int ebookId)
+        public async Task<IActionResult> GetEbook(int ebookId)
         {
-            var ebook = _ebookService.GetById(ebookId);
+            var ebook = await _ebookService.GetByIdAsync(ebookId);
 
             return ebook is null ? NotFound() : !ModelState.IsValid ? BadRequest() : Ok(ebook);
         }
@@ -42,14 +42,14 @@ namespace Web.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult CreateEbook([FromBody] CreateEbookDto createEbookDto)
+        public async Task<IActionResult> CreateEbook([FromBody] CreateEbookDto createEbookDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _ebookService.Create(createEbookDto);
+            await _ebookService.CreateAsync(createEbookDto);
 
             return Created();
         }
@@ -58,9 +58,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult UpdateCourse(int ebookId, [FromBody] UpdateEbookDto updateEbookDto)
+        public async Task<IActionResult> UpdateCourse(int ebookId, [FromBody] UpdateEbookDto updateEbookDto)
         {
-            _ebookService.Update(ebookId, updateEbookDto);
+            await _ebookService.UpdateAsync(ebookId, updateEbookDto);
 
             return !ModelState.IsValid ? BadRequest(ModelState) : Ok();
         }
@@ -70,9 +70,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
 
-        public IActionResult DeleteCourse(int ebookId)
+        public async Task<IActionResult> DeleteCourse(int ebookId)
         {
-            _ebookService.Delete(ebookId);
+            await _ebookService.DeleteAsync(ebookId);
             
             return !ModelState.IsValid ? BadRequest(ModelState) : Ok();
         }

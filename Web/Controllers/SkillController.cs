@@ -21,9 +21,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<SkillVM>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetSkills()
+        public async Task<IActionResult> GetSkills()
         {
-            var skills = _skillService.GetAll();
+            var skills = await _skillService.GetAllAsync();
 
             return skills.Count == 0 ? NotFound() : !ModelState.IsValid ? BadRequest(ModelState) : Ok(skills);
         }
@@ -32,9 +32,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SkillVM))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetSkill(int skillId)
+        public async Task<IActionResult> GetSkill(int skillId)
         {
-            var skill = _skillService.GetById(skillId);
+            var skill = await _skillService.GetByIdAsync(skillId);
 
             return skill is null ? NotFound() : !ModelState.IsValid ? BadRequest() : Ok(skill);
         }
@@ -42,14 +42,14 @@ namespace Web.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult CreateSkill([FromBody] CreateSkillDto createSkillDto)
+        public async Task<IActionResult> CreateSkill([FromBody] CreateSkillDto createSkillDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _skillService.Create(createSkillDto);
+            await _skillService.CreateAsync(createSkillDto);
 
             return Created();
         }
@@ -58,9 +58,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult UpdateSkill(int skillId, [FromBody] UpdateSkillDto updateSkillDto)
+        public async Task<IActionResult> UpdateSkill(int skillId, [FromBody] UpdateSkillDto updateSkillDto)
         {
-            _skillService.Update(skillId, updateSkillDto);
+            await _skillService.UpdateAsync(skillId, updateSkillDto);
 
             return !ModelState.IsValid ? BadRequest(ModelState) : Ok();
         }
@@ -70,9 +70,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
 
-        public IActionResult DeleteSkill(int skillId)
+        public async Task<IActionResult> DeleteSkill(int skillId)
         {
-            _skillService.Delete(skillId);
+            await _skillService.DeleteAsync(skillId);
 
             return !ModelState.IsValid ? BadRequest(ModelState) : Ok();
         }

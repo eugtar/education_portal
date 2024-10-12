@@ -21,9 +21,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<CourseVM>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetCourses()
+        public async Task<IActionResult> GetCourses()
         {
-            var courses = _courseService.GetAll();
+            var courses = await _courseService.GetAllAsync();
             return courses.Count == 0 ? NotFound() : !ModelState.IsValid ? BadRequest(ModelState) : Ok(courses);
         }
 
@@ -31,9 +31,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CourseVM))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetCourse(int courseId)
+        public async Task<IActionResult> GetCourse(int courseId)
         {
-            var course = _courseService.GetById(courseId);
+            var course = await _courseService.GetByIdAsync(courseId);
 
             return course is null ? NotFound() : !ModelState.IsValid ? BadRequest() : Ok(course);
         }
@@ -41,14 +41,14 @@ namespace Web.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult CreateCourse([FromBody] CreateCourseDto createCourseDto)
+        public async Task<IActionResult> CreateCourse([FromBody] CreateCourseDto createCourseDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _courseService.Create(createCourseDto);
+            await _courseService.CreateAsync(createCourseDto);
 
             return Created();
         }
@@ -57,9 +57,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult UpdateCourse(int courseId, [FromBody] UpdateCourseDto updateCourseDto)
+        public async Task<IActionResult> UpdateCourse(int courseId, [FromBody] UpdateCourseDto updateCourseDto)
         {
-            _courseService.Update(courseId, updateCourseDto);
+            await _courseService.UpdateAsync(courseId, updateCourseDto);
 
             return !ModelState.IsValid ? BadRequest(ModelState) : Ok();
         }
@@ -69,9 +69,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
 
-        public IActionResult DeleteCourse(int courseId)
+        public async Task<IActionResult> DeleteCourse(int courseId)
         {
-            _courseService.Delete(courseId);
+            await _courseService.DeleteAsync(courseId);
             return !ModelState.IsValid ? BadRequest(ModelState) : Ok();
         }
     }

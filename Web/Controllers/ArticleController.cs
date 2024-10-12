@@ -21,9 +21,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ArticleVM>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetArticles()
+        public async Task<IActionResult> GetArticles()
         {
-            var articles = _articleService.GetAll();
+            var articles = await _articleService.GetAllAsync();
 
             return articles.Count == 0 ? NotFound() : !ModelState.IsValid ? BadRequest(ModelState) : Ok(articles);
         }
@@ -32,9 +32,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ArticleVM))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetArticle(int articleId)
+        public async Task<IActionResult> GetArticle(int articleId)
         {
-            var article = _articleService.GetById(articleId);
+            var article = await _articleService.GetByIdAsync(articleId);
 
             return article is null ? NotFound() : !ModelState.IsValid ? BadRequest(ModelState) : Ok(article);
         }
@@ -42,14 +42,14 @@ namespace Web.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult CreateArticle([FromBody] CreateArticleDto createArticleDto)
+        public async Task<IActionResult> CreateArticle([FromBody] CreateArticleDto createArticleDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _articleService.Create(createArticleDto);
+            await _articleService.CreateAsync(createArticleDto);
 
             return Created();
         }
@@ -58,9 +58,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult UpdateArticle(int articleId, [FromBody] UpdateArticleDto updateArticleDto)
+        public async Task<IActionResult> UpdateArticle(int articleId, [FromBody] UpdateArticleDto updateArticleDto)
         {
-            _articleService.Update(articleId, updateArticleDto);
+            await _articleService.UpdateAsync(articleId, updateArticleDto);
 
             return !ModelState.IsValid ? BadRequest(ModelState) : Ok();
         }
@@ -70,9 +70,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
 
-        public IActionResult DeleteArticle(int articleId)
+        public async Task<IActionResult> DeleteArticle(int articleId)
         {
-            _articleService.Delete(articleId);
+            await _articleService.DeleteAsync(articleId);
             return !ModelState.IsValid ? BadRequest(ModelState) : Ok();
         }
 

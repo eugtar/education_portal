@@ -21,9 +21,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<VideoVM>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetVideos()
+        public async Task<IActionResult> GetVideos()
         {
-            var videos = _videoService.GetAll();
+            var videos = await _videoService.GetAllAsync();
 
             return videos.Count == 0 ? NotFound() : !ModelState.IsValid ? BadRequest(ModelState) : Ok(videos);
         }
@@ -32,9 +32,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(VideoVM))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult GetArticle(int videoId)
+        public async Task<IActionResult> GetArticle(int videoId)
         {
-            var video = _videoService.GetById(videoId);
+            var video = await _videoService.GetByIdAsync(videoId);
 
             return video is null ? NotFound() : !ModelState.IsValid ? BadRequest() : Ok(video);
         }
@@ -42,14 +42,14 @@ namespace Web.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public IActionResult CreateArticle([FromBody] CreateVideoDto createVideoDto)
+        public async Task<IActionResult> CreateArticle([FromBody] CreateVideoDto createVideoDto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            _videoService.Create(createVideoDto);
+            await _videoService.CreateAsync(createVideoDto);
 
             return Created();
         }
@@ -58,9 +58,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public IActionResult UpdateVideo(int videoId, [FromBody] UpdateVideoDto updateVideoDto)
+        public async Task<IActionResult> UpdateVideo(int videoId, [FromBody] UpdateVideoDto updateVideoDto)
         {
-            _videoService.Update(videoId, updateVideoDto);
+            await _videoService.UpdateAsync(videoId, updateVideoDto);
 
             return !ModelState.IsValid ? BadRequest(ModelState) : Ok();
         }
@@ -70,9 +70,9 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
 
-        public IActionResult DeleteVideo(int videoId)
+        public async Task<IActionResult> DeleteVideo(int videoId)
         {
-            _videoService.Delete(videoId);
+            await _videoService.DeleteAsync(videoId);
 
             return !ModelState.IsValid ? BadRequest(ModelState) : Ok();
         }

@@ -7,6 +7,8 @@ builder.Services.AddControllers();
 builder.Services.AddSwaggerService();
 // Add Database services
 builder.Services.AddDatabaseService(builder.Configuration);
+// Add Application repository
+builder.Services.AddApplicationRepository();
 // Add Application services
 builder.Services.AddApplicationService();
 

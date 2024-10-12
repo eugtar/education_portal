@@ -47,31 +47,37 @@ public static class DependencyInjection
         return services;
     }
 
-    // Application
+    // Application Repository
+    public static IServiceCollection AddApplicationRepository(this IServiceCollection services)
+    {
+        services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+        services.AddScoped<IArticleRepository, ArticleRepository>();
+        services.AddScoped<ICourseRepository, CourseRepository>();
+        services.AddScoped<IEbookRepository, EbookRepository>();
+        services.AddScoped<IVideoRepository, VideoRepository>();
+        services.AddScoped<ISkillRepository, SkillRepository>();
+        services.AddScoped<IQualityRepository, QualityRepository>();
+        services.AddScoped<IFormatRepository, FormatRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IUserCourseRepository, UserCourseRepository>();
+        services.AddScoped<IUserSkillRepository, UserSkillRepository>();
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+        return services;
+    }
+
+    // Application Services
     public static IServiceCollection AddApplicationService(this IServiceCollection services)
     {
-        services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
-        services.AddTransient<IArticleRepository, ArticleRepository>();
-        services.AddTransient<ICourseRepository, CourseRepository>();
-        services.AddTransient<IEbookRepository, EbookRepository>();
-        services.AddTransient<IVideoRepository, VideoRepository>();
-        services.AddTransient<ISkillRepository, SkillRepository>();
-        services.AddTransient<IQualityRepository, QualityRepository>();
-        services.AddTransient<IFormatRepository, FormatRepository>();
-        services.AddTransient<IUserRepository, UserRepository>();
-        services.AddTransient<IUserCourseRepository, UserCourseRepository>();
-        services.AddTransient<IUserSkillRepository, UserSkillRepository>();
-
-        services.AddTransient<IUnitOfWork, UnitOfWork>();
-
-        services.AddTransient<IArticleService, ArticleService>();
-        services.AddTransient<ICourseService, CourseService>();
-        services.AddTransient<IEbookService, EBookService>();
-        services.AddTransient<IVideoService, VideoService>();
-        services.AddTransient<ISkillService, SkillService>();
-        services.AddTransient<IUserService, UserService>();
-        services.AddTransient<IUserCourseService, UserCourseService>();
-        services.AddTransient<IUserSkillService, UserSkillService>();
+        services.AddScoped<IArticleService, ArticleService>();
+        services.AddScoped<ICourseService, CourseService>();
+        services.AddScoped<IEbookService, EBookService>();
+        services.AddScoped<IVideoService, VideoService>();
+        services.AddScoped<ISkillService, SkillService>();
+        services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IUserCourseService, UserCourseService>();
+        services.AddScoped<IUserSkillService, UserSkillService>();
 
         return services;
     }
