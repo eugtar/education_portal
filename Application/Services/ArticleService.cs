@@ -2,6 +2,7 @@
 using Application.Dtos;
 using Application.Services.Interfaces;
 using Application.Interfaces;
+using Application.Results;
 
 namespace Application.Services;
 
@@ -14,7 +15,7 @@ public class ArticleService : IArticleService
         _unitOfWork = unitOfWork;
     }
 
-    public async Task CreateAsync(CreateArticleDto createArticleDto)
+    public async Task<Result> CreateAsync(CreateArticleDto createArticleDto)
     {
         await _unitOfWork.Articles.AddAsync(
             new Article()
@@ -24,9 +25,11 @@ public class ArticleService : IArticleService
             });
 
         await _unitOfWork.CompleteAsync();
+
+        return Result.Success();
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<Result> DeleteAsync(int id)
     {
         var article = await _unitOfWork.Articles.GetByIdAsync(id);
 
@@ -35,6 +38,8 @@ public class ArticleService : IArticleService
             await _unitOfWork.Articles.RemoveAsync(article);
             await _unitOfWork.CompleteAsync();
         }
+
+        return Result.Success();
     }
 
     public async Task<List<Article>> GetAllAsync()

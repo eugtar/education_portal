@@ -2,30 +2,23 @@ namespace Application.Results;
 
 public class Result
 {
-    public bool IsSuccess { get; private set; }
-    public bool IsFailure { get; private set; }
-    public Error Error { get; private set; }
-
-    protected Result(bool isSuccess, Error error)
+    protected Result(bool isSuccess, Error error, ResultState? statusCode = null)
     {
-        if (isSuccess && error != Error.None || !isSuccess && error == Error.None)
-        {
-            throw new ArgumentException("Invalid error", nameof(error));
-        }
-
         IsSuccess = isSuccess;
-        IsFailure = !isSuccess;
         Error = error;
+        State = statusCode;
     }
 
-    public static Result Success()
-    {
-        return new Result(true, Error.None);
-    }
+    public ResultState? State { get; }
+    public bool IsSuccess { get; }
+    public bool IsFailure => !IsSuccess;
+    public Error Error { get; }
+    public static Result Success() => new(true, Error.None, ResultState.Ok);
+    private static Result<TValue> Success<TValue>(TValue value) => new(value, true, Error.None);
 
-    public static Result Failure(Error error)
-    {
-        return new Result(false, error);
-    }
+    public static Result UnprocessableEntity(Error error) => new(false, error, ResultState.UnprocessableEntity);
+    public static Result Failure(Error error) => new(false, error, ResultState.BadRequest);
+    private static Result<TValue> Failure<TValue>(Error error) => new(default, false, error);
+    protected static Result<TValue> Create<TValue>(TValue value) => value is not null ? Success(value) : Failure<TValue>(Error.NullValue);
 }
 
