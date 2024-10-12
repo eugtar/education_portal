@@ -5,9 +5,9 @@ namespace Application.Services.Interfaces;
 
 public interface IEbookService
 {
-    public void Create(CreateEbookDto createEbookDto);
-    public void Update(int id, UpdateEbookDto updateEbookDto);
-    public void Delete(int id);
-    public Ebook? GetById(int id);
-    public List<Ebook> GetAll();
+    public Task CreateAsync(CreateEbookDto createEbookDto);
+    public Task UpdateAsync(int id, UpdateEbookDto updateEbookDto);
+    public Task DeleteAsync(int id);
+    public Task<Ebook?> GetByIdAsync(int id);
+    public Task<List<Ebook>> GetAllAsync();
 }

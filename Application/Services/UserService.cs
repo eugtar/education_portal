@@ -14,48 +14,54 @@ public class UserService : IUserService
         _unitOfWork = unitOfWork;
     }
 
-    public void Create(CreateUserDto createUserDto)
+    public async Task CreateAsync(CreateUserDto createUserDto)
     {
-        _unitOfWork.Users.Add(
+        await _unitOfWork.Users.AddAsync(
             new User()
             {
                 FirstName = createUserDto.FirstName,
                 LastName = createUserDto.LastName,
                 Email = createUserDto.Email,
-                HashPassword = createUserDto.password,
+                HashPassword = createUserDto.Password,
             });
 
-        _unitOfWork.Complete();
+        await _unitOfWork.CompleteAsync();
     }
 
-    public void Delete(int id)
+    public async Task DeleteAsync(int id)
     {
-        var user = _unitOfWork.Users.GetById(id);
+        var user = await _unitOfWork.Users.GetByIdAsync(id);
 
-        _unitOfWork.Users.Remove(user);
-        _unitOfWork.Complete();
+        if (user is not null)
+        {
+            await _unitOfWork.Users.RemoveAsync(user);
+            await _unitOfWork.CompleteAsync();
+        }
     }
 
-    public List<User> GetAll()
+    public async Task<List<User>> GetAllAsync()
     {
-        return [.. _unitOfWork.Users.GetAll()];
+        return [.. await _unitOfWork.Users.GetAllAsync()];
     }
 
-    public User? GetById(int id)
+    public async Task<User?> GetByIdAsync(int id)
     {
-        return _unitOfWork.Users.GetById(id);
+        return await _unitOfWork.Users.GetByIdAsync(id);
     }
 
-    public void Update(int id, UpdateUserDto updateUserDto)
+    public async Task UpdateAsync(int id, UpdateUserDto updateUserDto)
     {
-        var user = _unitOfWork.Users.GetById(id);
+        var user = await _unitOfWork.Users.GetByIdAsync(id);
 
-        user.FirstName = updateUserDto.FirstName ?? user.FirstName;
-        user.LastName = updateUserDto.LastName ?? user.LastName;
-        user.Email = updateUserDto.Email ?? user.Email;
-        user.HashPassword = updateUserDto.password ?? user.HashPassword;
+        if (user is not null)
+        {
+            user.FirstName = updateUserDto.FirstName ?? user.FirstName;
+            user.LastName = updateUserDto.LastName ?? user.LastName;
+            user.Email = updateUserDto.Email ?? user.Email;
+            user.HashPassword = updateUserDto.Password ?? user.HashPassword;
 
-        _unitOfWork.Users.Update(user);
-        _unitOfWork.Complete();
+            await _unitOfWork.Users.UpdateAsync(user);
+            await _unitOfWork.CompleteAsync();
+        }
     }
 }

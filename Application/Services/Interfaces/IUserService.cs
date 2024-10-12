@@ -5,9 +5,9 @@ namespace Application.Services.Interfaces;
 
 public interface IUserService
 {
-    public void Create(CreateUserDto createUserDto);
-    public void Update(int id, UpdateUserDto updateUserDto);
-    public void Delete(int id);
-    public User? GetById(int id);
-    public List<User> GetAll();
+    public Task CreateAsync(CreateUserDto createUserDto);
+    public Task UpdateAsync(int id, UpdateUserDto updateUserDto);
+    public Task DeleteAsync(int id);
+    public Task<User?> GetByIdAsync(int id);
+    public Task<List<User>> GetAllAsync();
 }

@@ -14,44 +14,51 @@ public class ArticleService : IArticleService
         _unitOfWork = unitOfWork;
     }
 
-    public void Create(CreateArticleDto createArticleDto)
+    public async Task CreateAsync(CreateArticleDto createArticleDto)
     {
-        _unitOfWork.Articles.Add(
+        await _unitOfWork.Articles.AddAsync(
             new Article()
             {
                 Title = createArticleDto.Title,
                 Link = createArticleDto.Link
             });
 
-        _unitOfWork.Complete();
+        await _unitOfWork.CompleteAsync();
     }
 
-    public void Delete(int id)
+    public async Task DeleteAsync(int id)
     {
-        var article = _unitOfWork.Articles.GetById(id);
+        var article = await _unitOfWork.Articles.GetByIdAsync(id);
 
-        _unitOfWork.Articles.Remove(article);
-        _unitOfWork.Complete();
+        if (article is not null)
+        {
+            await _unitOfWork.Articles.RemoveAsync(article);
+            await _unitOfWork.CompleteAsync();
+        }
     }
 
-    public List<Article> GetAll()
+    public async Task<List<Article>> GetAllAsync()
     {
-        return [.. _unitOfWork.Articles.GetAll()];
+        return [.. await _unitOfWork.Articles.GetAllAsync()];
     }
 
-    public Article? GetById(int id)
+    public async Task<Article?> GetByIdAsync(int id)
     {
-        return _unitOfWork.Articles.GetById(id);
+        return await _unitOfWork.Articles.GetByIdAsync(id);
     }
 
-    public void Update(int id, UpdateArticleDto updateArticleDto)
+    public async Task UpdateAsync(int id, UpdateArticleDto updateArticleDto)
     {
-        var article = _unitOfWork.Articles.GetById(id);
+        var article = await _unitOfWork.Articles.GetByIdAsync(id);
 
-        article.Title = updateArticleDto.Title ?? article.Title;
-        article.Link = updateArticleDto.Link ?? article.Link;
+        if (article is not null)
+        {
+            article.Title = updateArticleDto.Title ?? article.Title;
+            article.Link = updateArticleDto.Link ?? article.Link;
 
-        _unitOfWork.Articles.Update(article);
-        _unitOfWork.Complete();
+            await _unitOfWork.Articles.UpdateAsync(article);
+            await _unitOfWork.CompleteAsync();
+        }
+
     }
 }

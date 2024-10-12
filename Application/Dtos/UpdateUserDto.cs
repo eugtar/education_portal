@@ -10,5 +10,5 @@ public class UpdateUserDto(
     public string? FirstName => firstName;
     public string? LastName => lastName;
     public string? Email => email;
-    public string? password => password;
+    public string? Password => password;
 }

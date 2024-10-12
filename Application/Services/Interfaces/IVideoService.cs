@@ -5,9 +5,9 @@ namespace Application.Services.Interfaces;
 
 public interface IVideoService
 {
-    public void Create(CreateVideoDto createVideoDto);
-    public void Update(int id, UpdateVideoDto updateVideoDto);
-    public void Delete(int id);
-    public Video? GetById(int id);
-    public List<Video> GetAll();
+    public Task CreateAsync(CreateVideoDto createVideoDto);
+    public Task UpdateAsync(int id, UpdateVideoDto updateVideoDto);
+    public Task DeleteAsync(int id);
+    public Task<Video?> GetByIdAsync(int id);
+    public Task<List<Video>> GetAllAsync();
 }

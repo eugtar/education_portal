@@ -5,9 +5,9 @@ namespace Application.Services.Interfaces;
 
 public interface ICourseService
 {
-    public void Create(CreateCourseDto createCourseDto);
-    public void Update(int id, UpdateCourseDto updateCourseDto);
-    public void Delete(int id);
-    public Course? GetById(int id);
-    public List<Course> GetAll();
+    public Task CreateAsync(CreateCourseDto createCourseDto);
+    public Task UpdateAsync(int id, UpdateCourseDto updateCourseDto);
+    public Task DeleteAsync(int id);
+    public Task<Course?> GetByIdAsync(int id);
+    public Task<List<Course>> GetAllAsync();
 }

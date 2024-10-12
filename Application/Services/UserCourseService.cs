@@ -14,43 +14,49 @@ public class UserCourseService : IUserCourseService
         _unitOfWork = unitOfWork;
     }
 
-    public void Create(int userId, int courseId)
+    public async Task CreateAsync(int userId, int courseId)
     {
-        _unitOfWork.UserCourses.Add(new UserCourse()
+        await _unitOfWork.UserCourses.AddAsync(new UserCourse()
         {
             UserId = userId,
             CourseId = courseId
         });
 
-        _unitOfWork.Complete();
+        await _unitOfWork.CompleteAsync();
     }
 
-    public void Delete(int userId, int courseId)
+    public async Task DeleteAsync(int userId, int courseId)
     {
-        var userCourse = _unitOfWork.UserCourses.GetById(courseId);
+        var userCourse = await _unitOfWork.UserCourses.GetByIdAsync(courseId);
 
-        _unitOfWork.UserCourses.Remove(userCourse);
-        _unitOfWork.Complete();
+        if (userCourse is not null)
+        {
+            await _unitOfWork.UserCourses.RemoveAsync(userCourse);
+            await _unitOfWork.CompleteAsync();
+        }
     }
 
-    public List<UserCourse> GetAll(int userId)
+    public async Task<List<UserCourse>> GetAllAsync(int userId)
     {
-        return [.. _unitOfWork.UserCourses.Find(uc => uc.UserId == userId)];
+        return [.. await _unitOfWork.UserCourses.FindAllAsync(uc => uc.UserId == userId)];
     }
 
-    public UserCourse? GetById(int userId, int courseId)
+    public async Task<UserCourse?> GetByIdAsync(int userId, int courseId)
     {
-        return _unitOfWork.UserCourses.GetById(courseId);
+        return await _unitOfWork.UserCourses.GetByIdAsync(courseId);
     }
 
-    public void Update(int userId, int courseId, UpdateUserCourseDto updateUserCourseDto)
+    public async Task UpdateAsync(int userId, int courseId, UpdateUserCourseDto updateUserCourseDto)
     {
-        var userCourse = _unitOfWork.UserCourses.GetById(courseId);
+        var userCourse = await _unitOfWork.UserCourses.GetByIdAsync(courseId);
 
-        userCourse.Finished = updateUserCourseDto.Finished ?? false;
-        userCourse.Progress = updateUserCourseDto.Progress ?? userCourse.Progress;
+        if (userCourse is not null)
+        {
+            userCourse.Finished = updateUserCourseDto.Finished ?? false;
+            userCourse.Progress = updateUserCourseDto.Progress ?? userCourse.Progress;
 
-        _unitOfWork.UserCourses.Update(userCourse);
-        _unitOfWork.Complete();
+            await _unitOfWork.UserCourses.UpdateAsync(userCourse);
+            await _unitOfWork.CompleteAsync();
+        }
     }
 }

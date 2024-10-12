@@ -5,9 +5,9 @@ namespace Application.Services.Interfaces;
 
 public interface ISkillService
 {
-    public void Create(CreateSkillDto createSkillDto);
-    public void Update(int id, UpdateSkillDto updateSkillDto);
-    public void Delete(int id);
-    public Skill? GetById(int id);
-    public List<Skill> GetAll();
+    public Task CreateAsync(CreateSkillDto createSkillDto);
+    public Task UpdateAsync(int id, UpdateSkillDto updateSkillDto);
+    public Task DeleteAsync(int id);
+    public Task<Skill?> GetByIdAsync(int id);
+    public Task<List<Skill>> GetAllAsync();
 }

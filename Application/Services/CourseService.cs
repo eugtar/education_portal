@@ -14,44 +14,50 @@ public class CourseService : ICourseService
         _unitOfWork = unitOfWork;
     }
 
-    public void Create(CreateCourseDto createCourseDto)
+    public async Task CreateAsync(CreateCourseDto createCourseDto)
     {
-        _unitOfWork.Courses.Add(
+        await _unitOfWork.Courses.AddAsync(
             new Course()
             {
                 Title = createCourseDto.Title,
                 Description = createCourseDto.Description
             });
 
-        _unitOfWork.Complete();
+        await _unitOfWork.CompleteAsync();
     }
 
-    public void Delete(int id)
+    public async Task DeleteAsync(int id)
     {
-        var course = _unitOfWork.Courses.GetById(id);
+        var course = await _unitOfWork.Courses.GetByIdAsync(id);
 
-        _unitOfWork.Courses.Remove(course);
-        _unitOfWork.Complete();
+        if (course is not null)
+        {
+            await _unitOfWork.Courses.RemoveAsync(course);
+            await _unitOfWork.CompleteAsync();
+        }
     }
 
-    public List<Course> GetAll()
+    public async Task<List<Course>> GetAllAsync()
     {
-        return [.. _unitOfWork.Courses.GetAll()];
+        return [.. await _unitOfWork.Courses.GetAllAsync()];
     }
 
-    public Course? GetById(int id)
+    public async Task<Course?> GetByIdAsync(int id)
     {
-        return _unitOfWork.Courses.GetById(id);
+        return await _unitOfWork.Courses.GetByIdAsync(id);
     }
 
-    public void Update(int id, UpdateCourseDto updateCourseDto)
+    public async Task UpdateAsync(int id, UpdateCourseDto updateCourseDto)
     {
-        var course = _unitOfWork.Courses.GetById(id);
+        var course = await _unitOfWork.Courses.GetByIdAsync(id);
 
-        course.Title = updateCourseDto.Title ?? course.Title;
-        course.Description = updateCourseDto.Description ?? course.Description;
+        if (course is not null)
+        {
+            course.Title = updateCourseDto.Title ?? course.Title;
+            course.Description = updateCourseDto.Description ?? course.Description;
 
-        _unitOfWork.Courses.Update(course);
-        _unitOfWork.Complete();
+            await _unitOfWork.Courses.UpdateAsync(course);
+            await _unitOfWork.CompleteAsync();
+        }
     }
 }
