@@ -16,48 +16,56 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         _entities = _context.Set<T>();
     }
 
-    public ICollection<T> GetAll()
+    public async Task AddAsync(T entity)
     {
-        return [.. _entities];
+        await _entities.AddAsync(entity);
     }
 
-    public T? GetById(int id)
+    public async Task AddRangeAsync(ICollection<T> entities)
     {
-        return _context.Find<T>(id);
+        await _entities.AddRangeAsync(entities);
     }
 
-    public ICollection<T> Find(Expression<Func<T, bool>> predicate)
+    public async Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> predicate)
     {
-        return [.. _entities.Where(predicate)];
+        return await _entities.Where(predicate).ToArrayAsync();
     }
 
-    public void Add(T entity)
+    public async Task<T?> FindOneAsync(Expression<Func<T, bool>> predicate)
     {
-        _entities.Add(entity);
+        return await _entities.FirstOrDefaultAsync(predicate);
     }
 
-    public void AddRange(T entities)
+    public async Task<ICollection<T>> GetAllAsync()
     {
-        _entities.AddRange(entities);
+        return await _entities.ToListAsync();
     }
 
-    public void Update(T entity)
+    public async Task<T?> GetByIdAsync(int id)
     {
-        _context.Update(entity);
+        return await _entities.FindAsync(id);
     }
 
-    public void Remove(T entity)
+    public async Task<bool> IsExistAsync(Expression<Func<T, bool>> predicate)
+    {
+        return await _entities.AnyAsync(predicate);
+    }
+
+    public Task RemoveAsync(T entity)
     {
         _entities.Remove(entity);
+        return Task.CompletedTask;
     }
 
-    public void RemoveRange(T entities)
+    public Task RemoveRangeAsync(ICollection<T> entities)
     {
         _entities.RemoveRange(entities);
+        return Task.CompletedTask;
     }
 
-    public bool IsExist(Expression<Func<T, bool>> predicate)
+    public Task UpdateAsync(T entity)
     {
-        return _entities.Any(predicate);
+        _context.Update(entity);
+        return Task.CompletedTask;
     }
 }

@@ -1,6 +1,6 @@
 namespace Application.Interfaces;
 
-public interface IUnitOfWork : IDisposable
+public interface IUnitOfWork : IAsyncDisposable
 {
     public IFormatRepository Formats { get; }
     public IQualityRepository Qualities { get; }
@@ -12,5 +12,5 @@ public interface IUnitOfWork : IDisposable
     public IUserCourseRepository UserCourses { get; }
     public IUserSkillRepository UserSkills { get; }
     public IUserRepository Users { get; }
-    public int Complete();
+    public Task<int> CompleteAsync();
 }
