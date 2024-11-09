@@ -16,8 +16,5 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(e => e.FirstName).HasMaxLength(50);
         builder.Property(e => e.HashPassword).HasMaxLength(255);
         builder.Property(e => e.LastName).HasMaxLength(50);
-
-        builder.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
-        builder.Property(e => e.UpdatedAt).HasDefaultValueSql("(getdate())");
     }
 }

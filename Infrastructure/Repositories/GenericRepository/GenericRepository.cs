@@ -21,12 +21,12 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         await _entities.AddAsync(entity);
     }
 
-    public async Task AddRangeAsync(ICollection<T> entities)
+    public async Task AddRangeAsync(IEnumerable<T> entities)
     {
         await _entities.AddRangeAsync(entities);
     }
 
-    public async Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> predicate)
+    public async Task<IEnumerable<T>> FindAllAsync(Expression<Func<T, bool>> predicate)
     {
         return await _entities.Where(predicate).ToArrayAsync();
     }
@@ -36,7 +36,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return await _entities.FirstOrDefaultAsync(predicate);
     }
 
-    public async Task<ICollection<T>> GetAllAsync()
+    public async Task<IEnumerable<T>> GetAllAsync()
     {
         return await _entities.ToListAsync();
     }
@@ -57,7 +57,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         return Task.CompletedTask;
     }
 
-    public Task RemoveRangeAsync(ICollection<T> entities)
+    public Task RemoveRangeAsync(IEnumerable<T> entities)
     {
         _entities.RemoveRange(entities);
         return Task.CompletedTask;
