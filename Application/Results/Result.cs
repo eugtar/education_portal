@@ -27,5 +27,10 @@ public class Result
     {
         return new Result(false, error);
     }
+
+    public static implicit operator Result(Error error)
+    {
+        return Result.Failure(error);
+    }
 }
 
