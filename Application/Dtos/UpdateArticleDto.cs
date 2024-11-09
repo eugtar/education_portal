@@ -1,10 +1,7 @@
-﻿namespace Application.Dtos;
+namespace Application.Dtos;
 
-public class UpdateArticleDto(
-    string? title = null,
-    string? link = null
-    )
+public sealed class UpdateArticleDto
 {
-    public string? Title => title;
-    public string? Link => link;
+    public string? Title { get; set; }
+    public string? Link { get; set; }
 }

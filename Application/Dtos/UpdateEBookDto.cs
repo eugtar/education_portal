@@ -1,18 +1,12 @@
-﻿using Domain.Enums;
+using Domain.Enums;
 
 namespace Application.Dtos;
 
-public class UpdateEbookDto(
-    string? title = null,
-    string? author = null,
-    int? pageAmount = null,
-    EbookFormat? formatId = null,
-    DateTime? publishedOn = null
-    )
+public sealed class UpdateEbookDto
 {
-    public string? Title => title;
-    public string? Author => author;
-    public int? PageAmount => pageAmount;
-    public EbookFormat? FormatId => formatId;
-    public DateTime? PublishedOn => publishedOn;
+    public string? Title { get; set; }
+    public string? Author { get; set; }
+    public int? PageAmount { get; set; }
+    public EbookFormat? FormatId { get; set; }
+    public string? PublishedOn { get; set; }
 }

@@ -1,13 +1,14 @@
 ﻿using Application.Dtos;
+using Application.Results;
 using Domain.Entities;
 
 namespace Application.Services.Interfaces;
 
 public interface IUserService
 {
-    public Task CreateAsync(CreateUserDto createUserDto);
-    public Task UpdateAsync(int id, UpdateUserDto updateUserDto);
-    public Task DeleteAsync(int id);
-    public Task<User?> GetByIdAsync(int id);
-    public Task<List<User>> GetAllAsync();
+    public Task<Result> CreateAsync(CreateUserDto dto);
+    public Task<Result> UpdateAsync(int id, UpdateUserDto dto);
+    public Task<Result> DeleteAsync(int id);
+    public Task<Result<User?>> GetByIdAsync(int id);
+    public Task<Result<List<User>>> GetAllAsync();
 }

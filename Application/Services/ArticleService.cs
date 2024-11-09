@@ -2,6 +2,8 @@
 using Application.Dtos;
 using Application.Services.Interfaces;
 using Application.Interfaces;
+using Application.Results;
+using System.Net;
 
 namespace Application.Services;
 
@@ -14,51 +16,74 @@ public class ArticleService : IArticleService
         _unitOfWork = unitOfWork;
     }
 
-    public async Task CreateAsync(CreateArticleDto createArticleDto)
+    public async Task<Result> CreateAsync(CreateArticleDto dto)
     {
         await _unitOfWork.Articles.AddAsync(
             new Article()
             {
-                Title = createArticleDto.Title,
-                Link = createArticleDto.Link
+                Title = dto.Title,
+                Link = dto.Link
             });
 
         await _unitOfWork.CompleteAsync();
+
+        return Result.Success();
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<Result> DeleteAsync(int id)
     {
         var article = await _unitOfWork.Articles.GetByIdAsync(id);
 
-        if (article is not null)
+        if (article is null)
         {
-            await _unitOfWork.Articles.RemoveAsync(article);
-            await _unitOfWork.CompleteAsync();
+            return new Error(HttpStatusCode.NotFound, $"Article with ID: {id} not found");
         }
+
+        await _unitOfWork.Articles.RemoveAsync(article);
+        await _unitOfWork.CompleteAsync();
+
+        return Result.Success();
     }
 
-    public async Task<List<Article>> GetAllAsync()
+    public async Task<Result<List<Article>>> GetAllAsync()
     {
-        return [.. await _unitOfWork.Articles.GetAllAsync()];
+        var articles = await _unitOfWork.Articles.GetAllAsync();
+
+        if (articles.Count() == 0)
+        {
+            return new Error(HttpStatusCode.NotFound, "Not found");
+        }
+
+        return articles.ToList();
     }
 
-    public async Task<Article?> GetByIdAsync(int id)
-    {
-        return await _unitOfWork.Articles.GetByIdAsync(id);
-    }
-
-    public async Task UpdateAsync(int id, UpdateArticleDto updateArticleDto)
+    public async Task<Result<Article?>> GetByIdAsync(int id)
     {
         var article = await _unitOfWork.Articles.GetByIdAsync(id);
 
-        if (article is not null)
+        if (article is null)
         {
-            article.Title = updateArticleDto.Title ?? article.Title;
-            article.Link = updateArticleDto.Link ?? article.Link;
-
-            await _unitOfWork.Articles.UpdateAsync(article);
-            await _unitOfWork.CompleteAsync();
+            return new Error(HttpStatusCode.NotFound, "Not found");
         }
 
+        return article;
+    }
+
+    public async Task<Result> UpdateAsync(int id, UpdateArticleDto dto)
+    {
+        var article = await _unitOfWork.Articles.GetByIdAsync(id);
+
+        if (article is null)
+        {
+            return new Error(HttpStatusCode.NotFound, $"Article with ID: {id} not found");
+        }
+
+        article.Title = dto.Title ?? article.Title;
+        article.Link = dto.Link ?? article.Link;
+
+        await _unitOfWork.Articles.UpdateAsync(article);
+        await _unitOfWork.CompleteAsync();
+
+        return Result.Success();
     }
 }

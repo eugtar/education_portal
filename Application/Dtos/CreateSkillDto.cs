@@ -1,8 +1,6 @@
 namespace Application.Dtos;
 
-public class CreateSkillDto(
-    string name
-)
+public sealed class CreateSkillDto
 {
-    public string Name => name;
+    public required string Name { get; set; }
 }

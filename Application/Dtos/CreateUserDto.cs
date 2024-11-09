@@ -1,14 +1,10 @@
-﻿namespace Application.Dtos;
+namespace Application.Dtos;
 
-public class CreateUserDto(
-    string firstName,
-    string lastName,
-    string email,
-    string password
-    )
+public sealed class CreateUserDto
 {
-    public string? FirstName => firstName;
-    public string? LastName => lastName;
-    public string Email => email;
-    public string Password => password;
+    public required string FirstName { get; set; }
+    public required string LastName { get; set; }
+    public required string Email { get; set; }
+    public required string Password { get; set; }
+    public required string PasswordConfirmation { get; set; }
 }

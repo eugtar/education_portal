@@ -1,14 +1,10 @@
-﻿using Domain.Enums;
+using Domain.Enums;
 
 namespace Application.Dtos;
 
-public class UpdateVideoDto(
-    string? title = null,
-    TimeOnly? duration = null,
-    VideoQuality? qualityId = null
-    )
+public sealed class UpdateVideoDto
 {
-    public string? Title => title;
-    public TimeOnly? Duration => duration;
-    public VideoQuality? QualityId => qualityId;
+    public string? Title { get; set; }
+    public string? Duration { get; set; }
+    public VideoQuality? QualityId { get; set; }
 }

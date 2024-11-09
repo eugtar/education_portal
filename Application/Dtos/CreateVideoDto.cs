@@ -1,14 +1,10 @@
-﻿using Domain.Enums;
+using Domain.Enums;
 
 namespace Application.Dtos;
 
-public class CreateVideoDto(
-    string title,
-    TimeOnly duration,
-    VideoQuality qualityId
-    )
+public sealed class CreateVideoDto
 {
-    public string Title => title;
-    public TimeOnly Duration => duration;
-    public VideoQuality QualityId => qualityId;
+    public required string Title { get; set; }
+    public string Duration { get; set; } = new TimeSpan(0, 0, 0).ToString();
+    public VideoQuality QualityId { get; set; } = VideoQuality._1080p;
 }
