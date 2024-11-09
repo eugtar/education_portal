@@ -1,8 +1,9 @@
 using Application.Dtos;
 using Application.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
+using Domain.Entities;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using Web.ViewModels;
+using Web.ControllerBaseExtension;
 
 namespace Web.Controllers
 {
@@ -18,63 +19,68 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<VideoVM>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Video>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetVideos()
         {
-            var videos = await _videoService.GetAllAsync();
+            var result = await _videoService.GetAllAsync();
 
-            return videos.Count == 0 ? NotFound() : !ModelState.IsValid ? BadRequest(ModelState) : Ok(videos);
+            return this.ResponseResult(result);
         }
 
         [HttpGet("{videoId}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(VideoVM))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Video))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetArticle(int videoId)
         {
-            var video = await _videoService.GetByIdAsync(videoId);
+            var result = await _videoService.GetByIdAsync(videoId);
 
-            return video is null ? NotFound() : !ModelState.IsValid ? BadRequest() : Ok(video);
+            return this.ResponseResult(result);
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateArticle([FromBody] CreateVideoDto createVideoDto)
+        public async Task<IActionResult> CreateArticle([FromBody] CreateVideoDto dto, IValidator<CreateVideoDto> validator)
         {
-            if (!ModelState.IsValid)
+            var validationResult = await validator.ValidateAsync(dto);
+
+            if (!validationResult.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(validationResult.ToDictionary());
             }
 
-            await _videoService.CreateAsync(createVideoDto);
+            var result = await _videoService.CreateAsync(dto);
 
-            return Created();
+            return this.ResponseResult(result);
         }
 
         [HttpPatch("{videoId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateVideo(int videoId, [FromBody] UpdateVideoDto updateVideoDto)
+        public async Task<IActionResult> UpdateVideo(int videoId, [FromBody] UpdateVideoDto dto, IValidator<UpdateVideoDto> validator)
         {
-            await _videoService.UpdateAsync(videoId, updateVideoDto);
+            var validationResult = await validator.ValidateAsync(dto);
 
-            return !ModelState.IsValid ? BadRequest(ModelState) : Ok();
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.ToDictionary());
+            }
+
+            var result = await _videoService.UpdateAsync(videoId, dto);
+
+            return this.ResponseResult(result);
         }
 
         [HttpDelete("{videoId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
 
         public async Task<IActionResult> DeleteVideo(int videoId)
         {
-            await _videoService.DeleteAsync(videoId);
+            var result = await _videoService.DeleteAsync(videoId);
 
-            return !ModelState.IsValid ? BadRequest(ModelState) : Ok();
+            return this.ResponseResult(result);
         }
     }
 }

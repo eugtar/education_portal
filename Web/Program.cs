@@ -1,8 +1,17 @@
+using System.Text.Json.Serialization;
 using Web.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
+builder.Services
+    .AddControllers()
+    .AddJsonOptions(
+        options =>
+        {
+            options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+            options.JsonSerializerOptions.WriteIndented = true;
+        }
+    );
 // Add Swagger services
 builder.Services.AddSwaggerService();
 // Add Database services
@@ -11,6 +20,8 @@ builder.Services.AddDatabaseService(builder.Configuration);
 builder.Services.AddApplicationRepository();
 // Add Application services
 builder.Services.AddApplicationService();
+// Add Fluent validation
+builder.Services.AddFluentValidator();
 
 var app = builder.Build();
 

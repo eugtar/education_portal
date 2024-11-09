@@ -1,6 +1,8 @@
+using System.Reflection;
 using Application.Interfaces;
 using Application.Services;
 using Application.Services.Interfaces;
+using FluentValidation;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
 using Infrastructure.Repositories.GenericRepository;
@@ -27,6 +29,13 @@ public static class DependencyInjection
             }
         );
 
+        return services;
+    }
+
+    // Fluent Validator
+    public static IServiceCollection AddFluentValidator(this IServiceCollection services)
+    {
+        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         return services;
     }
 
@@ -76,8 +85,6 @@ public static class DependencyInjection
         services.AddScoped<IVideoService, VideoService>();
         services.AddScoped<ISkillService, SkillService>();
         services.AddScoped<IUserService, UserService>();
-        services.AddScoped<IUserCourseService, UserCourseService>();
-        services.AddScoped<IUserSkillService, UserSkillService>();
 
         return services;
     }

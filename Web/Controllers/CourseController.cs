@@ -1,8 +1,9 @@
 using Application.Dtos;
 using Application.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
+using Domain.Entities;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using Web.ViewModels;
+using Web.ControllerBaseExtension;
 
 namespace Web.Controllers
 {
@@ -18,61 +19,68 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<CourseVM>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Course>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetCourses()
         {
-            var courses = await _courseService.GetAllAsync();
-            return courses.Count == 0 ? NotFound() : !ModelState.IsValid ? BadRequest(ModelState) : Ok(courses);
+            var result = await _courseService.GetAllAsync();
+
+            return this.ResponseResult(result);
         }
 
         [HttpGet("{courseId}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CourseVM))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Course))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetCourse(int courseId)
         {
-            var course = await _courseService.GetByIdAsync(courseId);
+            var result = await _courseService.GetByIdAsync(courseId);
 
-            return course is null ? NotFound() : !ModelState.IsValid ? BadRequest() : Ok(course);
+            return this.ResponseResult(result);
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateCourse([FromBody] CreateCourseDto createCourseDto)
+        public async Task<IActionResult> CreateCourse([FromBody] CreateCourseDto dto, IValidator<CreateCourseDto> validator)
         {
-            if (!ModelState.IsValid)
+            var validationResult = await validator.ValidateAsync(dto);
+
+            if (!validationResult.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(validationResult.ToDictionary());
             }
 
-            await _courseService.CreateAsync(createCourseDto);
+            var result = await _courseService.CreateAsync(dto);
 
-            return Created();
+            return this.ResponseResult(result);
         }
 
         [HttpPatch("{courseId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateCourse(int courseId, [FromBody] UpdateCourseDto updateCourseDto)
+        public async Task<IActionResult> UpdateCourse(int courseId, [FromBody] UpdateCourseDto dto, IValidator<UpdateCourseDto> validator)
         {
-            await _courseService.UpdateAsync(courseId, updateCourseDto);
+            var validationResult = await validator.ValidateAsync(dto);
 
-            return !ModelState.IsValid ? BadRequest(ModelState) : Ok();
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.ToDictionary());
+            }
+
+            var result = await _courseService.UpdateAsync(courseId, dto);
+
+            return this.ResponseResult(result);
         }
 
         [HttpDelete("{courseId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
 
         public async Task<IActionResult> DeleteCourse(int courseId)
         {
-            await _courseService.DeleteAsync(courseId);
-            return !ModelState.IsValid ? BadRequest(ModelState) : Ok();
+            var result = await _courseService.DeleteAsync(courseId);
+
+            return this.ResponseResult(result);
         }
     }
 }

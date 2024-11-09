@@ -1,8 +1,9 @@
 using Application.Dtos;
 using Application.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
+using Domain.Entities;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using Web.ViewModels;
+using Web.ControllerBaseExtension;
 
 namespace Web.Controllers
 {
@@ -18,62 +19,68 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ArticleVM>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Article>))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetArticles()
         {
-            var articles = await _articleService.GetAllAsync();
+            var result = await _articleService.GetAllAsync();
 
-            return articles.Count == 0 ? NotFound() : !ModelState.IsValid ? BadRequest(ModelState) : Ok(articles);
+            return this.ResponseResult(result);
         }
 
         [HttpGet("{articleId}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ArticleVM))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Article))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetArticle(int articleId)
         {
-            var article = await _articleService.GetByIdAsync(articleId);
+            var result = await _articleService.GetByIdAsync(articleId);
 
-            return article is null ? NotFound() : !ModelState.IsValid ? BadRequest(ModelState) : Ok(article);
+            return this.ResponseResult(result);
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateArticle([FromBody] CreateArticleDto createArticleDto)
+        public async Task<IActionResult> CreateArticle([FromBody] CreateArticleDto dto, IValidator<CreateArticleDto> validator)
         {
-            if (!ModelState.IsValid)
+            var validationResult = await validator.ValidateAsync(dto);
+
+            if (!validationResult.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest(validationResult.ToDictionary());
             }
 
-            await _articleService.CreateAsync(createArticleDto);
+            var result = await _articleService.CreateAsync(dto);
 
-            return Created();
+            return this.ResponseResult(result);
         }
 
         [HttpPatch("{articleId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateArticle(int articleId, [FromBody] UpdateArticleDto updateArticleDto)
+        public async Task<IActionResult> UpdateArticle(int articleId, [FromBody] UpdateArticleDto dto, IValidator<UpdateArticleDto> validator)
         {
-            await _articleService.UpdateAsync(articleId, updateArticleDto);
+            var validationResult = await validator.ValidateAsync(dto);
 
-            return !ModelState.IsValid ? BadRequest(ModelState) : Ok();
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.ToDictionary());
+            }
+
+            var result = await _articleService.UpdateAsync(articleId, dto);
+
+            return this.ResponseResult(result);
         }
 
         [HttpDelete("{articleId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
 
         public async Task<IActionResult> DeleteArticle(int articleId)
         {
-            await _articleService.DeleteAsync(articleId);
-            return !ModelState.IsValid ? BadRequest(ModelState) : Ok();
+            var result = await _articleService.DeleteAsync(articleId);
+
+            return this.ResponseResult(result);
         }
 
     }
