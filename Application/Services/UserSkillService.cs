@@ -13,42 +13,48 @@ public class UserSkillService : IUserSkillService
         _unitOfWork = unitOfWork;
     }
 
-    public void Create(int userId, int skillId)
+    public async Task CreateAsync(int userId, int skillId)
     {
-        _unitOfWork.UserSkills.Add(new UserSkill()
+        await _unitOfWork.UserSkills.AddAsync(new UserSkill()
         {
             UserId = userId,
             SkillId = skillId
         });
 
-        _unitOfWork.Complete();
+        await _unitOfWork.CompleteAsync();
     }
 
-    public void Delete(int id)
+    public async Task DeleteAsync(int userId, int skillId)
     {
-        var userSkill = _unitOfWork.UserSkills.GetById(id) ?? throw new ArgumentNullException();
+        var userSkill = await _unitOfWork.UserSkills.GetByIdAsync(skillId);
 
-        _unitOfWork.UserSkills.Remove(userSkill);
-        _unitOfWork.Complete();
+        if (userSkill is not null)
+        {
+            await _unitOfWork.UserSkills.RemoveAsync(userSkill);
+            await _unitOfWork.CompleteAsync();
+        }
     }
 
-    public List<UserSkill> GetAll()
+    public async Task<List<UserSkill>> GetAllAsync(int userId)
     {
-        return [.. _unitOfWork.UserSkills.GetAll()];
+        return [.. await _unitOfWork.UserSkills.FindAllAsync(us => us.UserId == userId)];
     }
 
-    public UserSkill? GetById(int id)
+    public async Task<UserSkill?> GetByIdAsync(int userId, int skillId)
     {
-        return _unitOfWork.UserSkills.GetById(id) ?? throw new ArgumentNullException();
+        return await _unitOfWork.UserSkills.GetByIdAsync(skillId);
     }
 
-    public void Update(int id, int? level)
+    public async Task UpdateAsync(int userId, int skillId, int? level)
     {
-        var userSkill = _unitOfWork.UserSkills.GetById(id) ?? throw new ArgumentNullException();
+        var userSkill = await _unitOfWork.UserSkills.GetByIdAsync(skillId);
 
-        userSkill.Level = level ?? userSkill.Level;
+        if (userSkill is not null)
+        {
+            userSkill.Level = level ?? userSkill.Level;
 
-        _unitOfWork.UserSkills.Update(userSkill);
-        _unitOfWork.Complete();
+            await _unitOfWork.UserSkills.UpdateAsync(userSkill);
+            await _unitOfWork.CompleteAsync();
+        }
     }
 }

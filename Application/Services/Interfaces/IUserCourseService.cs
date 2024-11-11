@@ -5,9 +5,9 @@ namespace Application.Services.Interfaces;
 
 public interface IUserCourseService
 {
-    public void Create(int userId, int courseId);
-    public void Update(int id, UpdateUserCourseDto updateUserCourseDto);
-    public void Delete(int id);
-    public UserCourse? GetById(int id);
-    public List<UserCourse> GetAll();
+    public Task CreateAsync(int userId, int courseId);
+    public Task UpdateAsync(int userId, int courseId, UpdateUserCourseDto updateUserCourseDto);
+    public Task DeleteAsync(int userId, int courseId);
+    public Task<UserCourse?> GetByIdAsync(int userId, int courseId);
+    public Task<List<UserCourse>> GetAllAsync(int userId);
 }

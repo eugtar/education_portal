@@ -1,12 +1,13 @@
-﻿using Domain.Entities;
+﻿using Application.Dtos;
+using Domain.Entities;
 
 namespace Application.Services.Interfaces;
 
 public interface ISkillService
 {
-    public void Create(string name);
-    public void Update(int id, string? name);
-    public void Delete(int id);
-    public Skill? GetById(int id);
-    public List<Skill> GetAll();
+    public Task CreateAsync(CreateSkillDto createSkillDto);
+    public Task UpdateAsync(int id, UpdateSkillDto updateSkillDto);
+    public Task DeleteAsync(int id);
+    public Task<Skill?> GetByIdAsync(int id);
+    public Task<List<Skill>> GetAllAsync();
 }

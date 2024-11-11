@@ -14,9 +14,9 @@ public class VideoService : IVideoService
         _unitOfWork = unitOfWork;
     }
 
-    public void Create(CreateVideoDto createVideoDto)
+    public async Task CreateAsync(CreateVideoDto createVideoDto)
     {
-        _unitOfWork.Videos.Add(
+        await _unitOfWork.Videos.AddAsync(
             new Video()
             {
                 Title = createVideoDto.Title,
@@ -24,36 +24,42 @@ public class VideoService : IVideoService
                 QualityId = (int)createVideoDto.QualityId,
             });
 
-        _unitOfWork.Complete();
+        await _unitOfWork.CompleteAsync();
     }
 
-    public void Delete(int id)
+    public async Task DeleteAsync(int id)
     {
-        var video = _unitOfWork.Videos.GetById(id) ?? throw new ArgumentNullException();
+        var video = await _unitOfWork.Videos.GetByIdAsync(id);
 
-        _unitOfWork.Videos.Remove(video);
-        _unitOfWork.Complete();
+        if (video is not null)
+        {
+            await _unitOfWork.Videos.RemoveAsync(video);
+            await _unitOfWork.CompleteAsync();
+        }
     }
 
-    public List<Video> GetAll()
+    public async Task<List<Video>> GetAllAsync()
     {
-        return [.. _unitOfWork.Videos.GetAll()];
+        return [.. await _unitOfWork.Videos.GetAllAsync()];
     }
 
-    public Video? GetById(int id)
+    public async Task<Video?> GetByIdAsync(int id)
     {
-        return _unitOfWork.Videos.GetById(id) ?? throw new ArgumentNullException();
+        return await _unitOfWork.Videos.GetByIdAsync(id);
     }
 
-    public void Update(int id, UpdateVideoDto updateVideoDto)
+    public async Task UpdateAsync(int id, UpdateVideoDto updateVideoDto)
     {
-        var video = _unitOfWork.Videos.GetById(id) ?? throw new ArgumentNullException();
+        var video = await _unitOfWork.Videos.GetByIdAsync(id);
 
-        video.Title = updateVideoDto.Title ?? video.Title;
-        video.Duration = updateVideoDto.Duration ?? video.Duration;
-        video.QualityId = updateVideoDto.QualityId != null ? (int)updateVideoDto.QualityId : video.QualityId;
+        if (video is not null)
+        {
+            video.Title = updateVideoDto.Title ?? video.Title;
+            video.Duration = updateVideoDto.Duration ?? video.Duration;
+            video.QualityId = updateVideoDto.QualityId != null ? (int)updateVideoDto.QualityId : video.QualityId;
 
-        _unitOfWork.Videos.Update(video);
-        _unitOfWork.Complete();
+            await _unitOfWork.Videos.UpdateAsync(video);
+            await _unitOfWork.CompleteAsync();
+        }
     }
 }

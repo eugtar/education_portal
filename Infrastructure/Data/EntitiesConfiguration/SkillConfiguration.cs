@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Infrastructure.Data.EntitiesConfiguration;
 
-public class RewardConfiguration : IEntityTypeConfiguration<Skill>
+public class SkillConfiguration : IEntityTypeConfiguration<Skill>
 {
     public void Configure(EntityTypeBuilder<Skill> builder)
     {
@@ -12,11 +12,9 @@ public class RewardConfiguration : IEntityTypeConfiguration<Skill>
 
         builder.HasIndex(e => e.Name, "UQ__Skills").IsUnique();
 
-        builder.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
         builder.Property(e => e.Name).HasMaxLength(50);
 
-        builder.Property(e => e.UpdatedAt)
-            .HasDefaultValueSql("(sysdatetime())")
-            .ValueGeneratedOnAddOrUpdate();
+        builder.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
+        builder.Property(e => e.UpdatedAt).HasDefaultValueSql("(getdate())");
     }
 }

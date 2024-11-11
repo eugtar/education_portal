@@ -4,9 +4,9 @@ namespace Application.Services.Interfaces;
 
 public interface IUserSkillService
 {
-    public void Create(int userId, int skillId);
-    public void Update(int id, int? level);
-    public void Delete(int id);
-    public UserSkill? GetById(int id);
-    public List<UserSkill> GetAll();
+    public Task CreateAsync(int userId, int skillId);
+    public Task UpdateAsync(int userId, int skillId, int? level);
+    public Task DeleteAsync(int userId, int skillId);
+    public Task<UserSkill?> GetByIdAsync(int userId, int skillId);
+    public Task<List<UserSkill>> GetAllAsync(int userId);
 }

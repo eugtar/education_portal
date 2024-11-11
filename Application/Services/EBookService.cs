@@ -14,9 +14,9 @@ public class EBookService : IEbookService
         _unitOfWork = unitOfWork;
     }
 
-    public void Create(CreateEbookDto createEbookDto)
+    public async Task CreateAsync(CreateEbookDto createEbookDto)
     {
-        _unitOfWork.Ebooks.Add(
+        await _unitOfWork.Ebooks.AddAsync(
             new Ebook()
             {
                 Title = createEbookDto.Title,
@@ -25,39 +25,45 @@ public class EBookService : IEbookService
                 FormatId = (int)createEbookDto.FormatId,
                 PublishedOn = createEbookDto.PublishedOn,
             });
-        
-        _unitOfWork.Complete();
+
+        await _unitOfWork.CompleteAsync();
     }
 
-    public void Delete(int id)
+    public async Task DeleteAsync(int id)
     {
-        var eBook = _unitOfWork.Ebooks.GetById(id) ?? throw new ArgumentException();
+        var eBook = await _unitOfWork.Ebooks.GetByIdAsync(id);
 
-        _unitOfWork.Ebooks.Remove(eBook);
-        _unitOfWork.Complete();
+        if (eBook is not null)
+        {
+            await _unitOfWork.Ebooks.RemoveAsync(eBook);
+            await _unitOfWork.CompleteAsync();
+        }
     }
 
-    public List<Ebook> GetAll()
+    public async Task<List<Ebook>> GetAllAsync()
     {
-        return [.. _unitOfWork.Ebooks.GetAll()];
+        return [.. await _unitOfWork.Ebooks.GetAllAsync()];
     }
 
-    public Ebook? GetById(int id)
+    public async Task<Ebook?> GetByIdAsync(int id)
     {
-        return _unitOfWork.Ebooks.GetById(id) ?? throw new ArgumentNullException();
+        return await _unitOfWork.Ebooks.GetByIdAsync(id);
     }
 
-    public void Update(int id, UpdateEbookDto updateEbookDto)
+    public async Task UpdateAsync(int id, UpdateEbookDto updateEbookDto)
     {
-        var eBook = _unitOfWork.Ebooks.GetById(id) ?? throw new ArgumentNullException();
+        var eBook = await _unitOfWork.Ebooks.GetByIdAsync(id);
 
-        eBook.Title = updateEbookDto.Title ?? eBook.Title;
-        eBook.Author = updateEbookDto.Author ?? eBook.Author;
-        eBook.PageAmount = updateEbookDto.PageAmount ?? eBook.PageAmount;
-        eBook.FormatId = updateEbookDto.FormatId != null ? (int)updateEbookDto.FormatId : eBook.FormatId;
-        eBook.PublishedOn = updateEbookDto.PublishedOn ?? eBook.PublishedOn;
+        if (eBook is not null)
+        {
+            eBook.Title = updateEbookDto.Title ?? eBook.Title;
+            eBook.Author = updateEbookDto.Author ?? eBook.Author;
+            eBook.PageAmount = updateEbookDto.PageAmount ?? eBook.PageAmount;
+            eBook.FormatId = updateEbookDto.FormatId != null ? (int)updateEbookDto.FormatId : eBook.FormatId;
+            eBook.PublishedOn = updateEbookDto.PublishedOn ?? eBook.PublishedOn;
 
-        _unitOfWork.Ebooks.Update(eBook);
-        _unitOfWork.Complete();
+            await _unitOfWork.Ebooks.UpdateAsync(eBook);
+            await _unitOfWork.CompleteAsync();
+        }
     }
 }
