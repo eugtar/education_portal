@@ -1,14 +1,10 @@
-﻿namespace Application.Dtos;
+namespace Application.Dtos;
 
-public class UpdateUserDto(
-    string? firstName = null,
-    string? lastName = null,
-    string? email = null,
-    string? password = null
-    )
+public sealed class UpdateUserDto
 {
-    public string? FirstName => firstName;
-    public string? LastName => lastName;
-    public string? Email => email;
-    public string? Password => password;
+    public string? FirstName { get; set; }
+    public string? LastName { get; set; }
+    public string? Email { get; set; }
+    public string? Password { get; set; }
+    public string? PasswordConfirmation { get; set; }
 }

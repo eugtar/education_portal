@@ -1,10 +1,7 @@
 namespace Application.Dtos;
 
-public class UpdateUserCourseDto(
-    bool? finished = null,
-    decimal? progress = null
-)
+public sealed class UpdateUserCourseDto
 {
-    public bool? Finished => finished;
-    public decimal? Progress => progress;
+    public bool? Finished { get; set; }
+    public decimal? Progress { get; set; }
 }

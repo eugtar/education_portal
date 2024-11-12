@@ -1,7 +1,7 @@
-﻿namespace Application.Dtos;
+namespace Application.Dtos;
 
-public class CreateArticleDto(string title, string link)
+public sealed class CreateArticleDto
 {
-    public string Title => title;
-    public string Link => link;
+    public required string Title { get; set; }
+    public required string Link { get; set; }
 }

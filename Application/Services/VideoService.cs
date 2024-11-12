@@ -1,5 +1,8 @@
-﻿using Application.Dtos;
+﻿using System.Globalization;
+using System.Net;
+using Application.Dtos;
 using Application.Interfaces;
+using Application.Results;
 using Application.Services.Interfaces;
 using Domain.Entities;
 
@@ -14,52 +17,88 @@ public class VideoService : IVideoService
         _unitOfWork = unitOfWork;
     }
 
-    public async Task CreateAsync(CreateVideoDto createVideoDto)
+    public async Task<Result> CreateAsync(CreateVideoDto dto)
     {
         await _unitOfWork.Videos.AddAsync(
             new Video()
             {
-                Title = createVideoDto.Title,
-                Duration = createVideoDto.Duration,
-                QualityId = (int)createVideoDto.QualityId,
+                Title = dto.Title,
+                Duration = TimeOnly.ParseExact(
+                    dto.Duration,
+                    "HH:mm:ss",
+                    CultureInfo.InvariantCulture,
+                    DateTimeStyles.None),
+                QualityId = (int)dto.QualityId,
             });
 
         await _unitOfWork.CompleteAsync();
+
+        return Result.Success();
     }
 
-    public async Task DeleteAsync(int id)
+    public async Task<Result> DeleteAsync(int id)
     {
         var video = await _unitOfWork.Videos.GetByIdAsync(id);
 
-        if (video is not null)
+        if (video is null)
         {
-            await _unitOfWork.Videos.RemoveAsync(video);
-            await _unitOfWork.CompleteAsync();
+            return new Error(HttpStatusCode.NotFound, $"Video with ID: {id} not found");
         }
+
+        await _unitOfWork.Videos.RemoveAsync(video);
+        await _unitOfWork.CompleteAsync();
+
+        return Result.Success();
     }
 
-    public async Task<List<Video>> GetAllAsync()
+    public async Task<Result<List<Video>>> GetAllAsync()
     {
-        return [.. await _unitOfWork.Videos.GetAllAsync()];
+        var videos = await _unitOfWork.Videos.GetAllAsync();
+
+        if (videos.Count() == 0)
+        {
+            return new Error(HttpStatusCode.NotFound, "Not found");
+        }
+
+        return videos.ToList();
     }
 
-    public async Task<Video?> GetByIdAsync(int id)
-    {
-        return await _unitOfWork.Videos.GetByIdAsync(id);
-    }
-
-    public async Task UpdateAsync(int id, UpdateVideoDto updateVideoDto)
+    public async Task<Result<Video?>> GetByIdAsync(int id)
     {
         var video = await _unitOfWork.Videos.GetByIdAsync(id);
 
-        if (video is not null)
+        if (video is null)
         {
-            video.Title = updateVideoDto.Title ?? video.Title;
-            video.Duration = updateVideoDto.Duration ?? video.Duration;
-            video.QualityId = updateVideoDto.QualityId != null ? (int)updateVideoDto.QualityId : video.QualityId;
-
-            await _unitOfWork.Videos.UpdateAsync(video);
-            await _unitOfWork.CompleteAsync();
+            return new Error(HttpStatusCode.NotFound, $"Video with ID: {id} not found");
         }
+
+        return video;
+    }
+
+    public async Task<Result> UpdateAsync(int id, UpdateVideoDto dto)
+    {
+        var video = await _unitOfWork.Videos.GetByIdAsync(id);
+
+        if (video is null)
+        {
+            return new Error(HttpStatusCode.NotFound, $"Video with ID: {id} not found");
+        }
+
+        video.Title = dto.Title ?? video.Title;
+        video.Duration = dto.Duration is null
+            ? video.Duration
+            : TimeOnly.ParseExact(
+                dto.Duration,
+                "HH:mm:ss",
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None);
+        video.QualityId = dto.QualityId != null
+            ? (int)dto.QualityId
+            : video.QualityId;
+
+        await _unitOfWork.Videos.UpdateAsync(video);
+        await _unitOfWork.CompleteAsync();
+
+        return Result.Success();
     }
 }

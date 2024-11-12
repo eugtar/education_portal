@@ -1,7 +1,9 @@
+using System.Net;
+
 namespace Application.Results;
 
-public sealed record Error(string Code, string Message)
+public record Error(HttpStatusCode Code, string Message)
 {
-    public static Error None => new(string.Empty, string.Empty);
-    public static Error Null => new("Null", "The specified result value is null");
+    public static Error None => new(HttpStatusCode.OK, string.Empty);
+    public static Error Null => new(HttpStatusCode.InternalServerError, "Internal server error");
 }

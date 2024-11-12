@@ -14,9 +14,6 @@ public class CourseConfiguration : IEntityTypeConfiguration<Course>
         builder.Property(e => e.Description).HasMaxLength(150);
         builder.Property(e => e.Title).HasMaxLength(150);
 
-        builder.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
-        builder.Property(e => e.UpdatedAt).HasDefaultValueSql("(getdate())");
-
         builder.HasMany(d => d.Materials).WithMany(p => p.Courses)
             .UsingEntity<Dictionary<string, object>>(
                 "CourseMaterial",

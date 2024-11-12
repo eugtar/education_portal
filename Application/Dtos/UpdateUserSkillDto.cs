@@ -1,6 +1,6 @@
 namespace Application.Dtos;
 
-public class UpdateUserSkillDto
+public sealed class UpdateUserSkillDto
 {
-    
+
 }

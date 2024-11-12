@@ -13,8 +13,5 @@ public class SkillConfiguration : IEntityTypeConfiguration<Skill>
         builder.HasIndex(e => e.Name, "UQ__Skills").IsUnique();
 
         builder.Property(e => e.Name).HasMaxLength(50);
-
-        builder.Property(e => e.CreatedAt).HasDefaultValueSql("(sysdatetime())");
-        builder.Property(e => e.UpdatedAt).HasDefaultValueSql("(getdate())");
     }
 }

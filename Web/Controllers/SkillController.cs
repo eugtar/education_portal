@@ -1,14 +1,15 @@
 using Application.Dtos;
 using Application.Services.Interfaces;
-using Microsoft.AspNetCore.Http;
+using Domain.Entities;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using Web.ViewModels;
+using Web.Controllers.Common.BaseController;
 
 namespace Web.Controllers
 {
     [Route("api/skills")]
     [ApiController]
-    public class SkillController : ControllerBase
+    public class SkillController : BaseController
     {
         private readonly ISkillService _skillService;
 
@@ -18,63 +19,76 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<SkillVM>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Skill>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetSkills()
         {
-            var skills = await _skillService.GetAllAsync();
+            var result = await _skillService.GetAllAsync();
 
-            return skills.Count == 0 ? NotFound() : !ModelState.IsValid ? BadRequest(ModelState) : Ok(skills);
+            return NewResponse(result);
         }
 
         [HttpGet("{skillId}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SkillVM))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Skill))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetSkill(int skillId)
         {
-            var skill = await _skillService.GetByIdAsync(skillId);
+            var result = await _skillService.GetByIdAsync(skillId);
 
-            return skill is null ? NotFound() : !ModelState.IsValid ? BadRequest() : Ok(skill);
+            return NewResponse(result);
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateSkill([FromBody] CreateSkillDto createSkillDto)
+        public async Task<IActionResult> CreateSkill(
+            [FromBody] CreateSkillDto dto,
+            IValidator<CreateSkillDto> validator
+        )
         {
-            if (!ModelState.IsValid)
+            var validationResult = validator.Validate(dto);
+
+            if (!validationResult.IsValid)
             {
-                return BadRequest(ModelState);
+                return ValidationError(validationResult);
             }
 
-            await _skillService.CreateAsync(createSkillDto);
+            var result = await _skillService.CreateAsync(dto);
 
-            return Created();
+            return NewResponse(result);
         }
 
         [HttpPatch("{skillId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateSkill(int skillId, [FromBody] UpdateSkillDto updateSkillDto)
+        public async Task<IActionResult> UpdateSkill(
+            int skillId,
+            [FromBody] UpdateSkillDto dto,
+            IValidator<UpdateSkillDto> validator
+        )
         {
-            await _skillService.UpdateAsync(skillId, updateSkillDto);
+            var validationResult = validator.Validate(dto);
 
-            return !ModelState.IsValid ? BadRequest(ModelState) : Ok();
+            if (!validationResult.IsValid)
+            {
+                return ValidationError(validationResult);
+            }
+
+            var result = await _skillService.UpdateAsync(skillId, dto);
+
+            return NewResponse(result);
         }
 
         [HttpDelete("{skillId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
 
         public async Task<IActionResult> DeleteSkill(int skillId)
         {
-            await _skillService.DeleteAsync(skillId);
+            var result = await _skillService.DeleteAsync(skillId);
 
-            return !ModelState.IsValid ? BadRequest(ModelState) : Ok();
+            return NewResponse(result);
         }
     }
 }

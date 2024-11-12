@@ -1,10 +1,7 @@
-﻿namespace Application.Dtos;
+namespace Application.Dtos;
 
-public class UpdateCourseDto(
-    string? title = null,
-    string? description = null
-    )
+public sealed class UpdateCourseDto
 {
-    public string? Title => title;
-    public string? Description => description;
+    public string? Title { get; set; }
+    public string? Description { get; set; }
 }

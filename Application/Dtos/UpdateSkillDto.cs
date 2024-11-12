@@ -1,8 +1,6 @@
 namespace Application.Dtos;
 
-public class UpdateSkillDto(
-    string? name
-)
+public sealed class UpdateSkillDto
 {
-    public string? Name => name;
+    public string? Name { get; set; }
 }

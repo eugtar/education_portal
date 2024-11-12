@@ -1,7 +1,7 @@
-﻿namespace Application.Dtos;
+namespace Application.Dtos;
 
-public class CreateCourseDto(string title, string description)
+public sealed class CreateCourseDto
 {
-    public string Title => title;
-    public string Description => description;
+    public required string Title { get; set; }
+    public required string Description { get; set; }
 }
