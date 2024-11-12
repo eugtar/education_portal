@@ -3,13 +3,14 @@ using Application.Services.Interfaces;
 using Domain.Entities;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using Web.ControllerBaseExtension;
+using Web.Controllers.Common.BaseController;
+
 
 namespace Web.Controllers
 {
     [Route("api/ebooks")]
     [ApiController]
-    public class EbookController : ControllerBase
+    public class EbookController : BaseController
     {
         private readonly IEbookService _ebookService;
 
@@ -20,67 +21,75 @@ namespace Web.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Ebook>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetEbooks()
         {
             var result = await _ebookService.GetAllAsync();
 
-            return this.ResponseResult(result);
+            return NewResponse(result);
         }
 
         [HttpGet("{ebookId}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Ebook))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetEbook(int ebookId)
         {
             var result = await _ebookService.GetByIdAsync(ebookId);
 
-            return this.ResponseResult(result);
+            return NewResponse(result);
         }
 
         [HttpPost]
-        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateEbook([FromBody] CreateEbookDto dto, IValidator<CreateEbookDto> validator)
+        public async Task<IActionResult> CreateEbook(
+            [FromBody] CreateEbookDto dto,
+            IValidator<CreateEbookDto> validator
+        )
         {
-            var validationResult = await validator.ValidateAsync(dto);
+            var validationResult = validator.Validate(dto);
 
             if (!validationResult.IsValid)
             {
-                return BadRequest(validationResult.ToDictionary());
+                return ValidationError(validationResult);
             }
 
             var result = await _ebookService.CreateAsync(dto);
 
-            return this.ResponseResult(result);
+            return NewResponse(result);
         }
 
         [HttpPatch("{ebookId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateCourse(int ebookId, [FromBody] UpdateEbookDto dto, IValidator<UpdateEbookDto> validator)
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> UpdateCourse(
+            int ebookId,
+            [FromBody] UpdateEbookDto dto,
+            IValidator<UpdateEbookDto> validator
+        )
         {
-            var validationResult = await validator.ValidateAsync(dto);
+            var validationResult = validator.Validate(dto);
 
             if (!validationResult.IsValid)
             {
-                return BadRequest(validationResult.ToDictionary());
+                return ValidationError(validationResult);
             }
 
             var result = await _ebookService.UpdateAsync(ebookId, dto);
 
-            return this.ResponseResult(result);
+            return NewResponse(result);
         }
 
         [HttpDelete("{ebookId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
 
         public async Task<IActionResult> DeleteCourse(int ebookId)
         {
             var result = await _ebookService.DeleteAsync(ebookId);
 
-            return this.ResponseResult(result);
+            return NewResponse(result);
         }
     }
 }

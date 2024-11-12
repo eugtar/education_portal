@@ -3,13 +3,13 @@ using Application.Services.Interfaces;
 using Domain.Entities;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
-using Web.ControllerBaseExtension;
+using Web.Controllers.Common.BaseController;
 
 namespace Web.Controllers
 {
     [Route("api/users")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : BaseController
     {
         private readonly IUserService _userService;
 
@@ -20,67 +20,75 @@ namespace Web.Controllers
 
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<User>))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetUsers()
         {
             var result = await _userService.GetAllAsync();
 
-            return this.ResponseResult(result);
+            return NewResponse(result);
         }
 
         [HttpGet("{userId}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(User))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> GetUser(int userId)
         {
             var result = await _userService.GetByIdAsync(userId);
 
-            return this.ResponseResult(result);
+            return NewResponse(result);
         }
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateUser([FromBody] CreateUserDto dto, IValidator<CreateUserDto> validator)
+        public async Task<IActionResult> CreateUser(
+            [FromBody] CreateUserDto dto,
+            IValidator<CreateUserDto> validator
+        )
         {
-            var validationResult = await validator.ValidateAsync(dto);
+            var validationResult = validator.Validate(dto);
 
             if (!validationResult.IsValid)
             {
-                return BadRequest(validationResult.ToDictionary());
+                return ValidationError(validationResult);
             }
 
             var result = await _userService.CreateAsync(dto);
 
-            return this.ResponseResult(result);
+            return NewResponse(result);
         }
 
         [HttpPatch("{userId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> UpdateUser(int userId, [FromBody] UpdateUserDto dto, IValidator<UpdateUserDto> validator)
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> UpdateUser(
+            int userId,
+            [FromBody] UpdateUserDto dto,
+            IValidator<UpdateUserDto> validator
+        )
         {
-            var validationResult = await validator.ValidateAsync(dto);
+            var validationResult = validator.Validate(dto);
 
             if (!validationResult.IsValid)
             {
-                return BadRequest(validationResult.ToDictionary());
+                return ValidationError(validationResult);
             }
 
             var result = await _userService.UpdateAsync(userId, dto);
 
-            return this.ResponseResult(result);
+            return NewResponse(result);
         }
 
         [HttpDelete("{userId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
 
         public async Task<IActionResult> DeleteUser(int userId)
         {
             var result = await _userService.DeleteAsync(userId);
 
-            return this.ResponseResult(result);
+            return NewResponse(result);
         }
     }
 }
