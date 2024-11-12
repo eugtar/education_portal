@@ -5,7 +5,7 @@ namespace Web.Validators.RuleBuilderExtensions;
 
 public static class FluentValidatorExtension
 {
-    public static IRuleBuilderOptions<T, string?> MustBeDateTimeOfFormat<T>(this IRuleBuilder<T, string?> ruleBuilder, string format)
+    public static IRuleBuilderOptions<T, string?> MustBeDateOfFormat<T>(this IRuleBuilder<T, string?> ruleBuilder, string format)
     {
         return ruleBuilder.Must(
             str =>

@@ -17,6 +17,6 @@ public class EbookUpdateValidator : AbstractValidator<UpdateEbookDto>
         RuleFor(ebook => ebook.FormatId)
             .IsInEnum();
         RuleFor(ebook => ebook.PublishedOn)
-            ?.MustBeDateTimeOfFormat("yyyy").WithMessage("Year is not in the correct format('YYYY')");
+            ?.MustBeDateOfFormat("yyyy").WithMessage("Year is not in the correct format('YYYY')");
     }
 }

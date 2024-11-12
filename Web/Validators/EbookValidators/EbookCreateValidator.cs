@@ -21,7 +21,7 @@ public sealed class EbookCreateValidator : AbstractValidator<CreateEbookDto>
             .IsInEnum()
             .NotEmpty().WithMessage("Book format is required");
         RuleFor(ebook => ebook.PublishedOn)
-            .MustBeDateTimeOfFormat("yyyy").WithMessage("Year is not in the correct format('YYYY')")
+            .MustBeDateOfFormat("yyyy").WithMessage("Year is not in the correct format('YYYY')")
             .NotEmpty().WithMessage("Year of publication is required");
     }
 }
