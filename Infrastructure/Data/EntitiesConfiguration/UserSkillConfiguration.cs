@@ -19,5 +19,7 @@ public class UserSkillConfiguration : IEntityTypeConfiguration<UserSkill>
             .HasForeignKey(d => d.UserId)
             .OnDelete(DeleteBehavior.ClientSetNull)
             .HasConstraintName("FK__UserSkills__UserId");
+
+        builder.Property(d => d.Level).HasDefaultValue(1);
     }
 }
