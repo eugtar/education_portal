@@ -17,12 +17,12 @@ public class SampleContextFactory : IDesignTimeDbContextFactory<DatabaseContext>
         var config = builder.Build();
 
         var connectionString = config.GetConnectionString("DefaultConnection");
-        
+
         var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
 
         optionsBuilder.LogTo(Console.WriteLine, Microsoft.Extensions.Logging.LogLevel.Trace);
         optionsBuilder.UseSqlServer(connectionString);
-        
+
         return new DatabaseContext(optionsBuilder.Options);
     }
 }

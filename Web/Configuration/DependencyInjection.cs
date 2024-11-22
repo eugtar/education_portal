@@ -2,11 +2,13 @@ using System.Reflection;
 using Application.Interfaces;
 using Application.Services;
 using Application.Services.Interfaces;
+using Domain.Entities;
 using FluentValidation;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
 using Infrastructure.Repositories.GenericRepository;
 using Infrastructure.UnitOfWork;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
@@ -30,6 +32,23 @@ public static class DependencyInjection
         );
 
         return services;
+    }
+
+    // Auth
+    public static IServiceCollection AddAuthService(this IServiceCollection service)
+    {
+        service.AddAuthentication()
+            .AddCookie(IdentityConstants.ApplicationScheme)
+            .AddBearerToken(IdentityConstants.BearerScheme);
+
+        service.AddAuthorizationBuilder();
+
+        service.AddIdentityCore<User>()
+            .AddRoles<Role>()
+            .AddEntityFrameworkStores<DatabaseContext>()
+            .AddApiEndpoints();
+
+        return service;
     }
 
     // Fluent Validator
@@ -60,13 +79,14 @@ public static class DependencyInjection
     public static IServiceCollection AddApplicationRepository(this IServiceCollection services)
     {
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+        services.AddScoped<IQualityRepository, QualityRepository>();
+        services.AddScoped<IFormatRepository, FormatRepository>();
+        services.AddScoped<IRoleRepository, RoleRepository>();
         services.AddScoped<IArticleRepository, ArticleRepository>();
         services.AddScoped<ICourseRepository, CourseRepository>();
         services.AddScoped<IEbookRepository, EbookRepository>();
         services.AddScoped<IVideoRepository, VideoRepository>();
         services.AddScoped<ISkillRepository, SkillRepository>();
-        services.AddScoped<IQualityRepository, QualityRepository>();
-        services.AddScoped<IFormatRepository, FormatRepository>();
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IUserCourseRepository, UserCourseRepository>();
         services.AddScoped<IUserSkillRepository, UserSkillRepository>();

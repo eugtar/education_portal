@@ -4,6 +4,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class DatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20241121084647_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,7 +88,7 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id")
                         .HasName("PK__Materials");
 
-                    b.ToTable("Materials", (string)null);
+                    b.ToTable("Materials");
 
                     b.HasDiscriminator<string>("Type").HasValue("Material");
 
@@ -119,7 +122,7 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id")
                         .HasName("PK__Courses");
 
-                    b.ToTable("Courses", (string)null);
+                    b.ToTable("Courses");
                 });
 
             modelBuilder.Entity("Domain.Entities.Format", b =>
@@ -141,7 +144,7 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id")
                         .HasName("PK__Formats");
 
-                    b.ToTable("Formats", (string)null);
+                    b.ToTable("Formats");
                 });
 
             modelBuilder.Entity("Domain.Entities.Quality", b =>
@@ -163,7 +166,7 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id")
                         .HasName("PK__Qualities");
 
-                    b.ToTable("Qualities", (string)null);
+                    b.ToTable("Qualities");
                 });
 
             modelBuilder.Entity("Domain.Entities.Role", b =>
@@ -224,7 +227,7 @@ namespace Infrastructure.Migrations
                     b.HasIndex(new[] { "Name" }, "UQ__Skills")
                         .IsUnique();
 
-                    b.ToTable("Skills", (string)null);
+                    b.ToTable("Skills");
                 });
 
             modelBuilder.Entity("Domain.Entities.User", b =>
@@ -346,7 +349,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserCourses", (string)null);
+                    b.ToTable("UserCourses");
                 });
 
             modelBuilder.Entity("Domain.Entities.UserSkill", b =>
@@ -381,7 +384,7 @@ namespace Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserSkills", (string)null);
+                    b.ToTable("UserSkills");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

@@ -76,24 +76,24 @@ public class CourseConfiguration : IEntityTypeConfiguration<Course>
                     j.HasKey("CourseId", "SkillId").HasName("PK__CourseSkill");
                     j.ToTable("CourseSkill");
                     j.HasData(
-                        new{CourseId = 1, SkillId = 1},
-                        new{CourseId = 2, SkillId = 1},
-                        new{CourseId = 2, SkillId = 2},
-                        new{CourseId = 3, SkillId = 1},
-                        new{CourseId = 3, SkillId = 2},
-                        new{CourseId = 3, SkillId = 3},
-                        new{CourseId = 4, SkillId = 4},
-                        new{CourseId = 5, SkillId = 4},
-                        new{CourseId = 5, SkillId = 5},
-                        new{CourseId = 6, SkillId = 4},
-                        new{CourseId = 6, SkillId = 5},
-                        new{CourseId = 6, SkillId = 6},
-                        new{CourseId = 7, SkillId = 7},
-                        new{CourseId = 8, SkillId = 7},
-                        new{CourseId = 8, SkillId = 8},
-                        new{CourseId = 9, SkillId = 7},
-                        new{CourseId = 9, SkillId = 8},
-                        new{CourseId = 9, SkillId = 9}
+                        new { CourseId = 1, SkillId = 1 },
+                        new { CourseId = 2, SkillId = 1 },
+                        new { CourseId = 2, SkillId = 2 },
+                        new { CourseId = 3, SkillId = 1 },
+                        new { CourseId = 3, SkillId = 2 },
+                        new { CourseId = 3, SkillId = 3 },
+                        new { CourseId = 4, SkillId = 4 },
+                        new { CourseId = 5, SkillId = 4 },
+                        new { CourseId = 5, SkillId = 5 },
+                        new { CourseId = 6, SkillId = 4 },
+                        new { CourseId = 6, SkillId = 5 },
+                        new { CourseId = 6, SkillId = 6 },
+                        new { CourseId = 7, SkillId = 7 },
+                        new { CourseId = 8, SkillId = 7 },
+                        new { CourseId = 8, SkillId = 8 },
+                        new { CourseId = 9, SkillId = 7 },
+                        new { CourseId = 9, SkillId = 8 },
+                        new { CourseId = 9, SkillId = 9 }
                     );
                 });
     }

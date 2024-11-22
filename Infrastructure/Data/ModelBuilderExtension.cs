@@ -9,7 +9,13 @@ public static class ModelBuilderExtension
     {
         // DateTime
         var dateTimeNow = DateTime.UtcNow;
-        
+
+        // Roles
+        var role1 = new Role() { Id = 1, Name = "Administrator", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
+        var role2 = new Role() { Id = 2, Name = "Theacher", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
+        var role3 = new Role() { Id = 3, Name = "Student", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
+        var role4 = new Role() { Id = 4, Name = "Guest", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
+
         // Qualities
         var quality1 = new Quality() { Id = 1, QualityType = "144p", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
         var quality2 = new Quality() { Id = 2, QualityType = "240p", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
@@ -72,10 +78,10 @@ public static class ModelBuilderExtension
         var skill9 = new Skill() { Id = 9, Name = "C#-Master", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
 
         // Users
-        var user1 = new User() { Id = 1, FirstName = "John1", LastName = "Doe1", Email = "johndoe1@gmail.com", HashPassword = "1111", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
-        var user2 = new User() { Id = 2, FirstName = "John2", LastName = "Doe2", Email = "johndoe2@gmail.com", HashPassword = "1111", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
-        var user3 = new User() { Id = 3, FirstName = "John3", LastName = "Doe3", Email = "johndoe3@gmail.com", HashPassword = "1111", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
-        var user4 = new User() { Id = 4, FirstName = "John4", LastName = "Doe4", Email = "johndoe4@gmail.com", HashPassword = "1111", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
+        /* var user1 = new User() { Id = 1, FirstName = "John1", LastName = "Doe1", Email = "johndoe1@gmail.com", RoleId = 1, CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
+        var user2 = new User() { Id = 2, FirstName = "John2", LastName = "Doe2", Email = "johndoe2@gmail.com", RoleId = 2, CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
+        var user3 = new User() { Id = 3, FirstName = "John3", LastName = "Doe3", Email = "johndoe3@gmail.com", RoleId = 3, CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
+        var user4 = new User() { Id = 4, FirstName = "John4", LastName = "Doe4", Email = "johndoe4@gmail.com", RoleId = 4, CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow }; */
 
         // Courses
         var course1 = new Course() { Id = 1, Title = "JSCourse(Beginner)", Description = "JavaScript beginner course", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
@@ -93,7 +99,7 @@ public static class ModelBuilderExtension
         modelBuilder.Entity<Article>().HasData(article1, article2, article3, article4, article5, article6, article7, article8, article9);
         modelBuilder.Entity<Ebook>().HasData(ebook1, ebook2, ebook3, ebook4, ebook5, ebook6, ebook7, ebook8, ebook9);
         modelBuilder.Entity<Video>().HasData(video1, video2, video3, video4, video5, video6, video7, video8, video9);
-        modelBuilder.Entity<User>().HasData(user1, user2, user3, user4);
+        // modelBuilder.Entity<User>().HasData(user1, user2, user3, user4);
         modelBuilder.Entity<Skill>().HasData(skill1, skill2, skill3, skill4, skill5, skill6, skill7, skill8, skill9);
         modelBuilder.Entity<Course>().HasData(course1, course2, course3, course4, course5, course6, course7, course8, course9);
     }

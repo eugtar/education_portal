@@ -4,6 +4,7 @@ using Application.Interfaces;
 using Application.Results;
 using Application.Services.Interfaces;
 using Domain.Entities;
+using Domain.Enums;
 
 namespace Application.Services;
 
@@ -33,7 +34,8 @@ public class UserService : IUserService
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
                 Email = dto.Email,
-                HashPassword = dto.Password,
+                PasswordHash = dto.Password,
+                // RoleId = (int)UserRole.Student
             });
 
         await _unitOfWork.CompleteAsync();
@@ -92,7 +94,7 @@ public class UserService : IUserService
         user.FirstName = dto.FirstName ?? user.FirstName;
         user.LastName = dto.LastName ?? user.LastName;
         user.Email = dto.Email ?? user.Email;
-        user.HashPassword = dto.Password ?? user.HashPassword;
+        user.PasswordHash = dto.Password ?? user.PasswordHash;
 
         await _unitOfWork.Users.UpdateAsync(user);
         await _unitOfWork.CompleteAsync();

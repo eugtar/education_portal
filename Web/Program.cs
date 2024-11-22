@@ -1,4 +1,5 @@
 using System.Text.Json.Serialization;
+using Domain.Entities;
 using Web.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,9 @@ builder.Services
             options.JsonSerializerOptions.WriteIndented = true;
         }
     );
+
+// Add Auth servicds
+builder.Services.AddAuthService();
 // Add Swagger services
 builder.Services.AddSwaggerService();
 // Add Database services
@@ -37,7 +41,12 @@ if (app.Environment.IsDevelopment())
     );
 }
 
+app.MapIdentityApi<User>();
+
 app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
 app.MapControllers();
 
 app.Run();
