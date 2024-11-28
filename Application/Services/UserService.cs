@@ -3,8 +3,7 @@ using Application.Dtos;
 using Application.Interfaces;
 using Application.Results;
 using Application.Services.Interfaces;
-using Domain.Entities;
-using Domain.Enums;
+using Domain.Entities.UserGroup;
 
 namespace Application.Services;
 
@@ -20,7 +19,7 @@ public class UserService : IUserService
     public async Task<Result> CreateAsync(CreateUserDto dto)
     {
         var isUserExist = await _unitOfWork.Users.IsExistAsync(
-            user => user.Email.ToLower() == dto.Email.ToLower()
+            user => user.Email!.ToLower() == dto.Email.ToLower()
         );
 
         if (isUserExist)

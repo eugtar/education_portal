@@ -1,7 +1,8 @@
 using Application.Dtos;
 using Application.Services.Interfaces;
-using Domain.Entities;
+using Domain.Entities.UserGroup;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web.Controllers.Common.BaseController;
 
@@ -9,6 +10,7 @@ namespace Web.Controllers
 {
     [Route("api/users")]
     [ApiController]
+    [Authorize]
     public class UserController : BaseController
     {
         private readonly IUserService _userService;

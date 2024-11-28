@@ -1,6 +1,6 @@
 ﻿using Domain.Common;
 
-namespace Domain.Entities;
+namespace Domain.Entities.UserGroup;
 
 public partial class UserCourse : BaseEntity
 {

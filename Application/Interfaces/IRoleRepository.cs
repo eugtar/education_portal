@@ -1,4 +1,4 @@
-using Domain.Entities;
+using Domain.Entities.RoleGroup;
 
 namespace Application.Interfaces;
 

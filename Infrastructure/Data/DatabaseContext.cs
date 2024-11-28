@@ -1,12 +1,16 @@
 ﻿using System.Reflection;
 using Domain.Common;
 using Domain.Entities;
+using Domain.Entities.RoleGroup;
+using Domain.Entities.UserGroup;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Infrastructure.Data;
 
-public partial class DatabaseContext : IdentityDbContext<User, Role, int>
+public partial class DatabaseContext
+    : IdentityDbContext<User, Role, int, UserClaim, UserRole, UserLogin, RoleClaim, UserToken>
 {
     public virtual DbSet<Quality> Qualities { get; set; } = null!;
     public virtual DbSet<Format> Formats { get; set; } = null!;
@@ -21,9 +25,11 @@ public partial class DatabaseContext : IdentityDbContext<User, Role, int>
 
     public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options) { }
 
-    partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) => optionsBuilder.UseLazyLoadingProxies();
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseLazyLoadingProxies();
+        optionsBuilder.ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
+    }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -31,9 +37,7 @@ public partial class DatabaseContext : IdentityDbContext<User, Role, int>
 
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-        OnModelCreatingPartial(modelBuilder);
-
-        // modelBuilder.Seed();
+        modelBuilder.Seed();
     }
 
     public override int SaveChanges()

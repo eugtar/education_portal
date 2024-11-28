@@ -1,5 +1,5 @@
 using System.Text.Json.Serialization;
-using Domain.Entities;
+using Domain.Entities.UserGroup;
 using Web.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -41,10 +41,11 @@ if (app.Environment.IsDevelopment())
     );
 }
 
-app.MapIdentityApi<User>();
-
 app.UseHttpsRedirection();
 
+app.MapGroup("api/auth").MapIdentityApi<User>();
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

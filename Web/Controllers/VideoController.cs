@@ -2,6 +2,7 @@ using Application.Dtos;
 using Application.Services.Interfaces;
 using Domain.Entities;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web.Controllers.Common.BaseController;
 
@@ -9,6 +10,7 @@ namespace Web.Controllers
 {
     [Route("api/videos")]
     [ApiController]
+    [Authorize]
     public class VideoController : BaseController
     {
         private readonly IVideoService _videoService;

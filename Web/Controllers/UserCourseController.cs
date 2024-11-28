@@ -1,5 +1,6 @@
 using Application.Services.Interfaces;
-using Domain.Entities;
+using Domain.Entities.UserGroup;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web.Controllers.Common.BaseController;
 
@@ -7,6 +8,7 @@ namespace Web.Controllers
 {
     [Route("api/users")]
     [ApiController]
+    [Authorize]
     public class UserCourseController : BaseController
     {
         private readonly ICourseService _courseService;

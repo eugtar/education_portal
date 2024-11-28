@@ -2,6 +2,7 @@ using Application.Dtos;
 using Application.Services.Interfaces;
 using Domain.Entities;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web.Controllers.Common.BaseController;
 
@@ -9,6 +10,7 @@ namespace Web.Controllers
 {
     [Route("api/skills")]
     [ApiController]
+    [Authorize]
     public class SkillController : BaseController
     {
         private readonly ISkillService _skillService;

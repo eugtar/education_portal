@@ -1,4 +1,5 @@
 ﻿using Domain.Common;
+using Domain.Entities.UserGroup;
 
 namespace Domain.Entities;
 

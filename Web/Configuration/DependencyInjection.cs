@@ -1,8 +1,9 @@
 using System.Reflection;
 using Application.Interfaces;
 using Application.Services;
+using Application.Services.SkillGroup;
+using Application.Services.CourseGroup;
 using Application.Services.Interfaces;
-using Domain.Entities;
 using FluentValidation;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
@@ -11,6 +12,8 @@ using Infrastructure.UnitOfWork;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using Domain.Entities.RoleGroup;
+using Domain.Entities.UserGroup;
 
 namespace Web.Configuration;
 
@@ -28,6 +31,27 @@ public static class DependencyInjection
                     Version = "v1.0",
                     Title = "Education Portal API",
                 });
+
+                options.AddSecurityDefinition("BearerAuth", new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "Bearer"
+                });
+
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                        Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "BearerAuth"
+                            }
+                        },
+                        []
+                    }
+                });
             }
         );
 
@@ -37,9 +61,7 @@ public static class DependencyInjection
     // Auth
     public static IServiceCollection AddAuthService(this IServiceCollection service)
     {
-        service.AddAuthentication()
-            .AddCookie(IdentityConstants.ApplicationScheme)
-            .AddBearerToken(IdentityConstants.BearerScheme);
+        service.AddAuthentication().AddBearerToken(IdentityConstants.BearerScheme);
 
         service.AddAuthorizationBuilder();
 

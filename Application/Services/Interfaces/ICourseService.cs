@@ -1,6 +1,7 @@
 ﻿using Application.Dtos;
 using Application.Results;
 using Domain.Entities;
+using Domain.Entities.UserGroup;
 
 namespace Application.Services.Interfaces;
 

@@ -2,6 +2,7 @@ using Application.Dtos;
 using Application.Services.Interfaces;
 using Domain.Entities;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web.Controllers.Common.BaseController;
 
@@ -10,6 +11,7 @@ namespace Web.Controllers
 {
     [Route("api/ebooks")]
     [ApiController]
+    [Authorize]
     public class EbookController : BaseController
     {
         private readonly IEbookService _ebookService;

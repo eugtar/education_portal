@@ -1,4 +1,3 @@
-using System.Runtime.Serialization.Formatters;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;

@@ -1,5 +1,5 @@
 using Application.Interfaces;
-using Domain.Entities;
+using Domain.Entities.RoleGroup;
 using Infrastructure.Data;
 using Infrastructure.Repositories.GenericRepository;
 
