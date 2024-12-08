@@ -68,4 +68,9 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
         _context.Update(entity);
         return Task.CompletedTask;
     }
+
+    public IQueryable<T> AsQueryable()
+    {
+        return _entities.AsQueryable();
+    }
 }
