@@ -15,8 +15,8 @@ public class UserUpdateValidator : AbstractValidator<UpdateUserDto>
             .MaximumLength(50)
             .EmailAddress();
         RuleFor(user => user.Password)
-            .MinimumLength(5)
-            .MaximumLength(24)
+            .MinimumLength(8)
+            .MaximumLength(16)
             .NotEmpty().WithMessage("Password is required");
         RuleFor(user => user.PasswordConfirmation)
             .Equal(user => user.Password)
