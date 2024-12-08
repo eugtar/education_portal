@@ -61,11 +61,15 @@ public static class DependencyInjection
     // Auth
     public static IServiceCollection AddAuthService(this IServiceCollection service)
     {
-        service.AddAuthentication().AddBearerToken(IdentityConstants.BearerScheme);
+        service.AddAuthentication();
 
         service.AddAuthorizationBuilder();
 
-        service.AddIdentityCore<User>()
+        service.AddIdentityApiEndpoints<User>(options =>
+        {
+            options.SignIn.RequireConfirmedEmail = true;
+            options.User.RequireUniqueEmail = true;
+        })
             .AddRoles<Role>()
             .AddEntityFrameworkStores<DatabaseContext>()
             .AddApiEndpoints();
@@ -103,7 +107,6 @@ public static class DependencyInjection
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         services.AddScoped<IQualityRepository, QualityRepository>();
         services.AddScoped<IFormatRepository, FormatRepository>();
-        services.AddScoped<IRoleRepository, RoleRepository>();
         services.AddScoped<IArticleRepository, ArticleRepository>();
         services.AddScoped<ICourseRepository, CourseRepository>();
         services.AddScoped<IEbookRepository, EbookRepository>();
@@ -127,6 +130,7 @@ public static class DependencyInjection
         services.AddScoped<IVideoService, VideoService>();
         services.AddScoped<ISkillService, SkillService>();
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IEmailService, EmailService>();
 
         return services;
     }

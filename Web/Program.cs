@@ -43,8 +43,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGroup("api/auth").MapIdentityApi<User>();
-
 app.UseAuthentication();
 app.UseAuthorization();
 
