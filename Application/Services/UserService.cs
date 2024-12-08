@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using Application.Dtos;
 using Application.Interfaces;
 using Application.Results;
@@ -14,32 +14,6 @@ public class UserService : IUserService
     public UserService(IUnitOfWork unitOfWork)
     {
         _unitOfWork = unitOfWork;
-    }
-
-    public async Task<Result> CreateAsync(CreateUserDto dto)
-    {
-        var isUserExist = await _unitOfWork.Users.IsExistAsync(
-            user => user.Email!.ToLower() == dto.Email.ToLower()
-        );
-
-        if (isUserExist)
-        {
-            return new Error(HttpStatusCode.BadRequest, $"User {dto.Email} is exist");
-        }
-
-        await _unitOfWork.Users.AddAsync(
-            new User()
-            {
-                FirstName = dto.FirstName,
-                LastName = dto.LastName,
-                Email = dto.Email,
-                PasswordHash = dto.Password,
-                // RoleId = (int)UserRole.Student
-            });
-
-        await _unitOfWork.CompleteAsync();
-
-        return Result.Success();
     }
 
     public async Task<Result> DeleteAsync(int id)

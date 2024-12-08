@@ -40,26 +40,6 @@ namespace Web.Controllers
             return NewResponse(result);
         }
 
-        [HttpPost]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateUser(
-            [FromBody] CreateUserDto dto,
-            IValidator<CreateUserDto> validator
-        )
-        {
-            var validationResult = validator.Validate(dto);
-
-            if (!validationResult.IsValid)
-            {
-                return ValidationError(validationResult);
-            }
-
-            var result = await _userService.CreateAsync(dto);
-
-            return NewResponse(result);
-        }
-
         [HttpPatch("{userId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
