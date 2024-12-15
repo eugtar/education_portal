@@ -12,10 +12,10 @@ public static class ModelBuilderExtension
         var dateTimeNow = DateTime.UtcNow;
 
         // Roles
-        var role1 = new Role() { Id = 1, Name = "Administrator", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
-        var role2 = new Role() { Id = 2, Name = "Theacher", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
-        var role3 = new Role() { Id = 3, Name = "Student", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
-        var role4 = new Role() { Id = 4, Name = "Guest", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
+        var role1 = new Role() { Id = 1, Name = "Administrator", NormalizedName = "ADMINISTRATOR", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
+        var role2 = new Role() { Id = 2, Name = "Teacher", NormalizedName = "TEACHER", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
+        var role3 = new Role() { Id = 3, Name = "Student", NormalizedName = "STUDENT", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
+        var role4 = new Role() { Id = 4, Name = "Guest", NormalizedName = "GUEST", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };
 
         // Qualities
         var quality1 = new Quality() { Id = 1, QualityType = "144p", CreatedAt = dateTimeNow, UpdatedAt = dateTimeNow };

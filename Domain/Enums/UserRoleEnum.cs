@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace Domain.Enums;
 
-public enum UserRole
+public enum UserRoleEnum
 {
     [Description("Administrator")]
     Admin = 1,
