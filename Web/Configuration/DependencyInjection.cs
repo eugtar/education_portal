@@ -58,23 +58,54 @@ public static class DependencyInjection
         return services;
     }
 
-    // Auth
-    public static IServiceCollection AddAuthService(this IServiceCollection service)
+    // CORS
+    public static IServiceCollection AddCorsService(this IServiceCollection services)
     {
-        service.AddAuthentication();
+        services.AddCors(options =>
+        {
+            options.AddPolicy("AllowGoogleAuth", builder =>
+            {
+                builder.WithOrigins("https://accounts.google.com/o/oauth2/v2/auth")
+                    .AllowAnyMethod()
+                    .AllowCredentials()
+                    .AllowAnyHeader();
+            });
+            options.AddPolicy("AllowOAuth", builder =>
+            {
+                builder.WithOrigins("http://localhost:5034")
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials();
+            });
+        });
 
-        service.AddAuthorizationBuilder();
+        return services;
+    }
 
-        service.AddIdentityApiEndpoints<User>(options =>
+    // Auth
+    public static IServiceCollection AddAuthService(
+        this IServiceCollection services,
+        IConfiguration configuration
+    )
+    {
+        services.AddIdentityApiEndpoints<User>(options =>
         {
             options.SignIn.RequireConfirmedEmail = true;
             options.User.RequireUniqueEmail = true;
         })
             .AddRoles<Role>()
-            .AddEntityFrameworkStores<DatabaseContext>()
-            .AddApiEndpoints();
+            .AddEntityFrameworkStores<DatabaseContext>();
 
-        return service;
+        services.AddAuthentication()
+        .AddGoogle(options =>
+        {
+            options.SignInScheme = IdentityConstants.ExternalScheme;
+            options.ClientId = configuration["Authentication:Google:ClientId"]!;
+            options.ClientSecret = configuration["Authentication:Google:ClientSecret"]!;
+            options.CallbackPath = new PathString("/signin-google");
+        });
+
+        return services;
     }
 
     // Fluent Validator
@@ -115,6 +146,7 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IUserCourseRepository, UserCourseRepository>();
         services.AddScoped<IUserSkillRepository, UserSkillRepository>();
+        services.AddScoped<IRoleService, RoleService>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 

@@ -1,11 +1,14 @@
+using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
 using Application.Dtos;
 using Application.Services.Interfaces;
 using Domain.Entities;
 using Domain.Entities.UserGroup;
+using Domain.Enums;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.BearerToken;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
@@ -18,6 +21,7 @@ namespace Web.Controllers
     public class AuthController : ControllerBase
     {
         private readonly UserManager<User> _userManager;
+        private readonly IRoleService _roleService;
         private readonly IEmailService _emailService;
         private readonly SignInManager<User> _signInManager;
         private readonly IOptionsMonitor<BearerTokenOptions> _bearerTokenOptions;
@@ -25,6 +29,7 @@ namespace Web.Controllers
 
         public AuthController(
             UserManager<User> userManager,
+            IRoleService roleService,
             IEmailService emailService,
             SignInManager<User> signInManager,
             IOptionsMonitor<BearerTokenOptions> bearerTokenOptions,
@@ -32,6 +37,7 @@ namespace Web.Controllers
         )
         {
             _userManager = userManager;
+            _roleService = roleService;
             _emailService = emailService;
             _signInManager = signInManager;
             _bearerTokenOptions = bearerTokenOptions;
@@ -58,12 +64,14 @@ namespace Web.Controllers
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
                 Email = dto.Email,
+                EmailConfirmed = true,
                 UserName = dto.Email,
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow
             };
 
             var result = await _userManager.CreateAsync(user, dto.Password);
+            await _roleService.SetAsStudentAsync(user);
 
             if (!result.Succeeded)
             {
@@ -77,7 +85,7 @@ namespace Web.Controllers
                 );
             }
 
-            await SendConfirmationEmailAsync(user);
+            // await SendConfirmationEmailAsync(user);
 
             return Ok();
         }
@@ -121,6 +129,83 @@ namespace Web.Controllers
 
             return Empty;
         }
+
+        [HttpGet("google/signin")]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        public IActionResult SignInWithGoogle()
+        {
+            var callbackUrl = Url.Action("GoogleCallback", "Auth");
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(
+                "Google",
+                callbackUrl
+            );
+
+            return Challenge(properties, "Google");
+        }
+
+        [HttpGet("google/signin/callback")]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> GoogleCallback()
+        {
+            var userInformation = await _signInManager.GetExternalLoginInfoAsync();
+
+            if (userInformation is null) return NotFound("User not found");
+
+            var signInResult = await _signInManager.ExternalLoginSignInAsync(
+                userInformation.LoginProvider,
+                userInformation.ProviderKey,
+                isPersistent: false
+            );
+
+            if (signInResult.Succeeded) return Ok("Sign in successful");
+
+            var email = userInformation.Principal.FindFirst(ClaimTypes.Email)!.Value;
+            var user = await _userManager.FindByEmailAsync(email);
+
+            if (user is not null)
+            {
+                return BadRequest("You already have an account. Try using the password to sign in");
+            }
+
+            user = new User
+            {
+                FirstName = userInformation.Principal.FindFirst(ClaimTypes.GivenName)!.Value,
+                LastName = userInformation.Principal.FindFirst(ClaimTypes.Surname)!.Value,
+                Email = email,
+                UserName = email,
+                EmailConfirmed = true,
+                CreatedAt = DateTime.UtcNow,
+                UpdatedAt = DateTime.UtcNow
+            };
+
+            var creationResult = await _userManager.CreateAsync(user);
+            await _roleService.SetAsStudentAsync(user);
+
+            if (creationResult.Succeeded)
+            {
+                var loginResult = await _userManager.AddLoginAsync(user, userInformation);
+
+                if (loginResult.Succeeded)
+                {
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    return Ok("Account created and signed in");
+                }
+            }
+
+            return Problem(creationResult.ToString(), statusCode: StatusCodes.Status401Unauthorized);
+        }
+
+        [HttpPost("signout")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [Authorize]
+        public async Task<IActionResult> UserSignOut()
+        {
+            await _signInManager.SignOutAsync();
+            return Ok();
+        }
+
 
         [HttpPost("refresh")]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

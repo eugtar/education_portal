@@ -1,5 +1,4 @@
 using System.Text.Json.Serialization;
-using Domain.Entities.UserGroup;
 using Web.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,10 +13,12 @@ builder.Services
         }
     );
 
-// Add Auth servicds
-builder.Services.AddAuthService();
+// Add CORS
+builder.Services.AddCorsService();
 // Add Swagger services
 builder.Services.AddSwaggerService();
+// Add Auth servicds
+builder.Services.AddAuthService(builder.Configuration);
 // Add Database services
 builder.Services.AddDatabaseService(builder.Configuration);
 // Add Application repository
@@ -39,9 +40,18 @@ if (app.Environment.IsDevelopment())
             options.RoutePrefix = string.Empty;
         }
     );
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseHsts();
 }
 
+app.UseCors("AllowGoogleAuth");
+
 app.UseHttpsRedirection();
+
+app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
