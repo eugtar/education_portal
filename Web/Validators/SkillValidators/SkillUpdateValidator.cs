@@ -1,4 +1,4 @@
-using Application.Dtos;
+using Application.Dtos.SkillDtos;
 using FluentValidation;
 
 namespace Application.Validators.SkillValidators;

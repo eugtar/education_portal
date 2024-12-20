@@ -1,4 +1,4 @@
-using Application.Dtos;
+using Application.Dtos.ArticleDtos;
 using FluentValidation;
 
 namespace Application.Validators.ArticleValidators;

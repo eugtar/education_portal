@@ -1,4 +1,4 @@
-using Application.Dtos;
+using Application.Dtos.EbookDtos;
 using FluentValidation;
 using Web.Validators.RuleBuilderExtensions;
 
