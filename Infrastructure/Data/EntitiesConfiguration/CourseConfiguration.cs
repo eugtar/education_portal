@@ -19,11 +19,11 @@ public class CourseConfiguration : IEntityTypeConfiguration<Course>
                 "CourseMaterial",
                 r => r.HasOne<Material>().WithMany()
                     .HasForeignKey("MaterialId")
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK__CourseMaterial__Material"),
                 l => l.HasOne<Course>().WithMany()
                     .HasForeignKey("CourseId")
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK__CourseMaterial__Course"),
                 j =>
                 {
@@ -65,11 +65,11 @@ public class CourseConfiguration : IEntityTypeConfiguration<Course>
                 "CourseSkill",
                 r => r.HasOne<Skill>().WithMany()
                     .HasForeignKey("SkillId")
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK__CourseSkill__Skill"),
                 l => l.HasOne<Course>().WithMany()
                     .HasForeignKey("CourseId")
-                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .OnDelete(DeleteBehavior.Cascade)
                     .HasConstraintName("FK__CourseSkill__Course"),
                 j =>
                 {

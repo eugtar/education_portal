@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20241220121849_InitialCreate")]
+    [Migration("20241220160327_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -357,74 +357,74 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Description = "java script beginner course",
                             Title = "js-course(beginner)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Description = "java script intermadiate course",
                             Title = "js-course(intermadiate)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Description = "java script master course",
                             Title = "js-course(master)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Description = "react beginner course",
                             Title = "react-course(beginner)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Description = "react intermadiate course",
                             Title = "react-course(intermadiate)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Description = "react master course",
                             Title = "react-course(master)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Description = "c# beginner course",
                             Title = "c#-course(beginner)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Description = "c# intermadiate course",
                             Title = "c#-course(intermadiate)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Description = "c# master course",
                             Title = "c#-course(naster)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         });
                 });
 
@@ -453,37 +453,37 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             FormatType = "epub",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             FormatType = "pdf",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             FormatType = "docx",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             FormatType = "azw",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             FormatType = "txt",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         });
                 });
 
@@ -512,58 +512,58 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             QualityType = "144p",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             QualityType = "240p",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             QualityType = "360p",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             QualityType = "480p",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             QualityType = "720p",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             QualityType = "1080p",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             QualityType = "1440p",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             QualityType = "2160p",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         });
                 });
 
@@ -603,34 +603,34 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Name = "administrator",
                             NormalizedName = "ADMINISTRATOR",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Name = "teacher",
                             NormalizedName = "TEACHER",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Name = "student",
                             NormalizedName = "STUDENT",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Name = "guest",
                             NormalizedName = "GUEST",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         });
                 });
 
@@ -689,65 +689,65 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Name = "js-beginner",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Name = "js-intermediate",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Name = "js-master",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Name = "react-beginner",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Name = "react-intermediate",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Name = "react-master",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Name = "c#-beginner",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Name = "c#-intermediate",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Name = "c#-master",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         });
                 });
 
@@ -1002,73 +1002,73 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "js-article(beginner) ",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Link = "https://www.w3schools.com/js/default.asp"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "js-article(intermediate)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Link = "https://www.w3schools.com/js/default.asp"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "js-article(master)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Link = "https://www.w3schools.com/js/default.asp"
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "react-article(beginner)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Link = "https://www.w3schools.com/react/default.asp"
                         },
                         new
                         {
                             Id = 5,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "react-article(intermediate)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Link = "https://www.w3schools.com/react/default.asp"
                         },
                         new
                         {
                             Id = 6,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "react-article(master)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Link = "https://www.w3schools.com/react/default.asp"
                         },
                         new
                         {
                             Id = 7,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "c#-article(beginner)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Link = "https://www.w3schools.com/cs/index.php"
                         },
                         new
                         {
                             Id = 8,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "c#-article(intermediate)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Link = "https://www.w3schools.com/cs/index.php"
                         },
                         new
                         {
                             Id = 9,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "c#-article(master)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Link = "https://www.w3schools.com/cs/index.php"
                         });
                 });
@@ -1103,101 +1103,101 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 10,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "js-ebook(beginner)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Author = "david flanagan",
                             FormatId = 2,
                             PageAmount = 1093,
-                            PublishedOn = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            PublishedOn = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 11,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "js-ebook(intermediate)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Author = "david herman",
                             FormatId = 2,
                             PageAmount = 228,
-                            PublishedOn = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            PublishedOn = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 12,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "js-ebook(master)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Author = "nicholas c.zakas",
                             FormatId = 3,
                             PageAmount = 960,
-                            PublishedOn = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            PublishedOn = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 13,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "react-ebook(beginner)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Author = "robin wieruch",
                             FormatId = 2,
                             PageAmount = 286,
-                            PublishedOn = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            PublishedOn = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 14,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "react-ebook(intermediate)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Author = "adam boduch",
                             FormatId = 3,
                             PageAmount = 526,
-                            PublishedOn = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            PublishedOn = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 15,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "react-ebook(master)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Author = "carlos santana roldan",
                             FormatId = 3,
                             PageAmount = 394,
-                            PublishedOn = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            PublishedOn = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 16,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "c#-ebook(beginner)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Author = "r.b. whitaker",
                             FormatId = 1,
                             PageAmount = 406,
-                            PublishedOn = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            PublishedOn = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 17,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "c#-ebook(intermediate)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Author = "ian griffiths",
                             FormatId = 2,
                             PageAmount = 778,
-                            PublishedOn = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            PublishedOn = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         },
                         new
                         {
                             Id = 18,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "c#-ebook(master)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Author = "mark j.price",
                             FormatId = 2,
                             PageAmount = 826,
-                            PublishedOn = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986)
+                            PublishedOn = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870)
                         });
                 });
 
@@ -1221,81 +1221,81 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 19,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "js-video(beginner)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Duration = new TimeOnly(1, 30, 25),
                             QualityId = 5
                         },
                         new
                         {
                             Id = 20,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "js-video(intermediate)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Duration = new TimeOnly(1, 30, 25),
                             QualityId = 6
                         },
                         new
                         {
                             Id = 21,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "js-video(master)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Duration = new TimeOnly(1, 30, 25),
                             QualityId = 6
                         },
                         new
                         {
                             Id = 22,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "react-video(beginner)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Duration = new TimeOnly(1, 30, 25),
                             QualityId = 6
                         },
                         new
                         {
                             Id = 23,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "react-video(intermediate)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Duration = new TimeOnly(1, 30, 25),
                             QualityId = 6
                         },
                         new
                         {
                             Id = 24,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "react-video(master)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Duration = new TimeOnly(1, 30, 25),
                             QualityId = 6
                         },
                         new
                         {
                             Id = 25,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "c#-video(beginner)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Duration = new TimeOnly(1, 30, 25),
                             QualityId = 6
                         },
                         new
                         {
                             Id = 26,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "c#-video(intermediate)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Duration = new TimeOnly(1, 30, 25),
                             QualityId = 6
                         },
                         new
                         {
                             Id = 27,
-                            CreatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            CreatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Title = "c#-video(master)",
-                            UpdatedAt = new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986),
+                            UpdatedAt = new DateTime(2024, 12, 20, 16, 3, 14, 174, DateTimeKind.Utc).AddTicks(7870),
                             Duration = new TimeOnly(1, 30, 25),
                             QualityId = 6
                         });
@@ -1306,12 +1306,14 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.Course", null)
                         .WithMany()
                         .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK__CourseMaterial__Course");
 
                     b.HasOne("Domain.Common.Material", null)
                         .WithMany()
                         .HasForeignKey("MaterialId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK__CourseMaterial__Material");
                 });
@@ -1321,12 +1323,14 @@ namespace Infrastructure.Migrations
                     b.HasOne("Domain.Entities.Course", null)
                         .WithMany()
                         .HasForeignKey("CourseId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK__CourseSkill__Course");
 
                     b.HasOne("Domain.Entities.Skill", null)
                         .WithMany()
                         .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
                         .HasConstraintName("FK__CourseSkill__Skill");
                 });
