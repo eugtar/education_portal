@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace Domain.Enums;
 
-public enum EbookFormat
+public enum EbookFormatEnum
 {
     [Description("epub")]
     EPUB = 1,

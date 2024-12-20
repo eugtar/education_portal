@@ -2,7 +2,7 @@ using System.ComponentModel;
 
 namespace Domain.Enums;
 
-public enum VideoQuality
+public enum VideoQualityEnum
 {
     [Description("144p")]
     _144p = 1,
