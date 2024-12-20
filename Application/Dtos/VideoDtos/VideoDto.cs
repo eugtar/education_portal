@@ -19,7 +19,7 @@ public sealed class VideoDto
             Id = v.Id,
             Title = v.Title,
             Duration = v.Duration,
-            QualityDto = VideoQualityDto.MapToView(v.Quality),
+            Quality = VideoQualityDto.MapToView(v.Quality),
             CreatedAt = v.CreatedAt,
             UpdatedAt = v.UpdatedAt
         };
