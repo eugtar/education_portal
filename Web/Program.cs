@@ -13,8 +13,6 @@ builder.Services
         }
     );
 
-// Add CORS
-builder.Services.AddCorsService();
 // Add Swagger services
 builder.Services.AddSwaggerService();
 // Add Auth servicds
@@ -46,8 +44,6 @@ else
 {
     app.UseHsts();
 }
-
-app.UseCors("AllowGoogleAuth");
 
 app.UseHttpsRedirection();
 

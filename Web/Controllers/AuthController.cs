@@ -1,11 +1,10 @@
 using System.Security.Claims;
 using System.Text;
 using System.Text.Encodings.Web;
-using Application.Dtos;
+using Application.Dtos.AuthDtos;
 using Application.Services.Interfaces;
 using Domain.Entities;
 using Domain.Entities.UserGroup;
-using Domain.Enums;
 using FluentValidation;
 using Microsoft.AspNetCore.Authentication.BearerToken;
 using Microsoft.AspNetCore.Authorization;
@@ -64,10 +63,10 @@ namespace Web.Controllers
                 FirstName = dto.FirstName,
                 LastName = dto.LastName,
                 Email = dto.Email,
-                EmailConfirmed = true,
                 UserName = dto.Email,
                 CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow
+                UpdatedAt = DateTime.UtcNow,
+                // EmailConfirmed = true
             };
 
             var result = await _userManager.CreateAsync(user, dto.Password);
@@ -85,7 +84,7 @@ namespace Web.Controllers
                 );
             }
 
-            // await SendConfirmationEmailAsync(user);
+            await SendConfirmationEmailAsync(user);
 
             return Ok();
         }

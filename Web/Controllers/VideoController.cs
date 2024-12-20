@@ -1,6 +1,5 @@
-using Application.Dtos;
+using Application.Dtos.VideoDtos;
 using Application.Services.Interfaces;
-using Domain.Entities;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,8 +20,10 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Video>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<VideoDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetVideos()
         {
             var result = await _videoService.GetAllAsync();
@@ -31,8 +32,10 @@ namespace Web.Controllers
         }
 
         [HttpGet("{videoId}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Video))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(VideoDto))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetArticle(int videoId)
         {
             var result = await _videoService.GetByIdAsync(videoId);
@@ -41,8 +44,11 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "teacher, administrator")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> CreateArticle(
             [FromBody] CreateVideoDto dto,
             IValidator<CreateVideoDto> validator
@@ -61,9 +67,12 @@ namespace Web.Controllers
         }
 
         [HttpPatch("{videoId}")]
+        [Authorize(Roles = "teacher, administrator")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> UpdateVideo(
             int videoId,
             [FromBody] UpdateVideoDto dto,
@@ -83,8 +92,11 @@ namespace Web.Controllers
         }
 
         [HttpDelete("{videoId}")]
+        [Authorize(Roles = "teacher, administrator")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
 
         public async Task<IActionResult> DeleteVideo(int videoId)
         {

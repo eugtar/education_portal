@@ -1,5 +1,5 @@
+using Application.Dtos.UserDtos;
 using Application.Services.Interfaces;
-using Domain.Entities.UserGroup;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web.Controllers.Common.BaseController;
@@ -8,7 +8,7 @@ namespace Web.Controllers
 {
     [Route("api/users")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = "student, teacher, administrator")]
     public class UserCourseController : BaseController
     {
         private readonly ICourseService _courseService;
@@ -19,8 +19,10 @@ namespace Web.Controllers
         }
 
         [HttpGet("{userId}/courses")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<UserCourse>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<UserCourseDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetUserCourses(int userId)
         {
             var result = await _courseService.GetAllUserCoursesAsync(userId);
@@ -29,8 +31,10 @@ namespace Web.Controllers
         }
 
         [HttpGet("{userId}/courses/{courseId}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserCourse))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserCourseDto))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetUserCourse(int userId, int courseId)
         {
             var result = await _courseService.GetUserCourseInfoAsync(userId, courseId);
@@ -41,6 +45,8 @@ namespace Web.Controllers
         [HttpPost("{userId}/courses/{courseId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> SubscribeToCourse(int userId, int courseId)
         {
             var result = await _courseService.SubscribeToCourseAsync(userId, courseId);
@@ -52,6 +58,8 @@ namespace Web.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> StudyTheCourse(int userId, int courseId)
         {
             var result = await _courseService.StudyTheCourseAsync(userId, courseId);
@@ -62,6 +70,8 @@ namespace Web.Controllers
         [HttpDelete("{userId}/courses/{courseId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> UnsubscribeFromCourse(int userId, int courseId)
         {
             var result = await _courseService.UnsubscribeFromCourseAsync(userId, courseId);

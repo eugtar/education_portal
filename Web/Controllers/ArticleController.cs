@@ -1,6 +1,5 @@
-using Application.Dtos;
+using Application.Dtos.ArticleDtos;
 using Application.Services.Interfaces;
-using Domain.Entities;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,8 +20,10 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Article>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<ArticleDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetArticles()
         {
             var result = await _articleService.GetAllAsync();
@@ -31,8 +32,10 @@ namespace Web.Controllers
         }
 
         [HttpGet("{articleId}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Article))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ArticleDto))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetArticle(int articleId)
         {
             var result = await _articleService.GetByIdAsync(articleId);
@@ -41,8 +44,11 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "teacher, administrator")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> CreateArticle(
             [FromBody] CreateArticleDto dto,
             IValidator<CreateArticleDto> validator
@@ -61,9 +67,12 @@ namespace Web.Controllers
         }
 
         [HttpPatch("{articleId}")]
+        [Authorize(Roles = "teacher, administrator")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> UpdateArticle(
             int articleId,
             [FromBody] UpdateArticleDto dto,
@@ -83,8 +92,11 @@ namespace Web.Controllers
         }
 
         [HttpDelete("{articleId}")]
+        [Authorize(Roles = "teacher, administrator")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
 
         public async Task<IActionResult> DeleteArticle(int articleId)
         {

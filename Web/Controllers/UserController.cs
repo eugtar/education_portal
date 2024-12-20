@@ -1,7 +1,5 @@
-using Application.Dtos;
+using Application.Dtos.UserDtos;
 using Application.Services.Interfaces;
-using Domain.Entities.UserGroup;
-using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web.Controllers.Common.BaseController;
@@ -21,8 +19,11 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<User>))]
+        [Authorize(Roles = "teacher, administrator")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<UserDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetUsers()
         {
             var result = await _userService.GetAllAsync();
@@ -31,8 +32,11 @@ namespace Web.Controllers
         }
 
         [HttpGet("{userId}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(User))]
+        [Authorize(Roles = "student, teacher, administrator")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserDto))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetUser(int userId)
         {
             var result = await _userService.GetByIdAsync(userId);
@@ -40,31 +44,12 @@ namespace Web.Controllers
             return NewResponse(result);
         }
 
-        [HttpPatch("{userId}")]
-        [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateUser(
-            int userId,
-            [FromBody] UpdateUserDto dto,
-            IValidator<UpdateUserDto> validator
-        )
-        {
-            var validationResult = validator.Validate(dto);
-
-            if (!validationResult.IsValid)
-            {
-                return ValidationError(validationResult);
-            }
-
-            var result = await _userService.UpdateAsync(userId, dto);
-
-            return NewResponse(result);
-        }
-
         [HttpDelete("{userId}")]
+        [Authorize(Roles = "administrator")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
 
         public async Task<IActionResult> DeleteUser(int userId)
         {

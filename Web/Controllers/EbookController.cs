@@ -1,6 +1,5 @@
-using Application.Dtos;
+using Application.Dtos.EbookDtos;
 using Application.Services.Interfaces;
-using Domain.Entities;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -22,8 +21,10 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Ebook>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<EbookDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetEbooks()
         {
             var result = await _ebookService.GetAllAsync();
@@ -32,8 +33,10 @@ namespace Web.Controllers
         }
 
         [HttpGet("{ebookId}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Ebook))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(EbookDto))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetEbook(int ebookId)
         {
             var result = await _ebookService.GetByIdAsync(ebookId);
@@ -42,8 +45,11 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "teacher, administrator")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> CreateEbook(
             [FromBody] CreateEbookDto dto,
             IValidator<CreateEbookDto> validator
@@ -62,9 +68,12 @@ namespace Web.Controllers
         }
 
         [HttpPatch("{ebookId}")]
+        [Authorize(Roles = "teacher, administrator")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> UpdateCourse(
             int ebookId,
             [FromBody] UpdateEbookDto dto,
@@ -84,8 +93,11 @@ namespace Web.Controllers
         }
 
         [HttpDelete("{ebookId}")]
+        [Authorize(Roles = "teacher, administrator")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
 
         public async Task<IActionResult> DeleteCourse(int ebookId)
         {

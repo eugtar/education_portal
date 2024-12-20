@@ -1,5 +1,5 @@
+using Application.Dtos.UserDtos;
 using Application.Services.Interfaces;
-using Domain.Entities.UserGroup;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Web.Controllers.Common.BaseController;
@@ -8,7 +8,7 @@ namespace Web.Controllers
 {
     [Route("api/users")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = "student, teacher, administrator")]
     public class UserSkillController : BaseController
     {
         private readonly ISkillService _skillService;
@@ -19,8 +19,10 @@ namespace Web.Controllers
         }
 
         [HttpGet("{userId}/skills")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<UserSkill>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<UserSkillDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetUserSkills(int userId)
         {
             var result = await _skillService.GetAllUserSkillsAsync(userId);
@@ -29,8 +31,10 @@ namespace Web.Controllers
         }
 
         [HttpGet("{userId}/skills/{skillId}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserSkill))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(UserSkillDto))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetUserSkill(int userId, int skillId)
         {
             var result = await _skillService.GetUserSkillInfoAsync(userId, skillId);
@@ -39,4 +43,3 @@ namespace Web.Controllers
         }
     }
 }
-

@@ -1,6 +1,5 @@
-using Application.Dtos;
+using Application.Dtos.SkillDtos;
 using Application.Services.Interfaces;
-using Domain.Entities;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,8 +20,10 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Skill>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<SkillDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetSkills()
         {
             var result = await _skillService.GetAllAsync();
@@ -31,8 +32,10 @@ namespace Web.Controllers
         }
 
         [HttpGet("{skillId}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Skill))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SkillDto))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetSkill(int skillId)
         {
             var result = await _skillService.GetByIdAsync(skillId);
@@ -41,8 +44,11 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "teacher, administrator")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> CreateSkill(
             [FromBody] CreateSkillDto dto,
             IValidator<CreateSkillDto> validator
@@ -61,9 +67,12 @@ namespace Web.Controllers
         }
 
         [HttpPatch("{skillId}")]
+        [Authorize(Roles = "teacher, administrator")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> UpdateSkill(
             int skillId,
             [FromBody] UpdateSkillDto dto,
@@ -83,8 +92,11 @@ namespace Web.Controllers
         }
 
         [HttpDelete("{skillId}")]
+        [Authorize(Roles = "teacher, administrator")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
 
         public async Task<IActionResult> DeleteSkill(int skillId)
         {

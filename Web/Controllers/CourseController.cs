@@ -1,6 +1,5 @@
-using Application.Dtos;
+using Application.Dtos.CourseDtos;
 using Application.Services.Interfaces;
-using Domain.Entities;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,8 +20,10 @@ namespace Web.Controllers
         }
 
         [HttpGet]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<Course>))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(IEnumerable<CourseDto>))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetCourses()
         {
             var result = await _courseService.GetAllAsync();
@@ -31,8 +32,10 @@ namespace Web.Controllers
         }
 
         [HttpGet("{courseId}")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Course))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CourseDto))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> GetCourse(int courseId)
         {
             var result = await _courseService.GetByIdAsync(courseId);
@@ -41,8 +44,11 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "teacher, administrator")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> CreateCourse(
             [FromBody] CreateCourseDto dto,
             IValidator<CreateCourseDto> validator
@@ -61,9 +67,12 @@ namespace Web.Controllers
         }
 
         [HttpPatch("{courseId}")]
+        [Authorize(Roles = "teacher, administrator")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         public async Task<IActionResult> UpdateCourse(
             int courseId,
             [FromBody] UpdateCourseDto dto,
@@ -83,8 +92,11 @@ namespace Web.Controllers
         }
 
         [HttpDelete("{courseId}")]
+        [Authorize(Roles = "teacher, administrator")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
 
         public async Task<IActionResult> DeleteCourse(int courseId)
         {
