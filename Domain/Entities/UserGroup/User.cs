@@ -8,10 +8,10 @@ public partial class User : IdentityUser<int>
     public string? LastName { get; set; }
     public DateTime? CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
-    public virtual IEnumerable<UserCourse> UserCourses { get; set; } = null!;
-    public virtual IEnumerable<UserSkill> UserSkills { get; set; } = null!;
-    public virtual IEnumerable<UserClaim> Claims { get; set; } = null!;
-    public virtual IEnumerable<UserLogin> Logins { get; set; } = null!;
-    public virtual IEnumerable<UserToken> Tokens { get; set; } = null!;
-    public virtual IEnumerable<UserRole> UserRoles { get; set; } = null!;
+    public virtual ICollection<UserCourse> UserCourses { get; set; } = null!;
+    public virtual ICollection<UserSkill> UserSkills { get; set; } = null!;
+    public virtual ICollection<UserClaim> Claims { get; set; } = null!;
+    public virtual ICollection<UserLogin> Logins { get; set; } = null!;
+    public virtual ICollection<UserToken> Tokens { get; set; } = null!;
+    public virtual ICollection<UserRole> UserRoles { get; set; } = null!;
 }

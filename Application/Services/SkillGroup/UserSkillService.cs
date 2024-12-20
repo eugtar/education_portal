@@ -1,4 +1,5 @@
 using System.Net;
+using Application.Dtos.UserDtos;
 using Application.Results;
 using Domain.Entities.UserGroup;
 
@@ -6,7 +7,7 @@ namespace Application.Services.SkillGroup;
 
 public partial class SkillService
 {
-    public async Task<Result<List<UserSkill>>> GetAllUserSkillsAsync(int userId)
+    public async Task<Result<List<UserSkillDto>>> GetAllUserSkillsAsync(int userId)
     {
         var userSkills = await _unitOfWork.UserSkills.FindAllAsync(
             userSkill => userSkill.UserId == userId
@@ -17,10 +18,10 @@ public partial class SkillService
             return new Error(HttpStatusCode.NotFound, "Not found");
         }
 
-        return userSkills.ToList();
+        return userSkills.Select(us => UserSkillDto.MapToView(us)).ToList();
     }
 
-    public async Task<Result<UserSkill>> GetUserSkillInfoAsync(int userId, int skillId)
+    public async Task<Result<UserSkillDto>> GetUserSkillInfoAsync(int userId, int skillId)
     {
         var userSkill = await _unitOfWork.UserSkills.FindOneAsync(
             userSkill => userSkill.SkillId == skillId && userSkill.UserId == userId
@@ -31,7 +32,7 @@ public partial class SkillService
             return new Error(HttpStatusCode.NotFound, "Not found");
         }
 
-        return userSkill;
+        return UserSkillDto.MapToView(userSkill);
     }
 
     public async Task<Result> DeleteUserSkillAsync(int userId, int skillId)

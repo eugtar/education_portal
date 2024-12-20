@@ -12,5 +12,6 @@ public interface IUnitOfWork : IAsyncDisposable
     public IUserCourseRepository UserCourses { get; }
     public IUserSkillRepository UserSkills { get; }
     public IUserRepository Users { get; }
+    public IMaterialRepository Materials { get; }
     public Task<int> CompleteAsync();
 }

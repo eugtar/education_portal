@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using System.Net;
-using Application.Dtos;
+using Application.Dtos.VideoDtos;
 using Application.Interfaces;
 using Application.Results;
 using Application.Services.Interfaces;
@@ -51,7 +51,7 @@ public class VideoService : IVideoService
         return Result.Success();
     }
 
-    public async Task<Result<List<Video>>> GetAllAsync()
+    public async Task<Result<List<VideoDto>>> GetAllAsync()
     {
         var videos = await _unitOfWork.Videos.GetAllAsync();
 
@@ -60,10 +60,10 @@ public class VideoService : IVideoService
             return new Error(HttpStatusCode.NotFound, "Not found");
         }
 
-        return videos.ToList();
+        return videos.Select(v => VideoDto.MapToView(v)).ToList();
     }
 
-    public async Task<Result<Video?>> GetByIdAsync(int id)
+    public async Task<Result<VideoDto>> GetByIdAsync(int id)
     {
         var video = await _unitOfWork.Videos.GetByIdAsync(id);
 
@@ -72,7 +72,7 @@ public class VideoService : IVideoService
             return new Error(HttpStatusCode.NotFound, $"Video with ID: {id} not found");
         }
 
-        return video;
+        return VideoDto.MapToView(video);
     }
 
     public async Task<Result> UpdateAsync(int id, UpdateVideoDto dto)

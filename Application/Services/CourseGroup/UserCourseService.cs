@@ -1,4 +1,5 @@
 using System.Net;
+using Application.Dtos.UserDtos;
 using Application.Results;
 using Domain.Entities.UserGroup;
 
@@ -45,7 +46,7 @@ public partial class CourseService
         return Result.Success();
     }
 
-    public async Task<Result<List<UserCourse>>> GetAllUserCoursesAsync(int userId)
+    public async Task<Result<List<UserCourseDto>>> GetAllUserCoursesAsync(int userId)
     {
         var userCourses = await _unitOfWork.UserCourses.FindAllAsync(
             userCourse => userCourse.UserId == userId
@@ -56,10 +57,10 @@ public partial class CourseService
             return new Error(HttpStatusCode.NotFound, "Not found");
         }
 
-        return userCourses.ToList();
+        return userCourses.Select(uc => UserCourseDto.MapToView(uc)).ToList();
     }
 
-    public async Task<Result<UserCourse>> GetUserCourseInfoAsync(int userId, int courseId)
+    public async Task<Result<UserCourseDto>> GetUserCourseInfoAsync(int userId, int courseId)
     {
         var userCourse = await _unitOfWork.UserCourses.FindOneAsync(
             userCourse => userCourse.UserId == userId && userCourse.CourseId == courseId
@@ -70,7 +71,7 @@ public partial class CourseService
             return new Error(HttpStatusCode.NotFound, "Not found");
         }
 
-        return userCourse;
+        return UserCourseDto.MapToView(userCourse);
     }
 
     private async Task<Result> UpdateUserCourseProgressAsync(

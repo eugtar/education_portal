@@ -1,5 +1,5 @@
 ﻿using System.Net;
-using Application.Dtos;
+using Application.Dtos.SkillDtos;
 using Application.Interfaces;
 using Application.Results;
 using Application.Services.Interfaces;
@@ -53,7 +53,7 @@ public partial class SkillService : ISkillService
         return Result.Success();
     }
 
-    public async Task<Result<List<Skill>>> GetAllAsync()
+    public async Task<Result<List<SkillDto>>> GetAllAsync()
     {
         var skills = await _unitOfWork.Skills.GetAllAsync();
 
@@ -62,10 +62,10 @@ public partial class SkillService : ISkillService
             return new Error(HttpStatusCode.NotFound, "Not found");
         }
 
-        return skills.ToList();
+        return skills.Select(s => SkillDto.MapToView(s)).ToList();
     }
 
-    public async Task<Result<Skill?>> GetByIdAsync(int id)
+    public async Task<Result<SkillDto>> GetByIdAsync(int id)
     {
         var skill = await _unitOfWork.Skills.GetByIdAsync(id);
 
@@ -74,7 +74,7 @@ public partial class SkillService : ISkillService
             return new Error(HttpStatusCode.NotFound, $"Skill with ID: {id} not found");
         }
 
-        return skill;
+        return SkillDto.MapToView(skill);
     }
 
     public async Task<Result> UpdateAsync(int id, UpdateSkillDto dto)

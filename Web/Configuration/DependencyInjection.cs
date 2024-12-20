@@ -58,30 +58,6 @@ public static class DependencyInjection
         return services;
     }
 
-    // CORS
-    public static IServiceCollection AddCorsService(this IServiceCollection services)
-    {
-        services.AddCors(options =>
-        {
-            options.AddPolicy("AllowGoogleAuth", builder =>
-            {
-                builder.WithOrigins("https://accounts.google.com/o/oauth2/v2/auth")
-                    .AllowAnyMethod()
-                    .AllowCredentials()
-                    .AllowAnyHeader();
-            });
-            options.AddPolicy("AllowOAuth", builder =>
-            {
-                builder.WithOrigins("http://localhost:5034")
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials();
-            });
-        });
-
-        return services;
-    }
-
     // Auth
     public static IServiceCollection AddAuthService(
         this IServiceCollection services,
@@ -146,7 +122,7 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IUserCourseRepository, UserCourseRepository>();
         services.AddScoped<IUserSkillRepository, UserSkillRepository>();
-        services.AddScoped<IRoleService, RoleService>();
+        services.AddScoped<IMaterialRepository, MaterialRepository>();
 
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
@@ -163,6 +139,7 @@ public static class DependencyInjection
         services.AddScoped<ISkillService, SkillService>();
         services.AddScoped<IUserService, UserService>();
         services.AddScoped<IEmailService, EmailService>();
+        services.AddScoped<IRoleService, RoleService>();
 
         return services;
     }

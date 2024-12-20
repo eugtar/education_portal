@@ -1,9 +1,9 @@
 ﻿using Domain.Entities;
-using Application.Dtos;
 using Application.Services.Interfaces;
 using Application.Interfaces;
 using Application.Results;
 using System.Net;
+using Application.Dtos.ArticleDtos;
 
 namespace Application.Services;
 
@@ -45,7 +45,7 @@ public class ArticleService : IArticleService
         return Result.Success();
     }
 
-    public async Task<Result<List<Article>>> GetAllAsync()
+    public async Task<Result<List<ArticleDto>>> GetAllAsync()
     {
         var articles = await _unitOfWork.Articles.GetAllAsync();
 
@@ -54,10 +54,10 @@ public class ArticleService : IArticleService
             return new Error(HttpStatusCode.NotFound, "Not found");
         }
 
-        return articles.ToList();
+        return articles.Select(a => ArticleDto.MapToView(a)).ToList();
     }
 
-    public async Task<Result<Article?>> GetByIdAsync(int id)
+    public async Task<Result<ArticleDto>> GetByIdAsync(int id)
     {
         var article = await _unitOfWork.Articles.GetByIdAsync(id);
 
@@ -66,7 +66,7 @@ public class ArticleService : IArticleService
             return new Error(HttpStatusCode.NotFound, "Not found");
         }
 
-        return article;
+        return ArticleDto.MapToView(article);
     }
 
     public async Task<Result> UpdateAsync(int id, UpdateArticleDto dto)

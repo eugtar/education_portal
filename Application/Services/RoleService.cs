@@ -7,7 +7,7 @@ namespace Application.Services;
 
 public class RoleService : IRoleService
 {
-    private string[] _roles = ["Guest", "Student", "Teacher", "Administator"];
+    private string[] _roles = ["guest", "student", "teacher", "administrator"];
     private readonly UserManager<User> _userManager;
 
     public RoleService(UserManager<User> userManager)

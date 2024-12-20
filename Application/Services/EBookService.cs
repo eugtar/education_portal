@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 using System.Net;
-using Application.Dtos;
+using Application.Dtos.EbookDtos;
 using Application.Interfaces;
 using Application.Results;
 using Application.Services.Interfaces;
@@ -53,7 +53,7 @@ public class EBookService : IEbookService
         return Result.Success();
     }
 
-    public async Task<Result<List<Ebook>>> GetAllAsync()
+    public async Task<Result<List<EbookDto>>> GetAllAsync()
     {
         var ebooks = await _unitOfWork.Ebooks.GetAllAsync();
 
@@ -62,10 +62,10 @@ public class EBookService : IEbookService
             return new Error(HttpStatusCode.NotFound, "Not found");
         }
 
-        return ebooks.ToList();
+        return ebooks.Select(e => EbookDto.MapToView(e)).ToList();
     }
 
-    public async Task<Result<Ebook?>> GetByIdAsync(int id)
+    public async Task<Result<EbookDto>> GetByIdAsync(int id)
     {
         var ebook = await _unitOfWork.Ebooks.GetByIdAsync(id);
 
@@ -74,7 +74,7 @@ public class EBookService : IEbookService
             return new Error(HttpStatusCode.NotFound, $"Book with ID: {id} not found");
         }
 
-        return ebook;
+        return EbookDto.MapToView(ebook);
     }
 
     public async Task<Result> UpdateAsync(int id, UpdateEbookDto dto)

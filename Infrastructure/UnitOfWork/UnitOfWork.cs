@@ -17,6 +17,7 @@ public class UnitOfWork : IUnitOfWork
     public IUserCourseRepository UserCourses => new UserCourseRepository(_context);
     public IUserSkillRepository UserSkills => new UserSkillRepository(_context);
     public IUserRepository Users => new UserRepository(_context);
+    public IMaterialRepository Materials => new MaterialRepository(_context);
 
     public UnitOfWork(DatabaseContext context)
     {
