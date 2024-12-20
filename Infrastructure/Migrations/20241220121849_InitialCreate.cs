@@ -361,11 +361,11 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedAt", "FormatType", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "epub", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 2, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "pdf", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 3, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "docx", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 4, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "azw", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 5, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "txt", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) }
+                    { 1, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "epub", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 2, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "pdf", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 3, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "docx", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 4, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "azw", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 5, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "txt", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) }
                 });
 
             migrationBuilder.InsertData(
@@ -373,14 +373,14 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedAt", "QualityType", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "144p", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 2, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "240p", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 3, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "360p", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 4, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "480p", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 5, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "720p", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 6, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "1080p", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 7, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "1440p", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 8, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "2160p", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) }
+                    { 1, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "144p", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 2, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "240p", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 3, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "360p", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 4, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "480p", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 5, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "720p", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 6, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "1080p", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 7, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "1440p", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 8, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "2160p", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) }
                 });
 
             migrationBuilder.InsertData(
@@ -388,10 +388,10 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "ConcurrencyStamp", "CreatedAt", "Name", "NormalizedName", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "Administrator", null, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 2, null, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "Theacher", null, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 3, null, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "Student", null, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 4, null, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "Guest", null, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) }
+                    { 1, null, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "administrator", "ADMINISTRATOR", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 2, null, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "teacher", "TEACHER", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 3, null, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "student", "STUDENT", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 4, null, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "guest", "GUEST", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) }
                 });
 
             migrationBuilder.InsertData(
@@ -399,15 +399,15 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedAt", "Description", "Title", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "JavaScript beginner course", "JSCourse(Beginner)", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 2, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "JavaScript intermadiate course", "JSCourse(Intermadiate)", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 3, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "JavaScript master course", "JSCourse(Master)", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 4, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "React beginner course", "ReactJSCourse(Beginner)", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 5, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "React intermadiate course", "ReactJSCourse(Intermadiate)", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 6, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "React master course", "ReactJSCourse(Master)", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 7, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "C# beginner course", "CSCourse(Beginner)", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 8, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "C# intermadiate course", "CSCourse(Intermadiate)", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 9, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "C# master course", "CSCourse(Master)", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) }
+                    { 1, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "java script beginner course", "js-course(beginner)", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 2, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "java script intermadiate course", "js-course(intermadiate)", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 3, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "java script master course", "js-course(master)", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 4, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "react beginner course", "react-course(beginner)", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 5, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "react intermadiate course", "react-course(intermadiate)", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 6, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "react master course", "react-course(master)", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 7, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "c# beginner course", "c#-course(beginner)", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 8, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "c# intermadiate course", "c#-course(intermadiate)", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 9, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "c# master course", "c#-course(naster)", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) }
                 });
 
             migrationBuilder.InsertData(
@@ -415,15 +415,15 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedAt", "Link", "Title", "Type", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "https://www.w3schools.com/js/default.asp", "JS-Article(Beginner) ", "Article", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 2, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "https://www.w3schools.com/js/default.asp", "JS-Article(Intermediate)", "Article", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 3, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "https://www.w3schools.com/js/default.asp", "JS-Article(Master)", "Article", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 4, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "https://www.w3schools.com/react/default.asp", "React-Article(Beginner)", "Article", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 5, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "https://www.w3schools.com/react/default.asp", "React-Article(Intermediate)", "Article", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 6, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "https://www.w3schools.com/react/default.asp", "React-Article(Master)", "Article", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 7, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "https://www.w3schools.com/cs/index.php", "C#-Article(Beginner)", "Article", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 8, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "https://www.w3schools.com/cs/index.php", "C#-Article(Intermediate)", "Article", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 9, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "https://www.w3schools.com/cs/index.php", "C#-Article(Master)", "Article", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) }
+                    { 1, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "https://www.w3schools.com/js/default.asp", "js-article(beginner) ", "Article", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 2, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "https://www.w3schools.com/js/default.asp", "js-article(intermediate)", "Article", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 3, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "https://www.w3schools.com/js/default.asp", "js-article(master)", "Article", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 4, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "https://www.w3schools.com/react/default.asp", "react-article(beginner)", "Article", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 5, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "https://www.w3schools.com/react/default.asp", "react-article(intermediate)", "Article", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 6, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "https://www.w3schools.com/react/default.asp", "react-article(master)", "Article", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 7, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "https://www.w3schools.com/cs/index.php", "c#-article(beginner)", "Article", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 8, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "https://www.w3schools.com/cs/index.php", "c#-article(intermediate)", "Article", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 9, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "https://www.w3schools.com/cs/index.php", "c#-article(master)", "Article", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) }
                 });
 
             migrationBuilder.InsertData(
@@ -431,15 +431,15 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedAt", "Name", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "JS-Beginner", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 2, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "JS-Intermediate", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 3, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "JS-Master", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 4, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "React-Beginner", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 5, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "React-Intermediate", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 6, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "React-Master", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 7, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "C#-Beginner", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 8, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "C#-Intermediate", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 9, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "C#-Master", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) }
+                    { 1, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "js-beginner", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 2, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "js-intermediate", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 3, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "js-master", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 4, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "react-beginner", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 5, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "react-intermediate", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 6, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "react-master", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 7, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "c#-beginner", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 8, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "c#-intermediate", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 9, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "c#-master", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) }
                 });
 
             migrationBuilder.InsertData(
@@ -488,15 +488,15 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "Author", "CreatedAt", "FormatId", "PageAmount", "PublishedOn", "Title", "Type", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 10, "David Flanagan", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), 2, 1093, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "JS-EBook(Beginner)", "Ebook", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 11, "David Herman", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), 2, 228, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "JS-EBook(Intermediate)", "Ebook", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 12, "Nicholas C.Zakas", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), 3, 960, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "JS-EBook(Master)", "Ebook", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 13, "Robin Wieruch", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), 2, 286, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "React-EBook(Beginner)", "Ebook", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 14, "Adam Boduch", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), 3, 526, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "React-EBook(Intermediate)", "Ebook", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 15, "Carlos Santana Roldan", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), 3, 394, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "React-EBook(Master)", "Ebook", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 16, "RB Whitaker", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), 1, 406, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "C#-EBook(Beginner)", "Ebook", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 17, "Ian Griffiths", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), 2, 778, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "C#-EBook(Intermediate)", "Ebook", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 18, "Mark J.Price", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), 2, 826, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), "C#-EBook(Master)", "Ebook", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) }
+                    { 10, "david flanagan", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), 2, 1093, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "js-ebook(beginner)", "Ebook", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 11, "david herman", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), 2, 228, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "js-ebook(intermediate)", "Ebook", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 12, "nicholas c.zakas", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), 3, 960, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "js-ebook(master)", "Ebook", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 13, "robin wieruch", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), 2, 286, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "react-ebook(beginner)", "Ebook", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 14, "adam boduch", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), 3, 526, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "react-ebook(intermediate)", "Ebook", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 15, "carlos santana roldan", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), 3, 394, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "react-ebook(master)", "Ebook", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 16, "r.b. whitaker", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), 1, 406, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "c#-ebook(beginner)", "Ebook", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 17, "ian griffiths", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), 2, 778, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "c#-ebook(intermediate)", "Ebook", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 18, "mark j.price", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), 2, 826, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), "c#-ebook(master)", "Ebook", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) }
                 });
 
             migrationBuilder.InsertData(
@@ -504,15 +504,15 @@ namespace Infrastructure.Migrations
                 columns: new[] { "Id", "CreatedAt", "Duration", "QualityId", "Title", "Type", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 19, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), new TimeOnly(1, 30, 25), 5, "JS-Video(Beginner)", "Video", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 20, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), new TimeOnly(1, 30, 25), 6, "JS-Video(Intermediate)", "Video", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 21, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), new TimeOnly(1, 30, 25), 6, "JS-Video(Master)", "Video", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 22, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), new TimeOnly(1, 30, 25), 6, "React-Video(Beginner)", "Video", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 23, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), new TimeOnly(1, 30, 25), 6, "React-Video(Intermediate)", "Video", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 24, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), new TimeOnly(1, 30, 25), 6, "React-Video(Master)", "Video", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 25, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), new TimeOnly(1, 30, 25), 6, "C#-Video(Beginner)", "Video", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 26, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), new TimeOnly(1, 30, 25), 6, "C#-Video(Intermediate)", "Video", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) },
-                    { 27, new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005), new TimeOnly(1, 30, 25), 6, "C#-Video(Master)", "Video", new DateTime(2024, 11, 28, 9, 50, 4, 107, DateTimeKind.Utc).AddTicks(9005) }
+                    { 19, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), new TimeOnly(1, 30, 25), 5, "js-video(beginner)", "Video", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 20, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), new TimeOnly(1, 30, 25), 6, "js-video(intermediate)", "Video", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 21, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), new TimeOnly(1, 30, 25), 6, "js-video(master)", "Video", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 22, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), new TimeOnly(1, 30, 25), 6, "react-video(beginner)", "Video", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 23, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), new TimeOnly(1, 30, 25), 6, "react-video(intermediate)", "Video", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 24, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), new TimeOnly(1, 30, 25), 6, "react-video(master)", "Video", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 25, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), new TimeOnly(1, 30, 25), 6, "c#-video(beginner)", "Video", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 26, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), new TimeOnly(1, 30, 25), 6, "c#-video(intermediate)", "Video", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) },
+                    { 27, new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986), new TimeOnly(1, 30, 25), 6, "c#-video(master)", "Video", new DateTime(2024, 12, 20, 12, 18, 45, 149, DateTimeKind.Utc).AddTicks(1986) }
                 });
 
             migrationBuilder.InsertData(
