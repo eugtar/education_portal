@@ -1,14 +1,11 @@
-using Application.Dtos.MaterialDtos;
-using Application.Dtos.SkillDtos;
-
 namespace Application.Dtos.CourseDtos;
 
 public sealed class UpdateCourseDto
 {
     private string? _title;
     private string? _description;
-    private IEnumerable<MaterialDto>? _materials;
-    private IEnumerable<SkillDto>? _skills;
+    private IEnumerable<CourseMaterialDto>? _materials;
+    private IEnumerable<CourseSkillDto>? _skills;
     public required string? Title
     {
         get => _title;
@@ -19,12 +16,12 @@ public sealed class UpdateCourseDto
         get => _description;
         set => _description = value?.Trim().ToLower();
     }
-    public required IEnumerable<MaterialDto>? Materials
+    public required IEnumerable<CourseMaterialDto>? Materials
     {
         get => _materials;
         set => _materials = value;
     }
-    public required IEnumerable<SkillDto>? Skills
+    public required IEnumerable<CourseSkillDto>? Skills
     {
         get => _skills;
         set => _skills = value;
